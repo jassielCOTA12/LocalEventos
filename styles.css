@@ -9,7 +9,7 @@ body {
     
     
 }
-
+/*====landing page====*/
     #contenedor {
         display: flex;
         height: 100vh; 
@@ -58,3 +58,82 @@ body {
                 height: 100%;
                 object-fit: cover; 
             }
+/* =====Elementos  Generales   -gen ====*/
+    .contenedor-gen{/* contenedor que contiene al header general y al panelcentral*/
+        display: flex;
+        flex-direction: column;
+    }
+    .header-gen{/*contenedor general utilizado en la mayoria de las paginas */
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       padding: 0px 20px;
+        height: 70px;
+        background-color: #2D5CEA;
+    }
+        .logoHeader-gen {
+            height: 60px;
+            padding: 0px  20px;
+
+            
+        }
+            .btnAcceder-gen{
+                
+                padding: 5px 15px; 
+                background-color: #f0f0f0; 
+                color: #000; 
+                
+                font-weight: bold;
+                border-radius: 15px; 
+                text-decoration: none; 
+                border: 1px solid #ccc; 
+                
+                
+                gap: 10px; /* Espacio entre el texto y el icono */
+                font-size: 14px;
+                transition: background-color 0.3s ease,color 0.3s ease; 
+            }
+                .btnAcceder-gen:hover{
+                    background: #585353;
+                    color: white;
+                }
+            .btnBarras-gen{
+                background-color: #fff;
+                padding: 5px;
+                border-radius: 100%;
+                margin: 0px 15px;
+            }
+            .btnBarras-gen:hover{
+                background: #585353;
+                    color: white;
+            }
+
+    .panelCentral-gen{/*contenedor central que contiene todo el contenido de la pagina */
+        display: flex;
+        justify-content: center; /*modificable */
+        
+        background-color: #fff;
+    }
+    .inputText-gen{
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        border: none;
+        background-color: #d3d3d3;
+        font-size: 16px;
+        color: #333;
+        
+    }
+/*====login====*/
+    .recuadroLogin{
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        height: 600px;
+        width: 500px;
+        background: #6b6868;
+    }
+
+
