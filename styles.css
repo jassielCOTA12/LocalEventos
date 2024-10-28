@@ -76,7 +76,7 @@ a{
        justify-content: space-between;
        padding: 0px 20px;
         height: 70px;
-        background-color: #2D5CEA;
+        background-color: var(--color-primario);
     }
         .logoHeader-gen {
             height: 60px;
@@ -116,7 +116,7 @@ a{
                     color: white;
             }
 
-    .panelCentral-gen{/*contenedor central que contiene todo el contenido de la pagina */
+    .panelCentral-gen{/*es el panel blanco donde va el contenido */
         display: flex;
         flex-direction: column;
         background-color: #fff;
@@ -211,7 +211,75 @@ a{
                 #enlaceRegistro:hover{
                     color: white;
                 }
-     
+/*=====Registro=====*/
+body.registro .panelCentral-gen{
+    justify-content: center;
+        align-items: center;
+
+}
+    #recuadroRegistro{
+        display: flex;
+            text-align: center;
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+            width: 500px;
+            background: var(--color-fondoGris);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 2);
+            border-radius: 20px;
+            border: 1px solid black;
+
+    }
+        .formularioRegistro{
+            display: flex;
+                flex-direction: column;
+                align-items: center; /* Centra el contenido horizontalmente */
+                gap: 15px; 
+        }
+            #btnRegistrarte{
+                background-color:var(--color-primario) ;
+                font-weight: bold;
+                color: white;
+                padding: 10px 130px;
+                border-radius: 20px;
+                border: 1px solid black;
+                transition: background 0.3s ease;
+            }
+                #btnRegistrarte:hover{
+                    background:var(--color-hover);   
+                }
+            #terminosCondiciones{
+                font-size: 12px;
+                margin: 0px;
+            }
+                #terminosEnlace{
+                    text-decoration: underline;
+                    font-weight: bold;
+                    transition: color 0.3s ease;
+                }
+                    #terminosEnlace:hover{
+                        color: white;
+                    }
+                #politicaEnlace{
+                    text-decoration: underline;
+                    font-weight: bold;
+                    transition: color 0.3s ease;
+                }
+                    #politicaEnlace:hover{
+                        color: white;
+                        
+                    }
+            #enlaceLogin{
+                font-weight: bold;
+                transition: color 0.3s ease;
+
+            }
+                #enlaceLogin:hover{
+                    color: white;
+                }
+
+            
+
         
         
 
