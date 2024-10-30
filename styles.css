@@ -135,6 +135,42 @@ a{
         color: #333;
         
     }
+    
+    #parteInferiorGrid-gen{
+        display: grid;
+        grid-template-columns: repeat( auto-fill,minmax(350px,1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+        .localCard-gen{
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 10px;
+    
+        }
+            .localCard-gen img{
+                width: 100%;
+                height: auto;
+                border-radius: 10px 10px 0 0;
+    
+            }
+            .localCard-gen h3{
+                font-size: 20px;
+                color: #555;
+                margin: 10px 0 5px;
+    
+            }
+            .localCard-gen p{
+                font-size: 14px;
+                color: #777;
+                margin: 5px 0;
+            }
+            .fa-starIcon-card{
+                color: yellow;
+            }
 /*====login====*/
 
     body.login .panelCentral-gen{/*parte blanca del login*/
@@ -386,41 +422,7 @@ body.registro .panelCentral-gen{
             height: 1.5px;
             border: none;
         }
-#parteInferiorGrid{
-    display: grid;
-    grid-template-columns: repeat( auto-fill,minmax(350px,1fr));
-    gap: 20px;
-    padding: 20px;
-}
-    .localCard{
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        text-align: center;
-        padding: 10px;
 
-    }
-        .localCard img{
-            width: 100%;
-            height: auto;
-            border-radius: 10px 10px 0 0;
-
-        }
-        .localCard h3{
-            font-size: 20px;
-            color: #555;
-            margin: 10px 0 5px;
-
-        }
-        .localCard p{
-            font-size: 14px;
-            color: #777;
-            margin: 5px 0;
-        }
-        .fa-starIcon{
-            color: yellow;
-        }
         
 
             
