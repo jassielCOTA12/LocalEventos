@@ -85,6 +85,10 @@ a{
 
             
         }
+        .derechaHeader-gen{ /*contenedor invidible para los botones del header (con este contenedor podremos dividir en dos en header para usar justificacion )*/
+            background: var(--color-primario);
+        }
+           
             .btnAcceder-gen{
                 
                 padding: 5px 15px; 
@@ -422,6 +426,78 @@ body.registro .panelCentral-gen{
             height: 1.5px;
             border: none;
         }
+/*====Mis datos====*/
+.panelCentral-Mdatos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+    .areaDatos{
+        
+        width: 60%;
+        height: 200px;
+        padding: 0px 30px 0px 30px;
+        border-radius: 10px;
+        border: 1px solid var(--color-hover);
+       
+        
+
+    } 
+        .inputGeneral-Mdatos{
+            height: 30px;
+            border-radius: 10px;
+            border: 1px solid var(--color-hover);
+            padding-left: 5px;
+          
+        }
+        #nombreTxt-Mdatos{
+            width: 100%;
+        }
+
+        .correoSeccion{
+            width: 50%;
+        }
+            #correoTxt-Mdatos{
+                width: 100%;
+               
+            }
+        .telefonoSeccion{
+            width: 50%;
+        }
+            #telefonoTxt-Mdatos{
+                width: 100%;
+            }
+        .areaDatos p{
+            color: black;
+            margin-bottom: 0px;
+            font-size: 18px;
+            
+        }
+        .contenedorInputHorizontal{
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            
+        }
+    .areaPagos{
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        min-height: 50px;
+        height: auto;
+        padding: 0px 30px 0px 30px;
+        border-radius: 10px;
+        border: 1px solid var(--color-hover);
+    }
+        .areaInferiorPagos{
+           
+            display: flex;
+            
+            align-items: center;
+            justify-content: center;
+        }
+
 
         
 
