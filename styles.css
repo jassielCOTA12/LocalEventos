@@ -142,9 +142,10 @@ a{
     
     #parteInferiorGrid-gen{
         display: grid;
-        grid-template-columns: repeat( auto-fill,minmax(350px,1fr));
+        grid-template-columns: repeat( auto-fill,minmax(300px,1fr));
         gap: 20px;
         padding: 20px;
+        margin-right: 20px;
     }
         .localCard-gen{
             background-color: white;
@@ -179,6 +180,22 @@ a{
          .localCard-gen:hover{
             transform: scale(1.05);
          }   
+
+         .btnSubir a {
+            display: inline-block;
+            position: fixed;
+            bottom: 5px;
+            right: 5px;
+            width: 30px; /* Tamaño del botón */
+            height: 30px; /* Tamaño del botón */
+        }
+        
+        .btnSubir img.subir-gen {
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; /* Asegura que la imagen mantenga sus proporciones y cubra el contenedor */
+        }
+        
 /*====login====*/
 
     body.login .panelCentral-gen{/*parte blanca del login*/
