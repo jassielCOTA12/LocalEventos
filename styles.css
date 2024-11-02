@@ -405,7 +405,7 @@ body.login .panelCentral-gen{
             padding: 8px 30px;
             border-radius: 20px;
             border: 1px solid black;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
@@ -418,6 +418,23 @@ body.login .panelCentral-gen{
             #calendario:hover{
                 background: var(--color-hover);
                 color: white;
+            }
+
+    
+            /* Ocultar el campo de fecha dejando solo el icono */
+            #date-picker {
+                position: absolute;
+                opacity: 0;
+               /* width: 0;
+                height: 0;*/
+                pointer-events: none;
+                font-size: 40px;
+                left: 45%;
+            }
+    
+            /* Personalización del icono */
+            #calendario span {
+                margin-right: 5px;
             }
         #filtro{
             padding: 8px 20px;
@@ -686,5 +703,6 @@ body.login .panelCentral-gen{
 
         
         
+       
 
 
