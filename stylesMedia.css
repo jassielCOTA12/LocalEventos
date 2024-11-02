@@ -43,14 +43,54 @@
     #presentacion{
         margin: 40px;
     }
+    html{
+        width: 100%;
+    }
 /* ===== inicio.html====*/
- /*   .header-gen{
+    body.inicio{
+        width: 100%;
+        overflow-x: hidden
+    }
+    .inicio .contenedor-gen{
+        justify-content: center;
+        position: relative;
+        align-items: center;
+        flex-wrap: wrap;
+        
+    }
+    .inicio .header-gen{
         width: 100%;
     }
     .inicio .panelCentral-gen{
         margin:0;
-    }*/
+       /* padding: 0 20px;*/
+        width: 100%;
+    }
+    .inicio #parteSuperior{
+        width: 100%;
+        display: flex;
+
+        justify-content: center;
+    }
+    .inicio #contenedorSeleccion .secciones, .inicio #contenedorSeleccion{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
     
+
+    #contenedor-busqueda{
+        transform: scale(0.7);
+    }
+
+    .inicio #calendario{
+        display: none;
+    }
+    
+    .btnSubir a{
+        z-index: 2;
+    }
 
     /* ===== login.html y registro.html ====*/
     .login, .registro {
@@ -107,6 +147,23 @@
     }
     #recuadroRegistro, .recuadroLogin{
         margin-bottom: 60px;
-        transform: scale(0.9);
+        transform: scale(0.8);
+    }
+
+    /* ===== inicio.html ======*/
+
+    .inicio #contenedorSeleccion .secciones{
+        width: 20px;
+        font-size: 12px;
+        margin: 5px 5px;
+    }
+
+    .inicio .barraBusqueda{
+        width: 400px;
+    }
+
+    .inicio #parteInferiorGrid-gen{
+        padding-top: 0;
+        margin: 0;
     }
 }
