@@ -9,55 +9,64 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="stylesMedia.css">
 </head>
-<body>
+<body class="misDatos">
     <div class="contenedor-gen">
         <header class="header-gen">
-            <img src="imagenes/logo.png" class="logoHeader-gen" alt="LOGO">
+            <a href="inicio.html"><img src="imagenes/logo.png" class="logoHeader-gen" alt="LOGO"></a>
             <div class="derechaHeader-gen">
-                <a href="inicio.html" class="btnAcceder-gen">Acceder</a>
+                <a href="login.html" class="btnAcceder-gen">Acceder  <span><i class="fa-regular fa-circle-user"></i></span></a>
                 <a href="##" class="btnBarras-gen"><i class="fa-solid fa-bars"></i></a>
             </div>
         </header>
         <div class="panelCentral-Mdatos">
-
-            <h1>Mis datos</h1>
-            <h3>Información personal</h3>
+            <div class="panelContenedorDatos">
+                <h1>Mis datos</h1>
+            <h2>Información personal</h2>
             <div class="areaDatos">
                 <form action="">
-                    <p>Nombre completo </p>
+                    <h3>Nombre completo </h3>
                     <input type="text" id="nombreTxt-Mdatos" class="inputGeneral-Mdatos"> <br>
                     <div class="contenedorInputHorizontal">
                         <div class="correoSeccion">
-                            <p>Correo electrónico</p> 
+                            <h3>Correo electrónico</h3> 
                             <input type="text" id="correoTxt-Mdatos" class="inputGeneral-Mdatos">
                         </div>
                         <div class="telefonoSeccion">
-                            <p>Teléfono</p>
+                            <h3>Teléfono</h3>
                             <input type="text" id="telefonoTxt-Mdatos" class="inputGeneral-Mdatos">
 
                         </div>
                     </div>
                 </form>
             </div>
-            <h3>Pagos y cobros</h3>
+            <h2>Pagos y cobros</h2>
             <div class="areaPagos">
                 <div class="gridPagos">
-                    <p>dlaf</p>
-                    <p>dlaf</p> <!--- agragar card por  cada metodo de pago y dejar un metodo de pago efectivo para no estar vacio   darle estilo al boton tambirn  -->
-                    <p>dlaf</p>
-                    <p>dlaf</p>
-                    <p>dlaf</p>
-                    <p>dlaf</p>
+                    <h3>Forma de pago</h3>
+                    <div class="divCards">
+                        <span><i class="fa-brands fa-cc-mastercard"></i></span>
+                        <p>Terminada en <strong>1234</strong></p>
+                    </div>
+                    <div class="divCards">
+                        <span><i class="fa-brands fa-cc-mastercard"></i></span>
+                        <p>Terminada en <strong>1234</strong></p>
+                    </div>
+                    <div class="divCards">
+                        <span><i class="fa-brands fa-cc-mastercard"></i></span>
+                        <p>Terminada en <strong>1234</strong></p>
+                    </div>
+                     <!--- agragar card por  cada metodo de pago y dejar un metodo de pago efectivo para no estar vacio   darle estilo al boton tambirn  -->
 
                 </div>
                 <div class="areaInferiorPagos">
-                    <input type="button" value="Agregar nuevo metodo de pago">
+                    <a href="#" class="btnPago">Agregar forma de pago</a>
 
                 </div>
 
                 
 
 
+            </div>
             </div>
         </div>
     </div>

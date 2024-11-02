@@ -3,6 +3,7 @@
     --color-fondoGris:#B9B9B9;
     --color-hover:#585353;
     --color-grisSecciones:#D9D9D9;
+    --color-gris-texto:#4A526B;
     
 }
 
@@ -57,7 +58,7 @@
         justify-content: center;
         position: relative;
         align-items: center;
-        flex-wrap: wrap;
+      /*  flex-wrap: wrap;*/
         
     }
     .inicio .header-gen{
@@ -123,11 +124,46 @@
     .login .logoHeader-gen, .registro .logoHeader-gen{
         height: 120px;
     }
-    #recuadroRegistro{
-       /* margin-bottom: 60px;*/
+
+     /* ===== misDatos.html ======*/
+     body.misDatos{
+        width: 100%;
+        overflow-x: hidden;
     }
-    
+
+    .misDatos .contenedor-gen{
+        justify-content: center;
+        position: relative;
+        align-items: center;
+      /*  flex-wrap: wrap;*/
+        
+    }
+    .misDatos .header-gen{
+        width: 100%;
+    }
+
+     .areaDatos form .contenedorInputHorizontal{
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+
+     }
+     .areaDatos{
+        height: auto;
+     }
+     .correoSeccion, .telefonoSeccion{
+        width: 100%;
+        
+     }
+
+     .panelCentral-Mdatos{
+        padding: 50px 50px;
+
+        
+    }
+
 }
+
 
 @media screen  and (max-width: 460px){
 
@@ -177,5 +213,14 @@
     .inicio #parteInferiorGrid-gen{
         padding-top: 0;
         margin: 0;
+    }
+
+
+    /* ===== misDatos.html ======*/
+    .divCards{
+        width: 90%;
+    }
+    .btnPago{
+        padding: 10px;
     }
 }
