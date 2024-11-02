@@ -563,9 +563,126 @@ body.login .panelCentral-gen{
         }
 
 
-        
+         /* ===== misReservas.html ======*/
+         .panelCentral-Reservas{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 50px 170px;
+            align-items: center;
+            color: var(--color-gris-texto);
+            max-width: 100%;
+         }
+         .title-misDatos{
+            padding-left: 20px;
+         }
+         .misReservas #parteInferiorGrid-gen{
+            max-width: 100%;
+            margin-right: 0;
+         }
 
+          /* ===== misFavoritos.html ======*/
+          .panelCentral-favoritos{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 50px 170px;
+            align-items: center;
+            color: var(--color-gris-texto);
+            max-width: 100%;
+         }
+         .misFavoritos #parteInferiorGrid-gen{
+            max-width: 100%;
+            margin-right: 0;
+         }
+         .fa-heart{
+            color: red;
+            font-size: 25px;
+         }
+
+
+          /* ===== Dropdown ======*/
+         .dropdown, .dropdown-filtro {
+            position: relative;
+            display: inline-block;
+          }
+          
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 150px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        z-index: 1;
+        left: -130px;
+        top:27px;
+        
+        border-radius:20px;
+        text-align: justify;
+        border: 1px solid var(--color-fondoGris);
+        font-family:  'Poppins', sans-serif; ;
+        }
+
+        .dropdown-content a, .dropdown-content-filtro a{
+            padding: 5px;
+        }
+        .dropdown-content a:hover{
+            background-color: var(--color-fondoGris);
+            border-radius: 5px;
+
+        }
+        .dropdown-content-filtro a:hover{
+            background-color: var(--color-fondoGris);
+            border-radius: 5px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .dropdown-filtro:hover .dropdown-content-filtro{
+            display: block;
+          }
+
+          .dropdown-content-filtro {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            z-index: 1;
+            left: -130px;
+            top:27px;
             
+            border-radius:20px;
+            text-align: justify;
+            border: 1px solid var(--color-fondoGris);
+            font-family:  'Poppins', sans-serif; ;
+            }
+    
+            .categorias-filtro{
+                width: 80%;
+                margin-left: 20px;
+            }
+
+            .btnFiltro{
+                padding: 10px;
+                margin-top: 10px;
+                border-top: 1px solid var(--color-fondoGris);
+            }
+            .btnAplicarFiltro{
+                background-color: var(--color-primario);
+                color: white;
+                border-radius: 20px;
+            }
+    
+            .btnAplicarFiltro:hover{
+                background-color: var(--color-hover);
+                color: white;
+            }
 
         
         
