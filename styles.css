@@ -552,9 +552,9 @@ body.login .panelCentral-gen{
 
         .divCards{
             display: flex;
-            width: 20%;
+            width: 100%;
             align-items: center;
-            justify-content: space-between ;
+            gap: 20px;
 
         }
 
