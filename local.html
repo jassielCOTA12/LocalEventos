@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salón de eventos "La Roca"</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" /><!---importacion de font awsome para logos -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="stylesheet" href="stylesMedia.css">
+</head>
+<body>
+    <div class="contenedor-gen">
+        <header class="header-gen">
+            <a href="inicio.html"><img src="./imagenes/logo.png" alt="LOGO" class="logoHeader-gen"></a>
+            <div id="contenedor-busqueda">
+                <div class="barraBusqueda">
+                    <input type="text" placeholder="Buscar..." id="inputBusqueda">
+                    <button type="submit" id="buscar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div> 
+            <div class="derechaHeader-gen"> 
+                <a href="login.html" class="btnAcceder-gen">Acceder  <span><i class="fa-regular fa-circle-user"></i></span></a>
+                
+                <div class="dropdown">
+                        <a href="##" class="btnBarras-gen"><i class="fa-solid fa-bars"></i></a>
+                        <div class="dropdown-content">
+                            <a href="misDatos.html">Mis datos</a>
+                            <a href="misReservas.html">Mis reservas</a>
+                            <a href="misFavoritos.html">Mis favoritos</a>
+                        </div>
+                </div>  
+            </div>
+        </header>
+        <div class="panelSuperior">
+            <div class="panelSuperior-izq">
+                <img src="imagenes/ImgLocal3.png" alt="Imagen del local" >
+            </div>
+            <div class="panelSuperior-derecha">
+                <h1 class="salonNombre">Salon de Eventos "La Roca"</h1>
+                <div class="local-info">
+                    <img class="icon"  src="imagenes/ubicacionIcon.png" alt="Ubicacion-Icon" >
+                    <p class="direccion">Carranza e/ Allende y Juáres, La Paz, México</p>
+                </div>
+                <div class="local-info">
+                    <img class="icon" src="imagenes/personasIcon.png" alt="Personas-Icon" >
+                    <p class="capacidad">Hasta 70 personas</p>
+                </div>
+                <div class="local-info">
+                    <img class="icon" src="imagenes/mensajeIcon.png" alt="mensaje-Icon" >
+                    <img class="calificacion" src="imagenes/estrellas.png" alt="calificacion">
+                    <p class="opiniones">(4 opiniones) </p>
+                </div>
+                <div class="local-info">
+                    <img class="icon" src="imagenes/precioIcon.png" alt="precio1-Icon" >
+                    <p class="precioAprox">Desde $3,000.0</p>
+                </div>
+                <div class="botonesReservar-compartir-like">
+                    <button class="btn-reservar">Reservar</button>
+                    <button class="btn-compartir"><img src="imagenes/compartirIcon.png" alt="compartir"></button>
+                    <button class="btn-compartir"><img src="imagenes/likeIcon.png" alt="like"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

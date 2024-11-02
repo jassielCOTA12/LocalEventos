@@ -374,7 +374,7 @@ body.login .panelCentral-gen{
             height: 50px;
             border: 1px solid #ccc;
             border-radius: 25px;
-            
+            background-color: white;
             box-sizing: border-box;
         }
             #inputBusqueda{
@@ -701,8 +701,52 @@ body.login .panelCentral-gen{
                 color: white;
             }
 
-        
-        
-       
+/*Local*/
 
+.panelSuperior{
+    margin-left: 10%;
+    margin-top: 30px;
+    width: 80%;
+    display: flex;
+    columns: 2;
+    column-gap: 50px;
+}
+.local-info{
+    display: flex;
+    align-items: center;
+    columns: 2; 
+    font-size: 20px;
+}
+.icon{
+    margin: 10px;
+}
+.opiniones, .direccion{
+    text-decoration:underline;
+}
+.botonesReservar-compartir-like{
+    display: flex;
+    columns: 3;
+    column-gap:20px
+}
+        
+.btn-reservar{
+    background-color: var(--color-primario);
+    color: white;
+    width: 50%;
+    border-radius: 15px;
+    padding: 5px 60px;
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    border-right: 1px solid #ccc;
+}      
+.btn-reservar:hover{
+    background-color: var(--color-hover);     
+}
+.btn-compartir, .btn-like{
+    border:none
+}
+.btn-like:hover{
+    background-color: red;
+}
 
