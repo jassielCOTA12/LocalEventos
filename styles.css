@@ -4,6 +4,7 @@
     --color-hover:#585353;
     --color-grisSecciones:#D9D9D9;
     --color-gris-texto:#4A526B;
+    --color-secundario: #4563C0;
     
 }
 
@@ -19,6 +20,7 @@ a{
     text-decoration: none;
     color: black;
 }
+
 /*====landing page====*/
     #contenedor {
         display: flex;
@@ -77,7 +79,7 @@ a{
        display: flex;
        align-items: center;
        justify-content: space-between;
-       padding: 0px 20px;
+       padding: 0 20px 0 0;
         height: 70px;
         background-color: var(--color-primario);
     }
@@ -710,6 +712,9 @@ body.login .panelCentral-gen{
     z-index: 1000; 
 }
 
+.local p{
+    margin: 0;
+}
 .contenedor-gen {
     margin-top: 80px; 
 }
@@ -739,9 +744,12 @@ body.login .panelCentral-gen{
         columns: 3;
         column-gap:20px
     }
-            
+     
+    .local .panelSuperior-izq .carousel {
+        width: 500px;
+    }
     .btn-reservar{
-        background-color: var(--color-primario);
+        background-color: var(--color-secundario);
         color: white;
         width: 50%;
         border-radius: 15px;
@@ -755,10 +763,33 @@ body.login .panelCentral-gen{
         background-color: var(--color-hover);     
     }
     .btn-compartir, .btn-like{
-        border:none
+        border:none;
+        background: none;
     }
+    
+    .local .panelSuperior-derecha .fa-heart{
+        color: black;
+        font-size: 38px;
+    }
+    .local .panelSuperior-derecha .fa-heart:hover{
+        color: red;
+    }
+
     .calificacion{
         width: 35%;
+    }
+    .modal-body h4 {
+        text-align: center;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .modal-footer .btn-primary {
+        width: 100%;
+    }
+
+    .text-muted {
+        font-size: 12px;
     }
     /*segundo panel Local*/
     .panel-infoLocal {
@@ -767,7 +798,7 @@ body.login .panelCentral-gen{
         width: 80%;
         display: flex;
         flex-direction: column;
-        font-weight: bold;
+        
     }
     
     .panel-infoLocal h2 {
@@ -801,11 +832,9 @@ body.login .panelCentral-gen{
     .panel-horariosPrecios {
         width: 80%;
         margin: 20px auto;
-        font-family: Arial, sans-serif;
     }
     
     .panel-horariosPrecios h3 {
-        font-weight: bold;
         margin-bottom: 10px;
     }
     
@@ -856,7 +885,6 @@ body.login .panelCentral-gen{
     .panel-disponibilidad {
         width: 80%;
         margin: 20px auto;
-        font-family: Arial, sans-serif;
     }
     .calendario{
         display: flex;
@@ -865,12 +893,11 @@ body.login .panelCentral-gen{
     }
     
 
-    /*footer Local*/
+    /*panel Local*/
 
     .contacto{
         width: 80%;
         margin: 20px auto;
-        font-family: Arial, sans-serif;
     }
     .infoContacto{
         display: flex;
@@ -879,8 +906,163 @@ body.login .panelCentral-gen{
     }
     .formato-info{
         display: flex;
-        flex-direction: row;
+        align-items: center;
+        columns: 2;
+        font-size: 20px;
         gap: 10px;
-        text-align: center;
+    }
+    /*PAnel opiniones*/
+    /*Comentarios carrusel*/
+    .headerComments{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+    .card{
+        padding: 20px;
+        width: 350px;
+        margin-left: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .headerComments h4{
+        margin: 0;
+    }
+    .card-body .center-Comments{
+        margin: 10px 0;
+    }
+    .card-date{
+        justify-content: flex-end;
+        display: flex;
+    }
+
+    .panel-opiniones{
+        width: 80%;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .panel-opiniones-container{
+        display: flex;
+        margin-top: 10px;
+    }
+
+ 
+    .cards-wrapper{
+        display: flex;
+        width: auto;
+
+    }
+
+    .info-opinion{
+        display: flex;
+        columns: 2;
+        justify-content: space-between;
+        align-items: center;
+        gap: 3%;
+    }
+    .info-opinion img{
+        width: 200px;
+    }
+    .info-opinion p{
+        margin: 0cqw;
+    }
+    .estrellas{
+        display: flex;
+        flex-direction: column;
+    }
+    .btn-opinion{
+        display: flex;
+        align-items: center;
         justify-content: center;
+    }
+    .btn-agregarComentario, .btn-continuar{
+        background-color: var(--color-secundario);
+        color: white;
+        width: 50%;
+        border-radius: 10px;
+        margin-top: 40px;
+        font-size: 15px;
+        padding:10px;
+        font-weight: bold;
+        border-right: 1px solid #ccc;
+    }   
+    .btn-agregarComentario:hover{
+        background-color: var(--color-hover);
+        color: white;
+    }  
+    .btn-continuar:hover{
+        background-color: var(--color-hover);
+        color: white;
+    }  
+    .modal-body h4 {
+        text-align: center;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    .rating-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .rating-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+    }
+
+    .stars span {
+        font-size: 24px;
+        color: #ccc;
+        cursor: pointer;
+    }
+
+    .stars span:hover,
+    .stars span:hover ~ span {
+        color: #ffc107;
+    }
+
+    .form-group label {
+        font-size: 16px;
+    }
+
+    .modal-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn-aceptar,.btn-continuar{
+        background-color: var(--color-secundario);
+        color: white;
+        width: 50%;
+        height: 40px;
+        border-radius: 10px;
+        margin-top: 40px;
+        font-size: 15px;
+        border-right: 1px solid #ccc;  
+    }
+    .modal-footer .btn-primary {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .modal-footer .text-muted {
+        font-size: 12px;
+    } 
+
+
+    
+
+
+
+
+
+
+
+
+    [id] {
+        scroll-margin-top:100px; /* Ajusta el valor a la altura de la barra de navegación fija */
     }
