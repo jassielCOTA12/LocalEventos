@@ -177,8 +177,135 @@
         padding: 50px;
      }
 
+
+     /* ==== local.html  ====*/
+     .local .panelCentral-gen{
+        max-width: 100%;
+        margin: 0;
+        min-height: auto;
+     }
+     body.local {
+        width: 100%;
+        overflow-x: hidden;
+        background-color: red;
+    }
+     .local .contenedor-gen{
+       max-width: 100%;
+
+     }
+     .local .panelSuperior{
+        gap: 20px;
+        display: flex;
+        columns: 2;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+     }
+
+     .local .panelSuperior .panelSuperior-derecha, .local .panelSuperior .panelSuperior-izq{
+        width: 50%;
+     }
+
+     .local .panelSuperior-izq .carousel, .panelSuperior-derecha-info, .local .botonesReservar-compartir-like{
+        width: 100%;
+     }
+     .local h1{
+       font-size: 26px;
+     }
+     .local h2{
+        font-size: 22px;
+     }
+     .local h3{
+        font-size: 18px;
+     }
+     
+     .local .text strong, .local .precio{
+        font-size: 16px;
+     }
+
+     .local .local-info, .local .text, .local h4, .local p{
+            font-size:14px;
+     }
+     .local .local-info .icon{
+        width: 25px;
+     }
+
+     .local .botonesReservar-compartir-like .btn-reservar, .local .btn-agregarComentario{
+        width: auto;
+        margin: 0;
+     }
+     .local .botonesReservar-compartir-like {
+        justify-content: space-between;
+        column-gap: normal;
+     }
+
+     .local .botonesReservar-compartir-like .btn-like i, .local .botonesReservar-compartir-like .btn-compartir img{
+        width: auto;
+     }
+     .local .calendario, .local .panel-opiniones-container, .local .cards-wrapper{
+        column-gap:10px ;
+     }
+     .local .calendario img, .local .estrellas img {
+        width:45%;
+        
+     }
+ 
+     .local .card{
+        width: 100%;
+        margin: 0;
+     }
+     .local .card .center-Comments img{
+        width: 100%;
+     }
+
+     .local .panel-opiniones-container {
+        flex-direction: column;
+        row-gap: 10px;
+     }
+
+     .local #contenedor-busqueda{
+        justify-content: left;
+     }
+     .local #contenedor-busqueda .barraBusqueda{
+        margin-left:30px;
+     }
+     
 }
 
+@media screen and (min-width: 781px ) and (max-width:1380px) {
+    .local  .v2{
+        display: none;
+     }
+    .local .panelSuperior-derecha{
+        transform: scale(0.8);
+     }
+     .local .panelSuperior-izq, .local .panelSuperior-izq .carousel{
+        width: 320px;
+     }
+     .local .panelSuperior{
+        column-gap: 0;
+      /*  justify-content: center;*/
+     }
+}
+@media screen  {
+    .local .barraBusqueda{
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .local .header-gen .derechaHeader-gen{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .local .btnAcceder-gen{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
 
 @media screen  and (max-width: 460px){
 
