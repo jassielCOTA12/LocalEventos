@@ -701,52 +701,186 @@ body.login .panelCentral-gen{
                 color: white;
             }
 
-/*Local*/
+/* =======Local========*/
+.header-gen {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+}
 
-.panelSuperior{
-    margin-left: 10%;
-    margin-top: 30px;
-    width: 80%;
-    display: flex;
-    columns: 2;
-    column-gap: 50px;
+.contenedor-gen {
+    margin-top: 80px; 
 }
-.local-info{
-    display: flex;
-    align-items: center;
-    columns: 2; 
-    font-size: 20px;
-}
-.icon{
-    margin: 10px;
-}
-.opiniones, .direccion{
-    text-decoration:underline;
-}
-.botonesReservar-compartir-like{
-    display: flex;
-    columns: 3;
-    column-gap:20px
-}
+
+    .local .panelSuperior{
+        margin-left: 10%;
+        margin-top: 70px;
+        width: 80%;
+        display: flex;
+        columns: 2;
+        column-gap: 50px;
+    }
+    .local-info{
+        display: flex;
+        align-items: center;
+        columns: 2; 
+        font-size: 20px;
+    }
+    .icon{
+        margin: 10px;
+    }
+    .opiniones, .direccion{
+        text-decoration:underline;
+    }
+    .botonesReservar-compartir-like{
+        display: flex;
+        columns: 3;
+        column-gap:20px
+    }
+            
+    .btn-reservar{
+        background-color: var(--color-primario);
+        color: white;
+        width: 50%;
+        border-radius: 15px;
+        padding: 5px 60px;
+        margin-left: 20px;
+        font-size: 15px;
+        font-weight: bold;
+        border-right: 1px solid #ccc;
+    }      
+    .btn-reservar:hover{
+        background-color: var(--color-hover);     
+    }
+    .btn-compartir, .btn-like{
+        border:none
+    }
+    .calificacion{
+        width: 35%;
+    }
+    /*segundo panel Local*/
+    .panel-infoLocal {
+        margin-left: 10%;
+        margin-top: 30px;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        font-weight: bold;
+    }
+    
+    .panel-infoLocal h2 {
+        text-align: center; 
+    }
+    .informacion{
+        font-size: 20px;
+    }
+    .info-container
+    {
+        columns: 2;
+        column-gap: 50px;
+    }
+    /*panel ubicacion*/
+    .panel-ubicacionLocal {
+        width: 80%;
+        margin: 20px auto;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: left;
+    }
+    
+    .contenedor-mapa {
+        width: 65%;
+        display: flex;
+        flex-direction: column;
+    }
+    /*horarios y precios*/
+    .panel-horariosPrecios {
+        width: 80%;
+        margin: 20px auto;
+        font-family: Arial, sans-serif;
+    }
+    
+    .panel-horariosPrecios h3 {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    
+    .dias {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .precio-item {
+        width: 60%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .icon-text {
+        display: flex;
+        align-items: center;
+    }
+    
+    .iconPrecio {
         
-.btn-reservar{
-    background-color: var(--color-primario);
-    color: white;
-    width: 50%;
-    border-radius: 15px;
-    padding: 5px 60px;
-    margin-left: 20px;
-    font-size: 15px;
-    font-weight: bold;
-    border-right: 1px solid #ccc;
-}      
-.btn-reservar:hover{
-    background-color: var(--color-hover);     
-}
-.btn-compartir, .btn-like{
-    border:none
-}
-.btn-like:hover{
-    background-color: red;
-}
+        margin-right: 20px;
+    }
+    
+    .text {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .text p {
+        margin: 2px 0; 
+    }
+    
+    .text strong {
+        margin: 0; 
+    }
+    
+    
+    .precio {
+        font-weight: bold;
+        font-size: 18px;
+    }
+    /*Panel disponiblidad*/
+    .panel-disponibilidad {
+        width: 80%;
+        margin: 20px auto;
+        font-family: Arial, sans-serif;
+    }
+    .calendario{
+        display: flex;
+        columns: 2;
+        column-gap:40px
+    }
+    
 
+    /*footer Local*/
+
+    .contacto{
+        width: 80%;
+        margin: 20px auto;
+        font-family: Arial, sans-serif;
+    }
+    .infoContacto{
+        display: flex;
+        columns:2;
+        gap:10%;
+    }
+    .formato-info{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        text-align: center;
+        justify-content: center;
+    }
