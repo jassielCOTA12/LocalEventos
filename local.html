@@ -38,7 +38,7 @@
         </header>
         <div class="panelSuperior">
             <div class="panelSuperior-izq">
-                <div id="carouselExample" class="carousel carousel-black slide">
+                <div id="carouselExample" class="carousel carousel-dark slide">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
                         <img src="imagenes/ImgLocal3.png" class="d-block w-100" alt="...">
@@ -51,90 +51,15 @@
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Previous</span>
                     </button>
-                    <div class="modal fade" id="reservarModal" tabindex="-1" aria-labelledby="reservarModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="reservarModalLabel">Reservación</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <h4 class="text-center">Salon de Eventos "La Roca"</h4>
-                                    
-                                    <form>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                                            <input type="text" class="form-control" placeholder="Nombre y apellido" required>
-                                        </div>
-                                        
-                                        <div class="row g-2 mb-3">
-                                            <div class="col">
-                                                <div class="input-group">
-                                                    <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-                                                    <input type="email" class="form-control" placeholder="Correo electrónico" required>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="input-group">
-                                                    <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-                                                    <input type="tel" class="form-control" placeholder="Teléfono" required>
-                                                </div>
-                                            </div>
-                                        </div>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
                     
-                                        <label>Fecha del evento:</label>
-                                        <div class="row g-2 mb-3">
-                                            <div class="col">
-                                                <select class="form-select" required>
-                                                    <option value="">Día</option>
-                                                    <!-- Agregar opciones para los días -->
-                                                </select>
-                                            </div>
-                                            <div class="col">
-                                                <select class="form-select" required>
-                                                    <option value="">Mes</option>
-                                                    <!-- Agregar opciones para los meses -->
-                                                </select>
-                                            </div>
-                                            <div class="col">
-                                                <select class="form-select" required>
-                                                    <option value="">Año</option>
-                                                    <!-- Agregar opciones para los años -->
-                                                </select>
-                                            </div>
-                                        </div>
-                    
-                                        <label>Número de invitados:</label>
-                                        <div class="form-check mb-3">
-                                            <input type="radio" class="form-check-input" name="invitados" id="invitados1" value="0-30">
-                                            <label class="form-check-label" for="invitados1">0 - 30 personas</label>
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <input type="radio" class="form-check-input" name="invitados" id="invitados2" value="30-50">
-                                            <label class="form-check-label" for="invitados2">30 - 50 personas</label>
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <input type="radio" class="form-check-input" name="invitados" id="invitados3" value="50-70">
-                                            <label class="form-check-label" for="invitados3">50 - 70 personas</label>
-                                        </div>
-                    
-                                        <div class="form-group mt-3">
-                                            <label for="extraInfo">Información extra:</label>
-                                            <textarea class="form-control" id="extraInfo" rows="3" placeholder="Buen día, estoy interesado en un lugar para celebrar un cumpleaños infantil."></textarea>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn-continuar">Continuar</button>
-                                    <p class="text-center text-muted mt-2">Salón de Eventos "La Roca" se pondrá en contacto contigo lo más pronto posible.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
+                </div>
             </div>
             <div class="panelSuperior-derecha">
-                <h1 class="salonNombre"><strong>Salon de Eventos "La Roca"</strong></h1>
+                <h1 class="salonNombre"><strong>Salón de Eventos "La Roca"</strong></h1>
                 <div class="local-info">
                     <img class="icon"  src="imagenes/ubicacionIcon.png" alt="Ubicacion-Icon" >
                     <a href="#mapa" class="direccion">Carranza e/ Allende y Juáres, La Paz, México</a>
@@ -153,94 +78,158 @@
                     <p class="precioAprox">Desde $3,000.0</p>
                 </div>
                 <div class="botonesReservar-compartir-like">
-    <button class="btn-reservar" data-bs-toggle="modal" data-bs-target="#reservarModal">Reservar</button>
-    <button class="btn-compartir"><img src="imagenes/compartirIcon.png" alt="compartir"></button>
-    <button class="btn-like"><i class="fa-solid fa-heart"></i></button>
-</div>
+                    <button class="btn-reservar" data-bs-toggle="modal" data-bs-target="#reservarModal">Reservar</button>
+                    <button class="btn-compartir"><img src="imagenes/compartirIcon.png" alt="compartir"></button>
+                    <button class="btn-like"><i class="fa-solid fa-heart"></i></button>
+                </div>
 
-<div class="modal fade" id="reservarModal" tabindex="-1" aria-labelledby="reservarModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="reservarModalLabel"><strong>Reservación</strong></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal fade" id="reservarModal" tabindex="-1" aria-labelledby="reservarModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="reservarModalLabel"><strong>Reservación</strong></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h4 class="text-center">Salón de Eventos "La Roca"</h4>
+                            
+                            <form>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                                    <input type="text" class="form-control" placeholder="Nombre y apellido" required>
+                                </div>
+                                
+                                <div class="row g-2 mb-3">
+                                    <div class="col">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                                            <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+                                            <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <label>Fecha del evento:</label>
+                                <div class="row g-2 mb-3">
+                                    <div class="col">
+                                        <select class="form-select" required>
+                                            <option selected>Día</option>
+                                            <option value="">1</option>
+                                            <option value="">2</option>
+                                            <option value="">3</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <select class="form-select" required>
+                                            <option selected>Mes</option>
+                                            <option value="">Enero</option>
+                                            <option value="">Febrero</option>
+                                            <option value="">Marzo</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <select class="form-select" required>
+                                            <option selected>Año</option>
+                                            <option value="">2024</option>
+                                            <option value="">2025</option>
+                                            <option value="">2026</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <label>Número de invitados:</label>
+                                <div class="form-check mb-3">
+                                    <input type="radio" class="form-check-input" name="invitados" id="invitados1" value="0-30">
+                                    <label class="form-check-label" for="invitados1">0 - 30 personas</label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input type="radio" class="form-check-input" name="invitados" id="invitados2" value="30-50">
+                                    <label class="form-check-label" for="invitados2">30 - 50 personas</label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input type="radio" class="form-check-input" name="invitados" id="invitados3" value="50-70">
+                                    <label class="form-check-label" for="invitados3">50 - 70 personas</label>
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <label for="extraInfo">Información extra:</label>
+                                    <textarea class="form-control" id="extraInfo" rows="3" placeholder="Buen día, estoy interesado en un lugar para celebrar un cumpleaños infantil."></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn-continuar" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Continuar</button>
+                            <p class="text-center text-muted mt-2">Salón de Eventos "La Roca" se pondrá en contacto contigo lo más pronto posible.</p>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <h4 class="text-center">Salon de Eventos "La Roca"</h4>
-                
-                <form>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                        <input type="text" class="form-control" placeholder="Nombre y apellido" required>
-                    </div>
-                    
-                    <div class="row g-2 mb-3">
-                        <div class="col">
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-                                <input type="email" class="form-control" placeholder="Correo electrónico" required>
-                            </div>
+            <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2"><Strong>Solicitud de pagos</Strong></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="col">
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-                                <input type="tel" class="form-control" placeholder="Teléfono" required>
-                            </div>
+                        <div class="modal-body">
+                            <h4 class="text-center">Salón de Eventos "La Roca"</h4>
+            
+                            <form>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="fa-solid fa-calendar"></i></span>
+                                    <input type="text" class="form-control" placeholder="07 de enero de 2024" readonly>
+                                </div>
+                                
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="fa-solid fa-credit-card"></i></span>
+                                    <input type="text" class="form-control" placeholder="Tarjeta de crédito o débito" readonly>
+                                </div>
+            
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                                    <input type="text" class="form-control" placeholder="Sabrina Scratch" required>
+                                </div>
+            
+                                <div class="row g-2 mb-3">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="0000 0000 0000 0000" required>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="MM / AA" required>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="000" required>
+                                    </div>
+                                </div>
+            
+                                <div class="form-text mt-2">
+                                    <strong>Política de cancelación:</strong>
+                                    <p>• Esta reservación no es reembolsable.</p>
+                                    <p>• Respete las reglas del establecimiento.</p>
+                                </div>
+            
+                                <div class="form-text mt-2">
+                                    <strong>Detalles de precio:</strong>
+                                    <p>Total (MXN): <strong>$3200.00</strong></p>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn-aceptar" data-bs-dismiss="modal">Pagar</button>
+                            <p class="text-center text-muted mt-2">Al seleccionar el botón, acepta los términos de la reservación.</p>
                         </div>
                     </div>
-
-                    <label>Fecha del evento:</label>
-                    <div class="row g-2 mb-3">
-                        <div class="col">
-                            <select class="form-select" required>
-                                <option value="" disabled>Día</option>
-                                <!-- Agregar opciones para los días -->
-                                 <option value="">1</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select class="form-select" required>
-                                <option value="">Mes</option>
-                                <!-- Agregar opciones para los meses -->
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select class="form-select" required>
-                                <option value="">Año</option>
-                                <!-- Agregar opciones para los años -->
-                            </select>
-                        </div>
-                    </div>
-
-                    <label>Número de invitados:</label>
-                    <div class="form-check mb-3">
-                        <input type="radio" class="form-check-input" name="invitados" id="invitados1" value="0-30">
-                        <label class="form-check-label" for="invitados1">0 - 30 personas</label>
-                    </div>
-                    <div class="form-check mb-3">
-                        <input type="radio" class="form-check-input" name="invitados" id="invitados2" value="30-50">
-                        <label class="form-check-label" for="invitados2">30 - 50 personas</label>
-                    </div>
-                    <div class="form-check mb-3">
-                        <input type="radio" class="form-check-input" name="invitados" id="invitados3" value="50-70">
-                        <label class="form-check-label" for="invitados3">50 - 70 personas</label>
-                    </div>
-
-                    <div class="form-group mt-3">
-                        <label for="extraInfo">Información extra:</label>
-                        <textarea class="form-control" id="extraInfo" rows="3" placeholder="Buen día, estoy interesado en un lugar para celebrar un cumpleaños infantil."></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn-continuar">Continuar</button>
-                <p class="text-center text-muted mt-2">Salón de Eventos "La Roca" se pondrá en contacto contigo lo más pronto posible.</p>
+                  </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-            </div>
-        </div>
         <div class="panel-infoLocal">
             <h2><strong>¡Reserva tu fecha!</strong></h2>
             <div class="informacion">

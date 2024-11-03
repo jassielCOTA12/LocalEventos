@@ -731,7 +731,7 @@ body.login .panelCentral-gen{
         display: flex;
         align-items: center;
         columns: 2; 
-        font-size: 20px;
+       font-size: 20px;
     }
     .icon{
         margin: 10px;
@@ -756,7 +756,6 @@ body.login .panelCentral-gen{
         padding: 5px 60px;
         margin-left: 20px;
         font-size: 15px;
-        font-weight: bold;
         border-right: 1px solid #ccc;
     }      
     .btn-reservar:hover{
@@ -769,7 +768,7 @@ body.login .panelCentral-gen{
     
     .local .panelSuperior-derecha .fa-heart{
         color: black;
-        font-size: 38px;
+       font-size: 38px;
     }
     .local .panelSuperior-derecha .fa-heart:hover{
         color: red;
@@ -984,7 +983,6 @@ body.login .panelCentral-gen{
         margin-top: 40px;
         font-size: 15px;
         padding:10px;
-        font-weight: bold;
         border-right: 1px solid #ccc;
     }   
     .btn-agregarComentario:hover{
