@@ -719,6 +719,19 @@ body.login .panelCentral-gen{
     margin-top: 80px; 
 }
 
+.local h3{
+    font-size: 22px;
+}
+.local h2{
+    font-size: 26px;
+}
+.local h1{
+    font-size: 32px;
+}
+.local .local-info, .local .text strong, .local .formato-info{
+    font-size: 18px;
+}
+
     .local .panelSuperior{
         margin-left: 10%;
         margin-top: 70px;
@@ -897,6 +910,7 @@ body.login .panelCentral-gen{
     .contacto{
         width: 80%;
         margin: 20px auto;
+        margin-bottom: 50px;
     }
     .infoContacto{
         display: flex;
