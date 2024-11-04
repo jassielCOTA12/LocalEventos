@@ -448,14 +448,14 @@
     
     <div class="versionMovil-local">
         <div class="panelBtn-movil">
-            <button class="btnSuperior-movil"><</button>
+            <button class="btnSuperior-movil"><a href="inicio.html"><</a></button>
             <div>
                 <button class="btnSuperior-movil"><i class="fa-duotone fa-solid fa-share-nodes"></i></button>
             <button class="btnSuperior-movil"><i class="fa-solid fa-heart"></i></button>
             </div>
         </div>
         <div class="panelGeneral-movil">
-            <div id="carouselExample" class="carousel carousel-dark slide">
+            <div id="carouselMovil" class="carousel carousel-dark slide">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
                     <img src="imagenes/ImgLocal3.png" class="d-block w-100" alt="...">
@@ -464,11 +464,11 @@
                     <img src="imagenes/ImgLocal2.png" class="d-block w-100" alt="...">
                   </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselMovil" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselMovil" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                   </button>
@@ -562,8 +562,10 @@
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse colapso-movil" data-bs-parent="#accordionExample">
                           <div class="accordion-body">
-                                <img src="imagenes/Calendario.png" alt="calendario">
-                                <button class="btnFecha-movil">Seleccionar fecha</button>
+                                <div class="divbtnFecha-movil">
+                                    <img src="imagenes/Calendario.png" alt="calendario">
+                                    <button class="btnFecha-movil" data-bs-toggle="collapse" data-bs-target="#collapseOne" >Seleccionar fecha</button>
+                                </div>
                           </div>
                         </div>
                       </div>
@@ -578,18 +580,20 @@
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                           <div class="accordion-body">
+                            <div class="card-movil">
                                 <div class="card">
-                            <div class="card-body">
-                                <div class="headerComments">
-                                    <img src="imagenes/personaIcon.png" alt="">
-                                    <h4>Anónime</h4>
+                                    <div class="card-body">
+                                        <div class="headerComments">
+                                            <img src="imagenes/personaIcon.png" alt="">
+                                            <h4>Anónime</h4>
+                                        </div>
+                                        <div class="center-Comments"><img class="calificacion" src="imagenes/estrellas.png" alt="calificacion">
+                                        </div>
+                                    <p class="card-text">SLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce blandit commodo nibh, et scelerisque purus sodales in. Mauris sit amet nunc sodales, accumsan erat a, ultricies turpis. .</p>
+                                    <p class="card-date">Enviado el 05/03/24</p>
+                                    </div>
                                 </div>
-                                <div class="center-Comments"><img class="calificacion" src="imagenes/estrellas.png" alt="calificacion">
-                                </div>
-                            <p class="card-text">SLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce blandit commodo nibh, et scelerisque purus sodales in. Mauris sit amet nunc sodales, accumsan erat a, ultricies turpis. .</p>
-                            <p class="card-date">Enviado el 05/03/24</p>
                             </div>
-                        </div>
                           </div>
                         </div>
                       </div>
