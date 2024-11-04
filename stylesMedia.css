@@ -457,6 +457,117 @@
     .local .panelSuperior .panelSuperior-izq, .local .panelSuperior .panelSuperior-derecha{
         width: 100%;
     }
+    
 }
     
 
+/*====Styles para movil - local*/
+.local .panelInfo-movil{
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+}
+.btnFechaFlex-movil{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    width: 400px;
+    align-items: flex-start;
+    
+}
+.local .panelInfo-movil h2{
+text-align: center;
+ width: 100%;
+ margin-top: 20px;
+ font-weight: bold;
+}
+.local .info-opiniones {
+    width: 80%;
+}
+.local .contenedor-mapa-movil{
+    width: 100%;
+}
+.local .panelInfo-movil h3{
+    font-weight: bold;
+}
+.local .panelInfo-movil .iconPrecio{
+    width: 30px;
+}
+.horariosPrecios-movil{
+    width: 100%;
+}
+
+.disponibilidad-movil{
+    display: flex;
+    width: 100%;
+}
+.local .versionMovil-local .accordion-body{
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    justify-content: center;
+}
+ .precio-item{
+    width: 80%;
+}
+.local .versionMovil-local .accordion-collapse, .versionMovil-local{
+    width: 100%;
+}
+
+.divBtn-movil{
+    justify-content: center;
+    border-top: 1px solid gray;
+    padding:  5px 0;
+    position: fixed;
+    display: flex;
+    width: 100%;
+    z-index: 2;
+    bottom: 0;
+    background-color: white;
+}
+
+.btnReservar-movil, .btnFecha-movil{
+    background-color: #4563C0;
+    color: white;
+    border-radius: 15px;
+    padding: 10px;
+    width: 60%;
+}
+.contacto-movil .infoContacto{
+    display: flex;
+    flex-direction: column;
+}
+.btnSuperior-movil{
+width: 30px;
+ border-radius: 50%;
+ 
+}
+.btnSuperior-movil i{
+    font-size: 15px;
+}
+.panelBtn-movil{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+    top:35px;
+    padding: 0 10px;
+}
+.versionMovil-local{
+    position: relative;
+    z-index: 1;
+}
+
+@media screen and (min-width: 340px) and (max-width: 519px) {
+    .local .contenedor-gen, .local .btnSubir{
+        display: none;
+    }
+    .local .versionMovil-local{
+        display: block;
+        top:-30px;
+        min-width: 400px;
+    }
+    .local, .local .versionMovil-local{
+        width: 100vw;
+    }
+}
