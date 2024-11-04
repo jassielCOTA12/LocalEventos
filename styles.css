@@ -1093,17 +1093,35 @@ body.login .panelCentral-gen{
     .modal-footer .text-muted {
         font-size: 12px;
     } 
-
-
-    
-
-
-
-
-
-
-
-
+/* Ajusta el valor a la altura de la barra de navegación fija */
     [id] {
-        scroll-margin-top:100px; /* Ajusta el valor a la altura de la barra de navegación fija */
+        scroll-margin-top:100px; 
+    }
+
+/*=================Locales filtro populares/albercas/infantiles/formales==*/
+    
+    .contenedor-filtroLocal{
+        display: flex;
+        width: 80%;
+        margin-left: 5% ;
+        margin-top: 50px;
+        columns: 2;
+        gap:10%;
+    }
+    .filtros{
+        width: 20%;
+    }
+    .locales{
+        width: 100%;
+        align-items: column;
+    }
+    .resultado{
+        display: flex;
+        columns: 2;
+        gap: 5%;
+        margin: 20px;
+    }
+    .imagen-resultado{
+        border-radius: 15%;
+        width: 40%;
     }
