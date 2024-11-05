@@ -347,6 +347,12 @@
     }
 }
 
+
+@media screen and (max-width: 480px){
+    .panelCentral-Mdatos {
+        padding: 50px 30px;
+    }
+}
 @media screen and (max-width: 720px) {
     .local .header-gen .derechaHeader-gen{
         display: flex;
