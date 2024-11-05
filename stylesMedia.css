@@ -486,7 +486,6 @@
     
 }
 .local .panelInfo-movil h2{
-text-align: center;
  width: 100%;
  margin-top: 20px;
  font-weight: bold;
@@ -512,7 +511,7 @@ text-align: center;
 
 .disponibilidad-movil{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
 }
 .local .versionMovil-local .accordion-body{
@@ -583,8 +582,9 @@ width: 30px;
     position: relative;
     z-index: 1;
 }
-
-
+.modal-backdrop {
+    --bs-backdrop-zindex: 0;
+}
 @media screen and (min-width: 340px) and (max-width: 519px) {
     .local .contenedor-gen, .local .btnSubir{
         display: none;
@@ -599,5 +599,8 @@ width: 30px;
     }
     .card-movil{
         width: 80%;
+    }
+    #opinionModal{
+        width: 100%;
     }
 }
