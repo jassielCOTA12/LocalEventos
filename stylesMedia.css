@@ -159,7 +159,7 @@
      }
 
      .panelCentral-Mdatos{
-        padding: 50px 50px;
+        padding: 50px 70px;
 
         
     }
@@ -287,6 +287,10 @@
         .inicioFiltros .imagen-resultado{
             width: 100%;
             border-radius: 25px;
+        }
+
+        .inicioFiltros .resultado .detalle-resultado{
+            margin-top: 20px;
         }
 
         .panelSuperior-derecha-info{
