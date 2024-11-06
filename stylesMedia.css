@@ -468,6 +468,7 @@
         width: 100%;
     }
     
+    
 }
     
 
@@ -585,6 +586,9 @@ width: 30px;
 .modal-backdrop {
     --bs-backdrop-zindex: 0;
 }
+.inicioFiltros .divBtn-filtro{
+    display: none;
+}
 @media screen and (min-width: 340px) and (max-width: 519px) {
     .local .contenedor-gen, .local .btnSubir{
         display: none;
@@ -602,5 +606,9 @@ width: 30px;
     }
     #opinionModal{
         width: 100%;
+    }
+
+    .inicioFiltros .divBtn-filtro{
+     display: block;
     }
 }
