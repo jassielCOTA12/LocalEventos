@@ -18,7 +18,7 @@
                 Aquí encontrarás una amplia variedad de opciones que se adaptan a tus necesidades. Explora cientos de locales, 
                 compara características, y reserva con confianza, todo en un solo lugar. ¡Tu evento comienza aquí, en LocalMatch!"
             </p>
-            <a href="inicio.html">Comenzar</a>
+            <a href="inicio.php">Comenzar</a>
         </div>
         <div id="parteDerecha">
             <img src="imagenes/imgPresentacion.png" alt="">

@@ -13,7 +13,7 @@
 <body class="registro">
     <div class="contenedor-gen">
         <header class="header-gen">
-            <a href="inicio.html"><img src="./imagenes/logo.png" alt="LOGO" class="logoHeader-gen"></a>
+            <a href="inicio.php"><img src="./imagenes/logo.png" alt="LOGO" class="logoHeader-gen"></a>
             
         </header>
         <div class="panelCentral-gen">
@@ -26,13 +26,13 @@
                         <input type="password" id="passwordRegistro" class="inputText-gen" placeholder="Contraseña">
             
                          
-                        <a href="inicio.html" id="btnRegistrarte">Registrarte</a>
+                        <a href="inicio.php" id="btnRegistrarte">Registrarte</a>
                         <p id="terminosCondiciones">Al continuar,acepta los <span><a href="##" id="terminosEnlace">Términos de uso</a></span> y <br> confirma que ha leido la <span><a href="##" id="politicaEnlace">Política de privacidad.</a></span></p>
                         
                         o 
                         <a href="##" id="btnGoogle"><span><i class="fa-brands fa-google"></i></span>Continuar con Google</a>
                         <a href="##" id="btnFacebook"><span><i class="fa-brands fa-facebook"></i></span>Continuar con Facebook</a>
-                        <p>¿Ya tienes cuenta? <span><a href="login.html" id="enlaceLogin">Inicia sesión aquí </a></span></p>
+                        <p>¿Ya tienes cuenta? <span><a href="login.php" id="enlaceLogin">Inicia sesión aquí </a></span></p>
     
     
                     </form>

@@ -17,20 +17,20 @@
     <div class="contenedor-gen">
         <header class="header-gen">
             <div>
-                <a href="inicio.html"><img src="./imagenes/logo.png" alt="LOGO" class="logoHeader-gen"></a>
+                <a href="inicio.php"><img src="./imagenes/logo.png" alt="LOGO" class="logoHeader-gen"></a>
             </div>
 
             <div class="derechaHeader-gen"> 
-                <a href="login.html" class="btnAcceder-gen">Acceder  <span><i class="fa-regular fa-circle-user"></i></span></a>
+                <a href="login.php" class="btnAcceder-gen">Acceder  <span><i class="fa-regular fa-circle-user"></i></span></a>
                 
                 <div class="dropdown">
                     <button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <a href="##" class="btnBarras-gen"><i class="fa-solid fa-bars"></i></a>
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item active" href="misDatos.html">Mis datos</a></li>
-                      <li><a class="dropdown-item" href="misReservas.html">Mis reservas</a></li>
-                      <li><a class="dropdown-item" href="misFavoritos.html">Mis favoritos</a></li>
+                      <li><a class="dropdown-item active" href="misDatos.php">Mis datos</a></li>
+                      <li><a class="dropdown-item" href="misReservas.php">Mis reservas</a></li>
+                      <li><a class="dropdown-item" href="misFavoritos.php">Mis favoritos</a></li>
                     </ul>
                 </div> 
             </div>
@@ -453,7 +453,7 @@
 
     <div class="versionMovil-local">
         <div class="panelBtn-movil">
-            <button class="btnSuperior-movil"><a href="inicio.html"><</a></button>
+            <button class="btnSuperior-movil"><a href="inicio.php"><</a></button>
             <div>
                 <button class="btnSuperior-movil"><i class="fa-duotone fa-solid fa-share-nodes"></i></button>
             <button class="btnSuperior-movil"><i class="fa-solid fa-heart"></i></button>

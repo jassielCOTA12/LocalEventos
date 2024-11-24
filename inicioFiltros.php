@@ -15,18 +15,18 @@
 <body class="inicio inicioFiltros">
     <div class="contenedor-gen">
         <header class="header-gen">
-            <a href="inicio.html"><img src="./imagenes/logo.png" alt="LOGO" class="logoHeader-gen"></a>
+            <a href="inicio.php"><img src="./imagenes/logo.png" alt="LOGO" class="logoHeader-gen"></a>
             <div class="derechaHeader-gen"> 
-                <a href="login.html" class="btnAcceder-gen">Acceder <span><i class="fa-regular fa-circle-user"></i></span></a>
+                <a href="login.php" class="btnAcceder-gen">Acceder <span><i class="fa-regular fa-circle-user"></i></span></a>
                 
                 <div class="dropdown">
                     <button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <a href="##" class="btnBarras-gen"><i class="fa-solid fa-bars"></i></a>
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item active" href="misDatos.html">Mis datos</a></li>
-                      <li><a class="dropdown-item" href="misReservas.html">Mis reservas</a></li>
-                      <li><a class="dropdown-item" href="misFavoritos.html">Mis favoritos</a></li>
+                      <li><a class="dropdown-item active" href="misDatos.php">Mis datos</a></li>
+                      <li><a class="dropdown-item" href="misReservas.php">Mis reservas</a></li>
+                      <li><a class="dropdown-item" href="misFavoritos.php">Mis favoritos</a></li>
                     </ul>
                 </div>  
             </div>
@@ -95,7 +95,7 @@
                             </div>
                 </div>
                 <div class="locales">
-                    <a href="local.html">
+                    <a href="local.php">
                         <div class="resultado">
                             <img src="imagenes/ImgLocal1.png" alt="Salón de Eventos Real" class="imagen-resultado">
                             <div class="detalle-resultado">
@@ -106,7 +106,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="local.html">
+                    <a href="local.php">
                         <div class="resultado">
                             <img src="imagenes/ImgLocal1.png" alt="Salón de Eventos Real" class="imagen-resultado">
                             <div class="detalle-resultado">
@@ -116,7 +116,7 @@
                                 <p>⭐ 4.2 (4)</p>
                             </div>
                         </div>
-                    </a><a href="local.html">
+                    </a><a href="local.php">
                         <div class="resultado">
                             <img src="imagenes/ImgLocal1.png" alt="Salón de Eventos Real" class="imagen-resultado">
                             <div class="detalle-resultado">
@@ -126,7 +126,7 @@
                                 <p>⭐ 4.2 (4)</p>
                             </div>
                         </div>
-                    </a><a href="local.html">
+                    </a><a href="local.php">
                         <div class="resultado">
                             <img src="imagenes/ImgLocal1.png" alt="Salón de Eventos Real" class="imagen-resultado">
                             <div class="detalle-resultado">
@@ -136,7 +136,7 @@
                                 <p>⭐ 4.2 (4)</p>
                             </div>
                         </div>
-                    </a><a href="local.html">
+                    </a><a href="local.php">
                         <div class="resultado">
                             <img src="imagenes/ImgLocal1.png" alt="Salón de Eventos Real" class="imagen-resultado">
                             <div class="detalle-resultado">
