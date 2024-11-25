@@ -13,60 +13,16 @@
     <link rel="stylesheet" href="stylesMedia.css">
 </head>
 <body class="inicio inicioFiltros">
-    <div class="contenedor-gen">
-        <header class="header-gen">
-            <a href="inicio.php"><img src="./imagenes/logo.png" alt="LOGO" class="logoHeader-gen"></a>
-            <div class="derechaHeader-gen"> 
-                <a href="login.php" class="btnAcceder-gen">Acceder <span><i class="fa-regular fa-circle-user"></i></span></a>
-                
-                <div class="dropdown">
-                    <button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <a href="##" class="btnBarras-gen"><i class="fa-solid fa-bars"></i></a>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item active" href="misDatos.php">Mis datos</a></li>
-                      <li><a class="dropdown-item" href="misReservas.php">Mis reservas</a></li>
-                      <li><a class="dropdown-item" href="misFavoritos.php">Mis favoritos</a></li>
-                    </ul>
-                </div>  
-            </div>
-        </header>
+    
+        <?php
+        include "header.php";
+        ?>
 
         <div class="panelCentral-gen">
             <div id="parteSuperior">
-                <div id="contenedor-busqueda">
-                    <div class="barraBusqueda">
-                        <input type="text" placeholder="Buscar..." id="inputBusqueda">
-                        <button type="submit" id="buscar">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </div>
-                    
-                    <a href="#" id="calendario">
-                        <label for="date-picker">
-                            <span><i class="fas fa-calendar-days"></i></span>¿Cuándo?
-                        </label>
-                        <input type="date" id="date-picker" name="fecha">
-                    </a>
-
-                    <div class="divBtn-filtro">
-                        <button type="button" id="filtro" data-bs-toggle="modal" data-bs-target="#filterModal">
-                            <i class="fa-solid fa-sliders"></i>
-                        </button>
-                    </div>
-
-                    
-                    
-                </div>
-
-                
-                
-                <div id="contenedorSeleccion">
-                    <a href="#" class="secciones">Populares <span><i class="fa-solid fa-star"></i></span></a>
-                    <a href="#" class="secciones">Albercas <span><i class="fa-solid fa-water-ladder"></i></span></a>
-                    <a href="#" class="secciones">Infantiles <span><i class="fa-solid fa-gopuram"></i></span></a>
-                    <a href="#" class="secciones">Formales <span><i class="fa-solid fa-user-tie"></i></span></a>
-                </div>
+            <?php
+            include "parteSuperior.php";
+            ?>
             </div>
 
             
