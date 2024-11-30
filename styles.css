@@ -358,7 +358,7 @@ body.registro .panelCentral-gen{
     flex-direction: column;
     align-items: center;
     
-    height: 25vh;
+    /*height: 25vh;*/
     justify-content: center;
 
 }
