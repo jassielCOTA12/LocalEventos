@@ -1,6 +1,5 @@
 <?php
 echo '
-    <div class="contenedor-gen">
     <header class="header-gen">
         <a href="inicio.php"><img src="./imagenes/logo.png" alt="LOGO" class="logoHeader-gen"></a>
         <div class="derechaHeader-gen"> 

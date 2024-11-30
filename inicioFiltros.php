@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="stylesMedia.css">
 </head>
 <body class="inicio inicioFiltros">
-    
+    <div class="contenedor-gen">
         <?php
         include "header.php";
         ?>

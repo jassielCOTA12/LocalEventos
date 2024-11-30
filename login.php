@@ -14,7 +14,7 @@
 <body class="login">
     <div class="contenedor-gen">
         <header class="header-gen">
-            <a href="inicio.php"><img src="./imagenes/logo.png" alt="" class="logoHeader-gen"></a>
+            <a href="inicio.html"><img src="./imagenes/logo.png" alt="" class="logoHeader-gen"></a>
            
           
         </header>
@@ -27,11 +27,11 @@
                     <input type="password" id="passwordLogin" class="inputText-gen" placeholder="Contraseña">
         
                     <a href="##" id="olvidasteContraseña" >¿Olvidaste tu contraseña?</a> 
-                    <a href="inicio.php" id="btnIniciarSesion">Iniciar sesión</a><!---Enlazada a inicio por el momento-->
+                    <a href="inicio.html" id="btnIniciarSesion">Iniciar sesión</a><!---Enlazada a inicio por el momento-->
                     <span>o</span>
                     <a href="##" id="btnGoogle"><span><i class="fa-brands fa-google"></i></span>Continuar con Google</a>
                     <a href="##" id="btnFacebook"><span><i class="fa-brands fa-facebook"></i></span>Continuar con Facebook</a>
-                    <p>¿Aun no tienes cuenta? <span><a href="registro.php" id="enlaceRegistro">Registrate aquí</a></span></p>
+                    <p>¿Aun no tienes cuenta? <span><a href="registro.html" id="enlaceRegistro">Registrate aquí</a></span></p>
 
 
                 </form>
