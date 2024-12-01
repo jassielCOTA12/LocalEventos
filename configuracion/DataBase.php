@@ -1,14 +1,14 @@
 <?php
 class Database {
-    private $host = 'sql.freedb.tech';
-    private $db_name = 'freedb_LocalMatch';
-    private $db_user = 'freedb_Oscarlst';
-    private $db_password = '&UE5wuDm4%Cxc6j';
+    private $host = 'localhost'; // Usar localhost para conexión local
+    private $db_name = 'LocalMatch'; // El nombre de base de datos local
+    private $db_user = 'root'; // Usuario predeterminado de MySQL
+    private $db_password = ''; 
     private $charset = 'utf8mb4';
 
     public function getConnection() {
-        $dsn = "mysql:host={$this->host};dbname={$this->db_name};charset={$this->charset}";
-        try {
+        $dsn = "mysql:host={$this->host};dbname={$this->db_name};port=3309;charset={$this->charset}";
+try {
             $pdo = new PDO($dsn, $this->db_user, $this->db_password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $pdo;
@@ -16,5 +16,15 @@ class Database {
             die("Error al intentar la conexión a la base de datos: " . $e->getMessage());
         }
     }
+    
 }
+
+$db = new Database();
+$connection = $db->getConnection();
+
+if ($connection) {
+    echo "Conexión exitosa a la base de datos local.";
+}
+
+
 ?>

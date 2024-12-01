@@ -101,7 +101,7 @@
 
     }
     body.login{
-        height: 100vh;
+      /*  height: 100vh;*/
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -111,9 +111,10 @@
 
     .login .contenedor-gen .header-gen, .registro .contenedor-gen .header-gen{
         justify-content: center;
-        height: 200px;
+      /*  height: 200px;*/
         position: relative;
-        margin-top: 50px;
+        align-items: flex-end;
+        margin-top: 100px;
     }
     body.login .panelCentral-gen, body.registro .panelCentral-gen{
         padding: 0 60px ;
@@ -123,6 +124,10 @@
         
     }
 
+    .login .recuadroLogin{
+        margin: 20px;
+        height: auto;
+    }
     .login .logoHeader-gen, .registro .logoHeader-gen{
         height: 120px;
     }
