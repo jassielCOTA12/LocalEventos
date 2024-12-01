@@ -23,8 +23,12 @@ echo '
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item active" href="misDatos.php">Mis datos</a></li>
                   <li><a class="dropdown-item" href="misReservas.php">Mis reservas</a></li>
-                  <li><a class="dropdown-item" href="misFavoritos.php">Mis favoritos</a></li>
-                  <li><a class="dropdown-item" href="configuracion/logout.php">Cerrar sesión</a></li>
+                  <li><a class="dropdown-item" href="misFavoritos.php">Mis favoritos</a></li> ';
+
+                  if (isset($_SESSION['nombre'])) {
+                    echo '<li><a class="dropdown-item" href="configuracion/logout.php">Cerrar sesión</a></li>';
+                 }
+                echo '
                 </ul>
             </div>  
         </div>
