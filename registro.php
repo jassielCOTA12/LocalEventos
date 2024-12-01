@@ -13,7 +13,7 @@
 <body class="registro">
     <div class="contenedor-gen">
         <header class="header-gen">
-            <a href="inicio.php"><img src="./imagenes/logo.png" alt="LOGO" class="logoHeader-gen"></a>
+            <a href=""><img src="./imagenes/logo.png" alt="LOGO" class="logoHeader-gen"></a>
             
         </header>
         <div class="panelCentral-gen">

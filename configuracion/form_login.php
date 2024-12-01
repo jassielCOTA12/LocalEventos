@@ -1,16 +1,10 @@
 <?php
 session_start();
+// Incluir el archivo de conexión a la base de datos
 include 'Database.php';
 
-
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Guardar los datos ingresados en la sesión
-    $_SESSION['old_data'] = [
-        'correo' => $_POST['correo']
-    ];
-
+    // Recibir los datos del formulario
     $correo = $_POST['correo'];
     $password = $_POST['password'];
 
@@ -30,25 +24,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Verificar la contraseña
         if (password_verify($password, $user['contraseña'])) {
-            // Limpiar los datos guardados en la sesión
-            unset($_SESSION['old_data']);
+            // Iniciar sesión
             $_SESSION['id_cliente'] = $user['id_cliente'];
             $_SESSION['nombre'] = $user['nombre'];
-            // Redirigir al usuario a la página de inicio o dashboard
-            header("Location: /LocalEventos-dev-php/inicio.php");
+            // Redirigir al usuario a la página de inicio
+            header("Location: /LocalEventos/inicio.php");
             exit();
         } else {
             // Contraseña incorrecta
             $_SESSION['error'] = "Contraseña incorrecta.";
-            header("Location: /LocalEventos-dev-php/login.php");
+            header("Location: /LocalEventos/login.php");
             exit();
         }
     } else {
         // Usuario no encontrado
         $_SESSION['error'] = "El correo no está registrado.";
-        header("Location: /LocalEventos-dev-php/login.php");
+        header("Location: /LocalEventos/login.php");
         exit();
     }
 }
-
 ?>

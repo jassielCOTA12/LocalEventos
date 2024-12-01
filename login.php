@@ -60,7 +60,7 @@
 <body class="login">
     <div class="contenedor-gen">
         <header class="header-gen">
-            <a href="inicio.php"><img src="./imagenes/logo.png" alt="" class="logoHeader-gen"></a>
+            <a href=""><img src="./imagenes/logo.png" alt="" class="logoHeader-gen"></a>
            
           
         </header>
@@ -79,9 +79,9 @@
                 ?>
 
                 <form class="formularioLogin" action="configuracion/form_login.php" method="POST">
-                    <input type="text" id="correoLogin" class="inputText-gen" placeholder="Correo electrónico" name="correo" required value="<?= isset($_SESSION['old_data']['correo']) ? htmlspecialchars($_SESSION['old_data']['correo']) : ''; ?>" 
-                    >
-                    <input type="password" id="passwordLogin" class="inputText-gen" placeholder="Contraseña" name="password" required>
+
+                    <input type="text" id="correoLogin" class="inputText-gen" placeholder="Correo electrónico" name="correo" >
+                    <input type="password" id="passwordLogin" class="inputText-gen" placeholder="Contrasea" name="password" required>
                    <!-- <a href="##" id="olvidasteContraseña" >¿Olvidaste tu contraseña?</a> -->
                     <button type="submit" id="btnIniciarSesion" style="font-weight: bold; font-family: 'Poppins'">Iniciar sesión</button>
                     <span>o</span>
