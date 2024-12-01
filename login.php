@@ -74,18 +74,18 @@
                 if (isset($_SESSION['error'])) {
                     echo '<div class="error-message">' . $_SESSION['error'] . '</div>';
                     unset($_SESSION['error']); // Eliminar el mensaje después de mostrarlo
+                    
                 }
                 ?>
 
                 <form class="formularioLogin" action="configuracion/form_login.php" method="POST">
-                    <input type="text" id="correoLogin" class="inputText-gen" placeholder="Correo electrónico" name="correo" required>
+                    <input type="text" id="correoLogin" class="inputText-gen" placeholder="Correo electrónico" name="correo" required value="<?= isset($_SESSION['old_data']['correo']) ? htmlspecialchars($_SESSION['old_data']['correo']) : ''; ?>" 
+                    >
                     <input type="password" id="passwordLogin" class="inputText-gen" placeholder="Contraseña" name="password" required>
                    <!-- <a href="##" id="olvidasteContraseña" >¿Olvidaste tu contraseña?</a> -->
                     <button type="submit" id="btnIniciarSesion" style="font-weight: bold; font-family: 'Poppins'">Iniciar sesión</button>
                     <span>o</span>
-                    <button type="button" style="font-family: 'Poppins'" id="btnGoogle" onclick="openModalGoogle()"><span><i class="fa-brands fa-google"></i></span>Continuar con Google</button>
-                    <button type="button" style="font-family: 'Poppins'" id="btnGoogle" onclick="openModalFb()"><span><i class="fa-brands fa-facebook"></i></span>Continuar con Facebook</button>
-                    <p>¿Aun no tienes cuenta? <span><a href="registro.php" id="enlaceRegistro">Registrate aquí</a></span></p>
+                     <p>¿Aun no tienes cuenta? <span><a href="registro.php" id="enlaceRegistro">Registrate aquí</a></span></p>
                 </form>
                 
 
@@ -97,53 +97,6 @@
 
     </div>
     
-    <div id="modalGoogle" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Inicia sesión con tu correo de Google</h2>
-            <form action="configuracion/form_login_google.php" method="POST" id="googleLoginForm">
-                <input type="email" id="correoGoogle" class="inputText-gen" placeholder="Correo electrónico" name="correo" required>
-                <button type="submit" id="btnEnviarCorreo">Enviar</button>
-            </form>
-        </div>
-    </div>
-    <div id="modalFB" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Inicia sesión con Facebook</h2>
-            <form action="configuracion/form_login_fb.php" method="POST" id="googleLoginForm">
-                <input type="text" id="nombre" class="inputText-gen" placeholder="Nombre o usuario" name="nombre" required>
-                <button type="submit" id="btnEnviarCorreo">Enviar</button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        // Función para abrir el modal
-        function openModal() {
-            document.getElementById("modalGoogle").style.display = "block";
-        }
-        function openModalFb() {
-            document.getElementById("modalFB").style.display = "block";
-        }
-        // Función para cerrar el modal
-        function closeModal() {
-            document.getElementById("modalGoogle").style.display = "none";
-            document.getElementById("modalFB").style.display = "none";
-        }
-
-        // Cerrar el modal si el usuario hace clic fuera de él
-        window.onclick = function(event) {
-            var modalGoogle = document.getElementById("modalGoogle");
-            var modalFacebook = document.getElementById("modalFB");
-            if (event.target == modalGoogle) {
-                modalGoogle.style.display = "none";
-            }
-            if (event.target == modalFacebook) {
-                modalFacebook.style.display = "none";
-            }
-        }
-    </script>
 </body>
 </html>
 

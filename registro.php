@@ -18,7 +18,7 @@
         </header>
         <div class="panelCentral-gen">
             <div id="recuadroRegistro">
-                    <h2>¡Te damos la bienvenida!</h1>
+                    <h2>Crear una cuenta</h1>
                     <form class="formularioRegistro" >
                         <input type="text" id="nombreRegistro" class="inputText-gen" placeholder="Nombre">
                         <input type="text" id="correoRegistro" class="inputText-gen" placeholder="Correo electrónico">
@@ -28,10 +28,7 @@
                          
                         <a href="inicio.php" id="btnRegistrarte">Registrarte</a>
                         <p id="terminosCondiciones">Al continuar,acepta los <span><a href="##" id="terminosEnlace">Términos de uso</a></span> y <br> confirma que ha leido la <span><a href="##" id="politicaEnlace">Política de privacidad.</a></span></p>
-                        
-                        o 
-                        <a href="##" id="btnGoogle"><span><i class="fa-brands fa-google"></i></span>Continuar con Google</a>
-                        <a href="##" id="btnFacebook"><span><i class="fa-brands fa-facebook"></i></span>Continuar con Facebook</a>
+                        <span>o</span>
                         <p>¿Ya tienes cuenta? <span><a href="login.php" id="enlaceLogin">Inicia sesión aquí </a></span></p>
     
     
