@@ -27,6 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Iniciar sesión
             $_SESSION['id_cliente'] = $user['id_cliente'];
             $_SESSION['nombre'] = $user['nombre'];
+            $_SESSION['correo'] = $user['email'];
+            $_SESSION['telefono'] = $user['telefono'];
+
             // Redirigir al usuario a la página de inicio
             header("Location: /LocalEventos/inicio.php");
             exit();

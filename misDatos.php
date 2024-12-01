@@ -23,17 +23,17 @@
             <h2>Información personal</h2>
             <div class="areaDatos">
                 <form action="">
-                    <h3>Nombre completo </h3>
-                    <input type="text" id="nombreTxt-Mdatos" class="inputGeneral-Mdatos"> <br>
+                <h3>Nombre completo </h3>
+                    <input type="text" id="nombreTxt-Mdatos" class="inputGeneral-Mdatos" value="<?= isset($_SESSION['nombre']) ? htmlspecialchars($_SESSION['nombre']) : ''; ?>" disabled> <br>
                     <div class="contenedorInputHorizontal">
                         <div class="correoSeccion">
-                            <h3>Correo electrónico</h3> 
-                            <input type="text" id="correoTxt-Mdatos" class="inputGeneral-Mdatos">
+                            <h3>Correo electrónico</h3>
+                            <!-- Mostrar el correo desde la sesión -->
+                            <input type="text" id="correoTxt-Mdatos" class="inputGeneral-Mdatos" value="<?= isset($_SESSION['correo']) ? htmlspecialchars($_SESSION['correo']) : ''; ?>" disabled>
                         </div>
                         <div class="telefonoSeccion">
                             <h3>Teléfono</h3>
-                            <input type="text" id="telefonoTxt-Mdatos" class="inputGeneral-Mdatos">
-
+                            <input type="text" id="telefonoTxt-Mdatos" class="inputGeneral-Mdatos" value="<?= isset($_SESSION['telefono']) ? htmlspecialchars($_SESSION['telefono']) : ''; ?>" disabled>
                         </div>
                     </div>
                 </form>

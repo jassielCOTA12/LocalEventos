@@ -81,7 +81,7 @@
                 <form class="formularioLogin" action="configuracion/form_login.php" method="POST">
 
                     <input type="text" id="correoLogin" class="inputText-gen" placeholder="Correo electrónico" name="correo" >
-                    <input type="password" id="passwordLogin" class="inputText-gen" placeholder="Contrasea" name="password" required>
+                    <input type="password" id="passwordLogin" class="inputText-gen" placeholder="Contraseña" name="password" required>
                    <!-- <a href="##" id="olvidasteContraseña" >¿Olvidaste tu contraseña?</a> -->
                     <button type="submit" id="btnIniciarSesion" style="font-weight: bold; font-family: 'Poppins'">Iniciar sesión</button>
                     <span>o</span>
