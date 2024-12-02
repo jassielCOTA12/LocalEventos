@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,7 @@
     <div class="contenedor-gen">
          <?php
         include "header.php";
+        include "configuracion/payments.php"; 
         ?>
         <div class="panelCentral-Mdatos">
             <h1 class="title-misDatos">Mis datos</h1>
@@ -40,35 +42,30 @@
             </div>
             <h2>Pagos y cobros</h2>
             <div class="areaPagos">
-                <h3>Mis pagos </h3>
-                    <input type="text" id="nombreTxt-Mdatos" class="inputGeneral-Mdatos" disabled> 
-                <div class="gridPagos">
-                    
-                    <h3>Forma de pago</h3>
-                    <div class="divCards">
-                        <span><i class="fa-brands fa-cc-mastercard"></i></span>
-                        <p>Terminada en <strong>1234</strong></p>
-                    </div>
-                    <div class="divCards">
-                        <span><i class="fa-brands fa-cc-mastercard"></i></span>
-                        <p>Terminada en <strong>1234</strong></p>
-                    </div>
-                    <div class="divCards">
-                        <span><i class="fa-brands fa-cc-mastercard"></i></span>
-                        <p>Terminada en <strong>1234</strong></p>
-                    </div>
-                     <!--- agragar card por  cada metodo de pago y dejar un metodo de pago efectivo para no estar vacio   darle estilo al boton tambirn  -->
-
+                    <h3>Mis pagos </h3>
+                    <?php if (count($reservas) > 0): ?>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Local</th>
+                                    <th>Precio Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($reservas as $reserva): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($reserva['fecha']) ?></td>
+                                        <td><?= htmlspecialchars($reserva['nombre']) ?></td>
+                                        <td>$<?= number_format($reserva['precio_total'], 2) ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php else: ?>
+                        <p>No tienes reservas registradas.</p>
+                    <?php endif; ?>
                 </div>
-                <div class="areaInferiorPagos">
-                    <a href="#" class="btnPago">Agregar forma de pago</a>
-
-                </div>
-
-                
-
-
-            </div>
             </div>
         </div>
     </div>

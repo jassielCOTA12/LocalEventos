@@ -276,6 +276,7 @@
      }
      .local #contenedor-busqueda .barraBusqueda{
         margin-left:30px;
+        display: none;
      }
      
           /* ======inicioFiltros=====*/
@@ -348,7 +349,7 @@
 
 @media screen  {
     .local .barraBusqueda{
-        width: 400px;
+        width: 300px;
     }
 }
 

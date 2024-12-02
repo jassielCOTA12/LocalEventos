@@ -19,12 +19,6 @@ try {
     
 }
 
-$db = new Database();
-$connection = $db->getConnection();
-
-if ($connection) {
-    echo "Conexión exitosa a la base de datos local.";
-}
 
 
 ?>
