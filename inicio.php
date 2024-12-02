@@ -10,116 +10,40 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" /><!---importacion de font awsome para logos -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <link rel="stylesheet" href="stylesMedia.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/stylesMedia.css">
 
 </head>
 <body class="inicio">
     <div class="contenedor-gen">
         <?php
-            include "header.php";
+            include "include/header.php";
         ?>
 
         <div class="panelCentral-gen">
             <div id="parteSuperior">
                 
             <?php
-            include "parteSuperior.php";
+            include "include/parteSuperior.php";
             ?>
             
             </div>
             <div id="parteInferiorGrid-gen">
-                <a href="local.php">
-                    <article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p>Hasta 70 personas</p>
-                        <p>Desde $3000</p>
-                        <p><span><i class="fa-starIcon-card fa-solid fa-star "></i></span>4.2 (4)</p>
-                    </article>
-                </a>
-                <a href="local.php">
-                    <article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p>Hasta 70 personas</p>
-                        <p>Desde $3000</p>
-                        <p><span><i class="fa-starIcon-card fa-solid fa-star "></i></span>4.2 (4)</p>
-                    </article>
-                </a>
-                <a href="local.php">
-                    <article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p>Hasta 70 personas</p>
-                        <p>Desde $3000</p>
-                        <p><span><i class="fa-starIcon-card fa-solid fa-star "></i></span>4.2 (4)</p>
-                    </article>
-                </a>
-                <a href="local.php">
-                    <article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p>Hasta 70 personas</p>
-                        <p>Desde $3000</p>
-                        <p><span><i class="fa-starIcon-card fa-solid fa-star "></i></span>4.2 (4)</p>
-                    </article>
-                </a>
-                <a href="local.php">
-                    <article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p>Hasta 70 personas</p>
-                        <p>Desde $3000</p>
-                        <p><span><i class="fa-starIcon-card fa-solid fa-star "></i></span>4.2 (4)</p>
-                    </article>
-                </a>
-                <a href="local.php">
-                    <article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p>Hasta 70 personas</p>
-                        <p>Desde $3000</p>
-                        <p><span><i class="fa-starIcon-card fa-solid fa-star "></i></span>4.2 (4)</p>
-                    </article>
-                </a>
-                <a href="local.php">
-                    <article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p>Hasta 70 personas</p>
-                        <p>Desde $3000</p>
-                        <p><span><i class="fa-starIcon-card fa-solid fa-star "></i></span>4.2 (4)</p>
-                    </article>
-                </a>
-                <a href="local.php">
-                    <article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p>Hasta 70 personas</p>
-                        <p>Desde $3000</p>
-                        <p><span><i class="fa-starIcon-card fa-solid fa-star "></i></span>4.2 (4)</p>
-                    </article>
-                </a>
-                <a href="local.php">
-                    <article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p>Hasta 70 personas</p>
-                        <p>Desde $3000</p>
-                        <p><span><i class="fa-starIcon-card fa-solid fa-star "></i></span>4.2 (4)</p>
-                    </article>
-                </a>
-                <a href="local.php">
-                    <article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p>Hasta 70 personas</p>
-                        <p>Desde $3000</p>
-                        <p><span><i class="fa-starIcon-card fa-solid fa-star "></i></span>4.2 (4)</p>
-                    </article>
-                </a>
+                <?php
+                    require 'configuracion/fetchLocales.php'; // Incluye la conexión y la consulta
+                    foreach ($locales as $local) {
+                        echo "
+                        <a href='local.php?id={$local['id_local']}'>
+                            <article class='localCard-gen'>
+                                <img src='imagenes/imgLocal1.png' alt='imagen de local no cargada'>
+                                <h3>{$local['nombre']}</h3>
+                                <p>Hasta {$local['capacidad_maxima']} personas</p>
+                                <p>Desde \${$local['precio_base']} </p>
+                                <p><span><i class='fa-starIcon-card fa-solid fa-star'></i></span>4.2 (4)</p>
+                            </article>
+                        </a>";
+                    }
+                ?>
             </div>
 
         </div>

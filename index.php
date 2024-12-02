@@ -6,8 +6,8 @@
     <title>Local de eventos</title>
     <link rel="icon"  type="image/png" href="./imagenes/logo.ico">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="stylesMedia.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/stylesMedia.css">
 </head>
 <body class="index">
     <div id="contenedor">

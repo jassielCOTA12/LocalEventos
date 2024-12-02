@@ -1,0 +1,1163 @@
+:root {
+    --color-primario: #2D5CEA;
+    --color-fondoGris:#B9B9B9;
+    --color-hover:#585353;
+    --color-grisSecciones:#D9D9D9;
+    --color-gris-texto:#4A526B;
+    --color-secundario: #4563C0;
+    
+}
+
+.versionMovil-local{
+    display: none;
+}
+body {
+    margin: 0;
+    min-height: 100vh;
+    width: 100%;
+    font-family: 'Poppins', sans-serif; 
+    
+    
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+/*====landing page====*/
+    #contenedor {
+        display: flex;
+        height: 100vh; 
+        background: var(--color-primario);
+    }
+
+        #parteIzq {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 50%; 
+            color: #fff;
+        }
+
+            #presentacion {
+                margin: 90px;
+                text-align: center;
+            }
+            #parteIzq a{
+                text-decoration: none;
+                font-weight: bold;
+               
+                color: black;
+                background: white;
+                padding: 10px 80px;
+                border-radius: 20px;
+                transition: background 0.4s ease, color 0.3s ease, transform 0.3s ease;
+            }
+                #parteIzq   a:hover{
+                    background: #585353;
+                    color: white;
+                    
+                }
+
+
+        #parteDerecha {
+            width: 50%; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            #parteDerecha img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; 
+            }
+/* =====Elementos  Generales   -gen ====*/
+    .contenedor-gen{/* contenedor que contiene al header general y al panelcentral*/
+        display: flex;
+        flex-direction: column;
+    }
+    .header-gen{/*contenedor general utilizado en la mayoria de las paginas */
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       padding: 0 20px 0 0;
+        height: 70px;
+        background-color: var(--color-primario);
+    }
+        .logoHeader-gen {
+            height: 60px;
+            padding: 0px  20px;
+
+            
+        }
+        .derechaHeader-gen{ /*contenedor invidible para los botones del header (con este contenedor podremos dividir en dos en header para usar justificacion )*/
+            background: var(--color-primario);
+        }
+           
+            .btnAcceder-gen{
+                
+                padding: 5px 15px; 
+                background-color: #f0f0f0; 
+                color: #000; 
+                
+                font-weight: bold;
+                border-radius: 15px; 
+                text-decoration: none; 
+                border: 1px solid #ccc; 
+                
+                
+                gap: 10px; /* Espacio entre el texto y el icono */
+                font-size: 14px;
+                transition: background-color 0.3s ease,color 0.3s ease; 
+            }
+                .btnAcceder-gen:hover{
+                    background: #585353;
+                    color: white;
+                }
+            .btnBarras-gen{
+                background-color: #fff;
+                padding: 5px 9px;
+                border-radius: 100%;
+                margin: 0px 15px;
+                transition: background 0.3s ease,color 0.3s ease;
+            }
+            .btnBarras-gen:hover{
+                background: #585353;
+                    color: white;
+            }
+
+    .panelCentral-gen{/*es el panel blanco donde va el contenido */
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        min-height: 100vh; 
+    }
+    .inputText-gen{
+        
+       width: 350px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        border: none;
+        background-color: #d3d3d3;
+        font-size: 16px;
+        color: #333;
+        
+    }
+    
+    #parteInferiorGrid-gen{
+        display: grid;
+        grid-template-columns: repeat( auto-fill,minmax(300px,1fr));
+        gap: 20px;
+        padding: 20px;
+        margin-right: 20px;
+    }
+        .localCard-gen{
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 10px;
+    
+        }
+            .localCard-gen img{
+                width: 100%;
+                height: auto;
+                border-radius: 10px 10px 0 0;
+    
+            }
+            .localCard-gen h3{
+                font-size: 20px;
+                color: #555;
+                margin: 10px 0 5px;
+    
+            }
+            .localCard-gen p{
+                font-size: 14px;
+                color: #777;
+                margin: 5px 0;
+            }
+            .fa-starIcon-card{
+                color: yellow;
+            }
+
+         .localCard-gen:hover{
+            transform: scale(1.05);
+         }   
+
+         .btnSubir a {
+            display: inline-block;
+            position: fixed;
+            bottom: 5px;
+            right: 5px;
+            width: 30px; /* Tamaño del botón */
+            height: 30px; /* Tamaño del botón */
+            
+        }
+        
+        .btnSubir img.subir-gen {
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; /* Asegura que la imagen mantenga sus proporciones y cubra el contenedor */
+        }
+        
+/*====login====*/
+
+    body.login .panelCentral-gen{/*parte blanca del login*/
+        justify-content: center;
+        align-items: center;
+        min-height: 90vh;
+    }
+
+    .recuadroLogin{
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        width: 450px;
+        background: var(--color-fondoGris);
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 2);
+        border-radius: 20px;
+        border: 1px solid black;
+        margin-top:20px;
+        
+    }
+        .formularioLogin{
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra el contenido horizontalmente */
+            gap: 15px; 
+        }
+            #olvidasteContraseña{
+                font-size: 12px;
+                transition: color 0.3s ease;
+            }
+                #olvidasteContraseña:hover{
+                    color: white;
+                }
+            #btnIniciarSesion{
+                background-color:var(--color-primario) ;
+                color: white;
+                padding: 10px 130px;
+                border-radius: 20px;
+                border: 1px solid black;
+                transition: background 0.3s ease;
+                margin-top: 20px;
+            }
+                #btnIniciarSesion:hover{
+                    background:var(--color-hover);
+                }
+
+            #btnGoogle{
+                display: flex;
+                background-color:#d3d3d3 ;
+                padding: 10px 85px;
+                border-radius: 20px;
+                border: 1px solid black;
+                gap: 25px;
+                transition: background 0.3s ease,color 0.3s ease;
+            }
+                #btnGoogle:hover{
+                    background: var(--color-hover);
+                    color: white;
+                }
+            #btnFacebook{
+                display: flex;
+                background-color:#d3d3d3 ;
+                padding: 10px 80px;
+                border-radius: 20px;
+                border: 1px solid black;
+                gap: 15px;
+                transition: background 0.3s ease, color 0.3s ease;
+            }
+                #btnFacebook:hover{
+                    background: var(--color-hover);
+                    color: white;
+                }
+            #enlaceRegistro{
+                font-weight: bold;
+                transition: color 0.3s ease;
+            }
+                #enlaceRegistro:hover{
+                    color: white;
+                }
+/*=====Registro=====*/
+body.registro .panelCentral-gen{
+    justify-content: center;
+        align-items: center;
+        margin: 25px 0;
+      
+}
+    #recuadroRegistro{
+        display: flex;
+            text-align: center;
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+            width: 450px;
+            background: var(--color-fondoGris);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 2);
+            border-radius: 20px;
+            border: 1px solid black;
+
+    }
+        .formularioRegistro{
+            display: flex;
+                flex-direction: column;
+                align-items: center; /* Centra el contenido horizontalmente */
+                gap: 15px; 
+        }
+            #btnRegistrarte{
+                background-color:var(--color-primario) ;
+                font-weight: bold;
+                color: white;
+                padding: 10px 130px;
+                border-radius: 20px;
+                border: 1px solid black;
+                transition: background 0.3s ease;
+            }
+                #btnRegistrarte:hover{
+                    background:var(--color-hover);   
+                }
+            #terminosCondiciones{
+                font-size: 12px;
+                margin: 0px;
+            }
+                #terminosEnlace{
+                    text-decoration: underline;
+                    font-weight: bold;
+                    transition: color 0.3s ease;
+                }
+                    #terminosEnlace:hover{
+                        color: white;
+                    }
+                #politicaEnlace{
+                    text-decoration: underline;
+                    font-weight: bold;
+                    transition: color 0.3s ease;
+                }
+                    #politicaEnlace:hover{
+                        color: white;
+                        
+                    }
+            #enlaceLogin{
+                font-weight: bold;
+                transition: color 0.3s ease;
+
+            }
+                #enlaceLogin:hover{
+                    color: white;
+                }
+/*====Inicio====*/
+#parteSuperior{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    /*height: 25vh;*/
+    justify-content: center;
+
+}
+
+body.login .panelCentral-gen{
+    justify-content: center;
+        align-items: center;
+      
+}
+
+    #contenedorSeleccion{
+        margin-bottom: 50px;
+    }
+    #contenedor-busqueda{
+        display: flex;
+        gap: 20px;
+        margin-top: 100px;
+        margin-bottom: 20px;
+
+    }
+        .barraBusqueda{
+            display: flex;
+            width: 500px;
+            height: 50px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            background-color: white;
+            box-sizing: border-box;
+        }
+            #inputBusqueda{
+                border: none;
+                outline: none;
+                flex: 1; /* para ajustarse al tamaño del contenedor*/
+                padding-left: 10px;
+                font-size: 16px;
+                background: none;
+                border-right: 1px solid #ccc;
+                border-radius: 25px 0 0 25px;
+
+            }
+                #buscar{
+                    background: none;
+                    font-size: 17px;
+                    border: none;
+                    cursor: pointer;
+                    transition: font-size 0.3s ease;
+                    padding: 0 15px;
+                }
+                #buscar:hover{
+                    font-size: 23px;
+                }
+
+        #calendario{
+            background: white;
+            padding: 8px 30px;
+            border-radius: 20px;
+            border: 1px solid black;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background 0.3s ease,color 0.3s ease;
+       
+        }
+            #calendario i{
+                font-size: 25px;
+            }
+            #calendario:hover{
+                background: var(--color-hover);
+                color: white;
+            }
+
+    
+            /* Ocultar el campo de fecha dejando solo el icono */
+            #date-picker {
+                position: absolute;
+                opacity: 0;
+               /* width: 0;
+                height: 0;*/
+                pointer-events: none;
+                font-size: 40px;
+                left: 45%;
+            }
+    
+            /* Personalización del icono */
+            #calendario span {
+                margin-right: 5px;
+            }
+        #filtro{
+            padding: 8px 20px;
+            border: 1px solid black;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+            #filtro i{
+                font-size: 25px;
+                
+                
+            }
+            #filtro:hover{
+                background: var(--color-hover);
+                color: white;
+            }
+
+    #contenedorSelecciones{
+        display: flex;
+        
+    
+
+    }
+        .secciones{
+            display: inline-block;
+            background: var(--color-grisSecciones);
+            padding: 10px 30px;
+            border-radius: 20px;
+            margin: 0px 10px 10px 10px;
+            transition: background 0.3s ease, color 0.3s ease;
+
+            
+        }
+            .secciones:hover{
+                background: var(--color-hover);
+                color: white;
+            }
+        #contenedorSeleccion hr{
+            background-color: var(--color-primario);
+            height: 1.5px;
+            border: none;
+        }
+
+        .dropdown{
+            border: none;
+            color: var(--color-primario);
+        }
+/*====Mis datos====*/
+.panelCentral-Mdatos{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 50px 170px;
+    color: var(--color-gris-texto);
+    margin-top: 80px;
+    width: 100%;
+    
+}
+.panelCentral-Mdatos h2{
+    margin-top: 50px;
+}
+
+.misDatos .panelContenedorDatos h2, .misDatos .panelContenedorDatos h3{
+    margin-top: 20px;
+}
+
+    .areaDatos{
+        
+        max-width: 100%;
+        height: auto;
+        padding: 30px;
+        border-radius: 10px;
+        border: 1px solid var(--color-hover);
+       
+        
+
+    } 
+        .inputGeneral-Mdatos{
+            height: 30px;
+            border-radius: 10px;
+            border: 1px solid var(--color-hover);
+            padding-left: 5px;
+          
+        }
+        #nombreTxt-Mdatos{
+            width: 100%;
+        }
+
+        .correoSeccion{
+            width: 50%;
+        }
+            #correoTxt-Mdatos{
+                width: 100%;
+               
+            }
+        .telefonoSeccion{
+            width: 50%;
+        }
+            #telefonoTxt-Mdatos{
+                width: 100%;
+            }
+        .areaDatos p{
+            color: black;
+            margin-bottom: 0px;
+            font-size: 18px;
+            
+        }
+        .contenedorInputHorizontal{
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            
+        }
+    .areaPagos{
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+        min-height: 50px;
+        height: auto;
+        padding: 30px;
+        border-radius: 10px;
+        border: 1px solid var(--color-hover);
+    }
+        .areaInferiorPagos{
+           
+            display: flex;
+            
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btnPago{
+            background-color: var(--color-primario);
+            color: white;
+            border-radius: 25px;
+            padding: 10px 50px;
+        }
+
+        .btnPago:hover{
+            background-color: var(--color-hover);
+            color: white;
+        }
+
+        .divCards{
+            display: flex;
+            width: 100%;
+            align-items: center;
+            gap: 20px;
+
+        }
+
+        .panelContenedorDatos{
+            width: 100%;
+            padding: 20px;
+        }
+
+
+         /* ===== misReservas.html ======*/
+         .panelCentral-Reservas{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 50px 170px;
+            align-items: center;
+            color: var(--color-gris-texto);
+            max-width: 100%;
+            margin-top: 80px;
+         }
+         .title-misDatos{
+            padding-left: 20px;
+            font-weight: bold;
+         }
+         .misReservas #parteInferiorGrid-gen{
+            max-width: 100%;
+            margin-right: 0;
+         }
+
+          /* ===== misFavoritos.html ======*/
+          .panelCentral-favoritos{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 50px 170px;
+            align-items: center;
+            color: var(--color-gris-texto);
+            max-width: 100%;
+            margin-top: 80px;
+         }
+         .misFavoritos #parteInferiorGrid-gen{
+            max-width: 100%;
+            margin-right: 0;
+         }
+         .fa-heart{
+            color: red;
+            font-size: 25px;
+         }
+
+
+          /* ===== Dropdown ======*/
+         .dropdown, .dropdown-filtro {
+            position: relative;
+            display: inline-block;
+          }
+          
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 120px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        z-index: 1;
+        left: -130px;
+        top:27px;
+        
+        border-radius:20px;
+        text-align: justify;
+        border: 1px solid var(--color-fondoGris);
+        font-family:  'Poppins', sans-serif; ;
+        }
+
+        .dropdown-content a, .dropdown-content-filtro a{
+            padding: 5px;
+        }
+        .dropdown-content a:hover{
+            background-color: var(--color-fondoGris);
+            border-radius: 5px;
+
+        }
+        .dropdown-content-filtro a:hover{
+            background-color: var(--color-fondoGris);
+            border-radius: 5px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .dropdown-filtro:hover .dropdown-content-filtro{
+            display: block;
+          }
+          .dropdown-content-filtro h3{
+            text-align: left;
+            font-size: 20px;
+          }
+
+          .dropdown-content-filtro {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 215px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            z-index: 1;
+            left: -130px;
+            top:27px;
+            
+            border-radius:20px;
+            text-align: justify;
+            border: 1px solid var(--color-fondoGris);
+            font-family:  'Poppins', sans-serif; ;
+            }
+    
+            .categorias-filtro{
+                width: 80%;
+                margin-left: 20px;
+            }
+
+            .btnFiltro{
+                padding: 10px;
+                margin-top: 10px;
+                border-top: 1px solid var(--color-fondoGris);
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+            }
+            .btnAplicarFiltro{
+                background-color: var(--color-primario);
+                color: white;
+                border-radius: 20px;
+                padding: 10px 20px;
+            }
+    
+            .btnAplicarFiltro:hover{
+                background-color: var(--color-hover);
+                color: white;
+            }
+
+/* =======Local========*/
+.local .header-gen {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1; 
+}
+
+.local #contenedor-busqueda{
+    position: fixed; 
+    top: 0;
+    left: 10%;
+    width: 80%;
+    z-index: 2; 
+    margin-top: 10px;
+    justify-content: center;
+}
+
+
+.local p{
+    margin: 0;
+}
+.local .contenedor-gen {
+    margin-top: 80px; 
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.local h3{
+    font-size: 22px;
+}
+.local h2{
+    font-size: 26px;
+}
+.local h1{
+    font-size: 32px;
+}
+.local .local-info, .local .text strong, .local .formato-info{
+    font-size: 18px;
+}
+
+    .local .panelSuperior{
+      /*  margin-left: 10%;*/
+        margin-top: 70px;
+        width: 80%;
+        display: flex;
+        columns: 2;
+        align-items: center;
+        column-gap: 50px;
+        margin: 70px auto 0;
+        column-width: auto;
+    }
+    .local-info{
+        display: flex;
+        align-items: center;
+        columns: 2; 
+       gap: 10px;
+    }
+    .icon{
+        margin: 10px;
+    }
+    .opiniones, .direccion{
+        text-decoration:underline;
+    }
+    .botonesReservar-compartir-like{
+        display: flex;
+        columns: 3;
+        column-gap:20px
+    }
+     
+    .local .panelSuperior-izq .carousel {
+        width: 500px;
+    }
+    .btn-reservar{
+        background-color: var(--color-secundario);
+        color: white;
+        width: 80%;
+        border-radius: 15px;
+        padding: 5px 60px;
+        margin-left: 20px;
+        font-size: 15px;
+        border-right: 1px solid #ccc;
+    }      
+    .btn-reservar:hover{
+        background-color: var(--color-hover);     
+    }
+    .btn-compartir, .btn-like{
+        border:none;
+        background: none;
+    }
+    
+    .local .panelSuperior-derecha .fa-heart{
+        color: black;
+       font-size: 38px;
+    }
+    .local .panelSuperior-derecha .fa-heart:hover{
+        color: red;
+    }
+
+    .calificacion{
+        width: 35%;
+    }
+    .modal-body h4 {
+        text-align: center;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .modal-footer .btn-primary {
+        width: 100%;
+    }
+
+    .text-muted {
+        font-size: 12px;
+    }
+    /*segundo panel Local*/
+    .panel-infoLocal {
+       /* margin-left: 10%;*/
+        margin-top: 30px;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 30px auto 0;
+        
+    }
+    
+    .panel-infoLocal h2 {
+        text-align: center; 
+    }
+    .informacion{
+        font-size: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .info-container
+    {
+        columns: 2;
+        column-gap: 50px;
+    }
+    /*panel ubicacion*/
+    .panel-ubicacionLocal {
+        width: 80%;
+        margin: 20px auto;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: left;
+    }
+    
+    .contenedor-mapa {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    /*horarios y precios*/
+    .panel-horariosPrecios {
+        width: 80%;
+        margin: 20px auto;
+    }
+    
+    .panel-horariosPrecios h3 {
+        margin-bottom: 10px;
+    }
+    
+    .dias {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .precio-item {
+        width: 60%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .icon-text {
+        display: flex;
+        align-items: center;
+    }
+    
+    .iconPrecio {
+        
+        margin-right: 20px;
+    }
+    
+    .text {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .text p {
+        margin: 2px 0; 
+    }
+    
+    .text strong {
+        margin: 0; 
+    }
+    
+    
+    .precio {
+        font-weight: bold;
+        font-size: 18px;
+    }
+    /*Panel disponiblidad*/
+    .panel-disponibilidad {
+        width: 80%;
+        margin: 20px auto;
+    }
+    .calendario{
+        display: flex;
+        flex-direction: column;
+        row-gap:18px;
+    }
+    
+
+    /*panel Local*/
+
+    .contacto{
+        width: 80%;
+        margin: 20px auto;
+        margin-bottom: 50px;
+    }
+    .infoContacto{
+        display: flex;
+        columns:2;
+        gap:10%;
+    }
+    .formato-info{
+        display: flex;
+        align-items: center;
+        columns: 2;
+        font-size: 20px;
+        gap: 10px;
+    }
+    /*PAnel opiniones*/
+    /*Comentarios carrusel*/
+    .headerComments{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+    .card{
+        padding: 20px;
+        width: 350px;
+        margin-left: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .headerComments h4{
+        margin: 0;
+    }
+    .card-body .center-Comments{
+        margin: 10px 0;
+    }
+    .card-date{
+        justify-content: flex-end;
+        display: flex;
+    }
+
+    .panel-opiniones{
+        width: 80%;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .panel-opiniones-container{
+        display: flex;
+        margin-top: 10px;
+
+    }
+
+ 
+    .cards-wrapper{
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+
+    }
+
+    .info-opinion{
+        display: flex;
+        columns: 2;
+        justify-content: space-between;
+        align-items: center;
+        gap: 3%;
+    }
+    .info-opinion img{
+        width: 200px;
+    }
+    .info-opinion p{
+        margin: 0cqw;
+    }
+    .estrellas{
+        display: flex;
+        flex-direction: column;
+    }
+    .btn-opinion{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    .btn-agregarComentario, .btn-continuar{
+        background-color: var(--color-secundario);
+        color: white;
+        width: 80%;
+        border-radius: 10px;
+        margin-top: 40px;
+        font-size: 15px;
+        padding:10px;
+        border-right: 1px solid #ccc;
+    }   
+    .btn-agregarComentario:hover{
+        background-color: var(--color-hover);
+        color: white;
+    }  
+    .btn-continuar:hover{
+        background-color: var(--color-hover);
+        color: white;
+    }  
+    .modal-body h4 {
+        text-align: center;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    .rating-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .rating-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+    }
+
+    .stars span {
+        font-size: 24px;
+        color: #ccc;
+        cursor: pointer;
+    }
+
+    .stars span:hover,
+    .stars span:hover ~ span {
+        color: #ffc107;
+    }
+
+    .form-group label {
+        font-size: 16px;
+    }
+
+    .modal-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn-aceptar,.btn-continuar{
+        background-color: var(--color-secundario);
+        color: white;
+        width: 50%;
+        height: 40px;
+        border-radius: 10px;
+        margin-top: 40px;
+        font-size: 15px;
+        border-right: 1px solid #ccc;  
+    }
+    .modal-footer .btn-primary {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .modal-footer .text-muted {
+        font-size: 12px;
+    } 
+/* Ajusta el valor a la altura de la barra de navegación fija */
+    [id] {
+        scroll-margin-top:100px; 
+    }
+
+/*=================Locales filtro populares/albercas/infantiles/formales==*/
+    
+    .contenedor-filtroLocal{
+        display: flex;
+        width: 90%;
+        margin: 0 5% ;
+        columns: 2;
+        gap:10%;
+    }
+    .filtros{
+        width: 20%;
+    }
+    .locales{
+        width: 100%;
+        align-items: column;
+    }
+    .resultado{
+        display: flex;
+        columns: 2;
+        gap: 5%;
+        margin: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .imagen-resultado{
+        border-radius: 10px;
+        width: 40%;
+    
+    }

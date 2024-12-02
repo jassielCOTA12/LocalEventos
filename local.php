@@ -9,15 +9,15 @@
      
     <link rel="icon"  type="image/png" href="./imagenes/logo.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="stylesMedia.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/stylesMedia.css">
     
 </head>
 <body class="local">
     <div class="contenedor-gen">
 
         <?php
-        include "header.php";
+        include "include/header.php";
         ?>
 
         <div id="contenedor-busqueda">

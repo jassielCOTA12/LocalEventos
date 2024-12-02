@@ -9,19 +9,19 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="stylesMedia.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/stylesMedia.css">
 </head>
 <body class="inicio inicioFiltros">
     <div class="contenedor-gen">
         <?php
-        include "header.php";
+        include "include/header.php";
         ?>
 
         <div class="panelCentral-gen">
             <div id="parteSuperior">
             <?php
-            include "parteSuperior.php";
+            include "include/parteSuperior.php";
             ?>
             </div>
 
