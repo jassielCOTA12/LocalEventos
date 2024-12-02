@@ -542,7 +542,8 @@
     justify-content: center;
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: flex-start;
+    row-gap: 10px;
 }
 
 .divBtn-movil{

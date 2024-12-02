@@ -960,8 +960,8 @@ body.login .panelCentral-gen{
     }
     .calendario{
         display: flex;
-        columns: 2;
-        column-gap:40px
+        flex-direction: column;
+        row-gap:18px;
     }
     
 

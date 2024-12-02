@@ -158,8 +158,9 @@
             <div class="panel-disponibilidad">
                 <h3><strong>Disponibilidad:</strong></h3>
                 <div class="calendario">
-                    <img src="imagenes/Calendario.png" alt="calendario">
-                    <img src="imagenes/Calendario.png" alt="calendario">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" class="form-control">
+                    <label for="fecha">Disponible</label>
                 </div>
             </div>
             <div class="panel-opiniones">
@@ -546,14 +547,15 @@
                     <div class="accordion-item" >
                         <h2 class="accordion-header" >
                           <button class="accordion-button collapsed btnFechaFlex-movil" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" >
-                            <strong>Disponibilidad </strong><p>Seleccione una fecha</p>
+                            <strong>Disponibilidad </strong><p>Sseleccione una fecha</p>
                           </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse colapso-movil" data-bs-parent="#accordionExample">
                           <div class="accordion-body">
-                                <div class="divbtnFecha-movil">
-                                    <img src="imagenes/Calendario.png" alt="calendario">
-                                    <button class="btnFecha-movil" data-bs-toggle="collapse" data-bs-target="#collapseOne" >Seleccionar fecha</button>
+                                <div class="divbtnFecha-movil" style="">
+                                <label for="fecha">Fecha:</label>
+                                <input type="date" id="fecha" class="form-control">
+                                <label for="fecha">Disponible</label>
                                 </div>
                           </div>
                         </div>
