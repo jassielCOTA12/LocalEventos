@@ -31,17 +31,21 @@
             <div id="parteInferiorGrid-gen">
                 <?php
                     require 'configuracion/fetchLocales.php'; // Incluye la conexión y la consulta
-                    foreach ($locales as $local) {
-                        echo "
-                        <a href='local.php?id={$local['id_local']}'>
-                            <article class='localCard-gen'>
-                                <img src='imagenes/imgLocal1.png' alt='imagen de local no cargada'>
-                                <h3>{$local['nombre']}</h3>
-                                <p>Hasta {$local['capacidad_maxima']} personas</p>
-                                <p>Desde \${$local['precio_base']} </p>
-                                <p><span><i class='fa-starIcon-card fa-solid fa-star'></i></span>4.2 (4)</p>
-                            </article>
-                        </a>";
+                    foreach ($locales_finales as $local) {
+                        
+                            echo "
+                            <a href='local.php?id={$local['id_local']}'>
+                                <article class='localCard-gen'>
+                                    <img src='imagenes/imgLocal1.png' alt='imagen de local no cargada'>
+                                    <h3>{$local['nombre']}</h3>
+                                    <p>Hasta {$local['capacidad_maxima']} personas</p>
+                                    <p>Desde \${$local['precio_base']} </p>
+                                    <p><span><i class='fa-starIcon-card fa-solid fa-star'></i></span>4.2 (4)</p>
+                                </article>
+                            </a>";
+                            
+                     
+                        
                     }
                 ?>
             </div>
@@ -130,7 +134,6 @@
 
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 </body>
 
 </html>

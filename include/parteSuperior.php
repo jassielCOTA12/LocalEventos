@@ -24,10 +24,10 @@ echo '
 
     </div>
     <div id="contenedorSeleccion">
-        <a href="inicioFiltros.php" class="secciones">Populares<span><i class="fa-solid fa-star"></i></span></a>
-        <a href="inicioFiltros.php" class="secciones">Albercas <span><i class="fa-solid fa-water-ladder"></i></span></a>
-        <a href="inicioFiltros.php" class="secciones">Infantiles <span><i class="fa-solid fa-gopuram"></i></span></a>
-        <a href="inicioFiltros.php" class="secciones">Formales <span><i class="fa-solid fa-user-tie"></i></span></a>
+        <a href="inicio.php?id=1" class="secciones">Populares<span><i class="fa-solid fa-star"></i></span></a>
+        <a href="inicio.php?id=2" class="secciones">Albercas <span><i class="fa-solid fa-water-ladder"></i></span></a>
+        <a href="inicio.php?id=3" class="secciones">Infantiles <span><i class="fa-solid fa-gopuram"></i></span></a>
+        <a href="inicio.php?id=4" class="secciones">Formales <span><i class="fa-solid fa-user-tie"></i></span></a>
     </div>
 
     <div class="modal fade" id="calendarioModal" tabindex="-1" aria-labelledby="calendarioModalLabel" aria-hidden="true">
