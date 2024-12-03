@@ -61,9 +61,6 @@ if (isset($_GET['id'])) {
     $totalProfesionalidad = 0;
     $totalCalidadPrecio = 0;
 
-    // Contar el número de opiniones
-    $numOpiniones = count($opiniones);
-
     // Verificar que haya opiniones para evitar la división por cero
     if ($numOpiniones > 0) {
     // Procesar cada opinión

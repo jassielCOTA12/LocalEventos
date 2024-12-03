@@ -142,8 +142,10 @@ include "configuracion/infoLocal.php";
                 <h3><strong>Disponibilidad:</strong></h3>
                 <div class="calendario">
                     <label for="fecha">Fecha:</label>
-                    <input type="date" id="fecha" class="form-control" style="width:30%">
-                    <label for="fecha">Disponible</label>
+                    <div style="display:flex; flex-direction:row; align-items:center; column-gap:25px">
+                        <input type="date" id="fecha" method="GET" class="form-control" style="width:30%">
+                        <label for="fecha">Disponible</label>
+                    </div>
                 </div>
             </div>
             <div class="panel-opiniones">
