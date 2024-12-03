@@ -1,3 +1,6 @@
+<?php
+include "configuracion/infoLocal.php";
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -55,57 +58,49 @@
                     </div>
                     <div class="panelSuperior-derecha">
                         <div class="panelSuperior-derecha-info">
-                            <h1 class="salonNombre"><strong>Salón de Eventos "La Roca"</strong></h1>
-                        <div class="local-info">
-                            <img class="icon"  src="imagenes/ubicacionIcon.png" alt="Ubicacion-Icon" >
-                            <a href="#mapa" class="direccion">Carranza e/ Allende y Juáres, La Paz, México</a>
+                            <h1 class="salonNombre"><strong><?php echo htmlspecialchars($local['nombre']); ?></strong></h1>
+                            <div class="local-info">
+                                <img class="icon" src="imagenes/ubicacionIcon.png" alt="Ubicación Icon">
+                                <a href="#mapa" class="direccion"><?php echo htmlspecialchars($local['ubicación']); ?></a>
+                            </div>
+                            <div class="local-info">
+                                <img class="icon" src="imagenes/personasIcon.png" alt="Personas Icon">
+                                <p class="capacidad">Hasta <?php echo htmlspecialchars($local['capacidad_maxima']); ?> personas</p>
+                            </div>
+                            <div class="local-info">
+                                <img class="icon" src="imagenes/mensajeIcon.png" alt="Mensaje Icon">  
+                                <?php include 'include/estrellas.php' ?>
+                                <a href="#op" class="opiniones">(<?php echo $num_opiniones; ?> opiniones)</a>
+                            </div>
+
+                            <div class="local-info">
+                                <img class="icon" src="imagenes/precioIcon.png" alt="Precio Icon">
+                                <p class="precioAprox">Desde $<?php echo number_format($local['precio_base'], 2); ?></p>
+                            </div>
+                            <div class="botonesReservar-compartir-like">
+                                <button class="btn-reservar" data-bs-toggle="modal" data-bs-target="#reservarModal">Reservar</button>
+                                <button class="btn-compartir"><img src="imagenes/compartirIcon.png" alt="Compartir"></button>
+                                <button class="btn-like"><i class="fa-solid fa-heart"></i></button>
+                            </div>
                         </div>
-                        <div class="local-info">
-                            <img class="icon" src="imagenes/personasIcon.png" alt="Personas-Icon" >
-                            <p class="capacidad">Hasta 70 personas</p>
-                        </div>
-                        <div class="local-info">
-                            <img class="icon" src="imagenes/mensajeIcon.png" alt="mensaje-Icon" >
-                            <img class="calificacion" src="imagenes/estrellas.png" alt="calificacion">
-                            <a href="#op" class="opiniones">(4 opiniones)</a>
-                        </div>
-                        <div class="local-info">
-                            <img class="icon" src="imagenes/precioIcon.png" alt="precio1-Icon" >
-                            <p class="precioAprox">Desde $3,000.0</p>
-                        </div>
-                        <div class="botonesReservar-compartir-like">
-                            <button class="btn-reservar" data-bs-toggle="modal" data-bs-target="#reservarModal">Reservar</button>
-                            <button class="btn-compartir"><img src="imagenes/compartirIcon.png" alt="compartir"></button>
-                            <button class="btn-like"><i class="fa-solid fa-heart"></i></button>
-                        </div>
-                        </div>
-        
-                    
                     </div>
             </div>
             <div class="panel-infoLocal">
                 <h2><strong>¡Reserva tu fecha!</strong></h2>
                 <div class="informacion">
-                        <h3><strong>Información:</strong></h3>
+                    <h3><strong>Información:</strong></h3>
                     <div class="info-container">
-                        <div class="local-info">
-                            <img class="icon" src="imagenes/albercaIcon.png" alt="AlbercaIcon">
-                            <p>Alberca</p>
-                        </div>
-                        <div class="local-info">
-                            <img class="icon" src="imagenes/mobiliarioIcon.png" alt="mobiliarioIcon">
-                            <p>Mobiliario</p>
-                        </div>
-                        <div class="local-info">
-                            <img class="icon" src="imagenes/estacionamientoIcon.png" alt="estacionamientoIcon">
-                            <p>Estacionamiento</p>
-                        </div>
-                        <div class="local-info">
-                            <img class="icon" src="imagenes/cocinaIcon.png" alt="cocinaIcon">
-                            <p>Cocina</p>
-                        </div>
+                        <?php foreach ($amenidades as $amenidad): ?>
+                            <?php if (isset($imagenesAmenidades[$amenidad['nombre']])): ?>
+                                <div class="local-info">
+                                    <img class="icon" src="imagenes/<?php echo $imagenesAmenidades[$amenidad['nombre']]; ?>" alt="<?php echo $amenidad['nombre']; ?> Icon">
+                                    <p><?php echo htmlspecialchars($amenidad['nombre']); ?></p>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
+
             </div>
             <div class="panel-ubicacionLocal">
                 <h3 id="mapa"><strong>Ubicación:</strong></h3>
@@ -124,28 +119,25 @@
             <div class="panel-horariosPrecios">
                 <h3><strong>Horarios y precios:</strong></h3>
                 <div class="dias">
-                    <div class="precio-item">
-                        <div class="icon-text">
-                            <img class="iconPrecio" src="imagenes/precio2Icon.png" alt="PrecioIcon">
-                            <div class="text">
-                                <strong>Lunes - Jueves</strong>
-                                <p>Horario: 2:00 pm - 8pm</p>
+                    <?php if (!empty($horarios)): ?>
+                        <?php foreach ($horarios as $horario): ?>
+                            <div class="precio-item">
+                                <div class="icon-text">
+                                    <img class="iconPrecio" src="imagenes/precio2Icon.png" alt="PrecioIcon">
+                                    <div class="text">
+                                        <strong><?php echo htmlspecialchars($horario['dia_inicio']) . " - " . htmlspecialchars($horario['dia_fin']); ?></strong>
+                                        <p>Horario: <?php echo date("g:i A", strtotime($horario['hora_inicio'])) . " - " . date("g:i A", strtotime($horario['hora_fin'])); ?></p>
+                                    </div>
+                                </div>
+                                <div class="precio">$<?php echo number_format($horario['precio'], 2); ?></div>
                             </div>
-                        </div>
-                        <div class="precio">$3000</div>
-                    </div>
-                    <div class="precio-item">
-                        <div class="icon-text">
-                            <img class="iconPrecio" src="imagenes/precio2Icon.png" alt="PrecioIcon">
-                            <div class="text">
-                                <strong>Viernes - Domingo</strong>
-                                <p>Horario: 2:00 pm - 8pm</p>
-                            </div>
-                        </div>
-                        <div class="precio">$4200</div>
-                    </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>No hay horarios disponibles para este local.</p>
+                    <?php endif; ?>
                 </div>
             </div>
+
             <div class="panel-disponibilidad">
                 <h3><strong>Disponibilidad:</strong></h3>
                 <div class="calendario">
@@ -158,7 +150,9 @@
                 <h3 id="op"><strong>Opiniones:</strong></h3>
                 <div class="panel-opiniones-container">
                     <div class="estrellas">
-                        <img src="imagenes/estrellas.png" alt="Calificacion">
+                        <div>
+                            <?php include 'include/estrellas.php' ?>
+                        </div>
                         <div class="info-opinion">
                             <p>Calidad de servicio</p>
                             <img src="imagenes/estrellas.png" alt="estrellas">

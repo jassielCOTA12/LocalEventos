@@ -30,7 +30,8 @@
                                 <img src='imagenes/imgLocal1.png' alt='imagen de local no cargada'>
                                 <h3>{$local['nombre_local']}</h3>
                                 <p><strong>Fecha: </strong>{$local['fecha']}</p>
-                                <p><strong>Horario: </strong>{$local['hora_inicio']} - {$local['hora_fin']}</p>
+                                <p><strong>Horario: </strong>"; echo date("g:i A", strtotime($local['hora_inicio'])) . " - " . date("g:i A", strtotime($local['hora_fin']));echo"</p>
+
                             </article>";
                         }
                     } else {
