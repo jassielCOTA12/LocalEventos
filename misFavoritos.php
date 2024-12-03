@@ -17,25 +17,29 @@
         include "include/header.php";
         ?>
         <div class="panelCentral-favoritos">
-            <div class="panelContenedorDatos">
-                <h1 class="title-misDatos">Mis favoritos</h1>
-                <div id="parteInferiorGrid-gen">
-                    <article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p><span><i class="fa-solid fa-heart"></i></span></p>
-                    </article>
-                    <article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p><span><i class="fa-solid fa-heart"></i></span></p>
-                    </article>
-                    <article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p><span><i class="fa-solid fa-heart"></i></span></p>
-                    </article>
+        <div class="panelContenedorDatos">
+            <h1 class="title-misDatos">Mis favoritos</h1>
+            <div id="parteInferiorGrid-gen">
+                <?php
+                require 'configuracion/favorites.php'; // Incluye el archivo que obtiene los favoritos
+                if (!empty($favoritos)) {
+                    foreach ($favoritos as $local) {
+                        echo "
+                        <article class='localCard-gen'>
+                            <img src='imagenes/imgLocal1.png' alt='imagen de local no cargada'>
+                            <h3>{$local['nombre']}</h3>
+                            <button class='btn-favorito' style='background:white; border:none'>
+                            <i class='fa-solid fa-heart'></i>
+                            </button>
+                        </article>";
+                    }
+                } else {
+                    echo "<p>No tienes locales favoritos.</p>";
+                }
+                ?>
             </div>
+        </div>
+
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -144,22 +144,13 @@
                         </div>
                         <div class="precio">$4200</div>
                     </div>
-                    <div class="precio-item">
-                        <div class="icon-text">
-                        <img class="iconPrecio" src="imagenes/precio2Icon.png" alt="PrecioIcon">
-                            <div class="text">
-                                <strong>Hora extra</strong>
-                            </div>
-                        </div>
-                        <div class="precio">$500</div>
-                    </div>
                 </div>
             </div>
             <div class="panel-disponibilidad">
                 <h3><strong>Disponibilidad:</strong></h3>
                 <div class="calendario">
                     <label for="fecha">Fecha:</label>
-                    <input type="date" id="fecha" class="form-control">
+                    <input type="date" id="fecha" class="form-control" style="width:30%">
                     <label for="fecha">Disponible</label>
                 </div>
             </div>
@@ -271,47 +262,14 @@
                         </div>
 
                         <label>Fecha del evento:</label>
-                        <div class="row g-2 mb-3">
-                            <div class="col">
-                                <select class="form-select" required>
-                                    <option selected>Día</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <select class="form-select" required>
-                                    <option selected>Mes</option>
-                                    <option value="">Enero</option>
-                                    <option value="">Febrero</option>
-                                    <option value="">Marzo</option>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <select class="form-select" required>
-                                    <option selected>Año</option>
-                                    <option value="">2024</option>
-                                    <option value="">2025</option>
-                                    <option value="">2026</option>
-                                </select>
-                            </div>
-                        </div>
+                        <input type="date" id="fecha" class="form-control">
+                         <br>
+                        <label>Número de invitados:</label><br>
+                        <input type="number" id="invitados" class="form-control">
 
-                        <label>Número de invitados:</label>
-                        <div class="form-check mb-3">
-                            <input type="radio" class="form-check-input" name="invitados" id="invitados1" value="0-30">
-                            <label class="form-check-label" for="invitados1">0 - 30 personas</label>
-                        </div>
-                        <div class="form-check mb-3">
-                            <input type="radio" class="form-check-input" name="invitados" id="invitados2" value="30-50">
-                            <label class="form-check-label" for="invitados2">30 - 50 personas</label>
-                        </div>
-                        <div class="form-check mb-3">
-                            <input type="radio" class="form-check-input" name="invitados" id="invitados3" value="50-70">
-                            <label class="form-check-label" for="invitados3">50 - 70 personas</label>
-                        </div>
-
+                        <br>
+                        
+                        <label>Horario:</label><br>
                         <div class="form-group mt-3">
                             <label for="extraInfo">Información extra:</label>
                             <textarea class="form-control" id="extraInfo" rows="3" placeholder="Buen día, estoy interesado en un lugar para celebrar un cumpleaños infantil."></textarea>
@@ -530,15 +488,6 @@
                                 </div>
                             </div>
                             <div class="precio">$4200</div>
-                        </div>
-                        <div class="precio-item">
-                            <div class="icon-text">
-                            <img class="iconPrecio" src="imagenes/precio2Icon.png" alt="PrecioIcon">
-                                <div class="text">
-                                    <strong>Hora extra</strong>
-                                </div>
-                            </div>
-                            <div class="precio">$500</div>
                         </div>
                     </div>
                 </div>

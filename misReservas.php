@@ -21,23 +21,22 @@
                 <h1 class="title-misDatos">Mis reservas</h1>
                 
                 <div id="parteInferiorGrid-gen">
-                    <article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p><strong>Fecha: </strong>07/01/2024</p>
-                        <p><strong>Horario: </strong>2:00 pm a 8:00 pm</p>
-                    </article>
-                    <article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p><strong>Fecha: </strong>07/01/2024</p>
-                        <p><strong>Horario: </strong>2:00 pm a 8:00 pm</p>
-                    </article><article class="localCard-gen">
-                        <img src="imagenes/ImgLocal1.png" alt="imagen de local no cargada">
-                        <h3>Salón de eventos "La Roca"</h3>
-                        <p><strong>Fecha: </strong>07/01/2024</p>
-                        <p><strong>Horario: </strong>2:00 pm a 8:00 pm</p>
-                    </article>
+                    <?php
+                    require 'configuracion/reservations.php'; // Incluye el archivo que obtiene las reservaciones
+                    if (!empty($reservas)) {
+                        foreach ($reservas as $local) {
+                            echo "
+                            <article class='localCard-gen'>
+                                <img src='imagenes/imgLocal1.png' alt='imagen de local no cargada'>
+                                <h3>{$local['nombre_local']}</h3>
+                                <p><strong>Fecha: </strong>{$local['fecha']}</p>
+                                <p><strong>Horario: </strong>{$local['hora_inicio']} - {$local['hora_fin']}</p>
+                            </article>";
+                        }
+                    } else {
+                        echo "<p>No tienes reservas de locales.</p>";
+                    }
+                    ?>
             </div>
         </div>
     </div>
