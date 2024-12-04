@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const fechaInput = document.getElementById('fechaLocal');
     const estadoDisponibilidad = document.getElementById('estadoDisponibilidad');
     const btnGuardar = document.getElementById('guardarDisponibilidad');
-    const idLocal = document.getElementById('fecha').getAttribute('data-id-local');
+    const idLocal = fechaInput.getAttribute('data-id-local');
 
     btnGuardar.disabled = true;
 

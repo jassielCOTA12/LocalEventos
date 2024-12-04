@@ -140,9 +140,9 @@ include "configuracion/infoLocal.php";
                 <label for="fechaLocal">Fecha:</label>
                 <div style="display:flex; flex-direction:row; align-items:center; column-gap:25px">
 
-                    <input type="date" id="fechaLocal" class="form-control" style="width:30%"  data-id-local="<?php echo $local['id_local']; ?>"/>
+                    <input type="date" id="fechaLocal" class="form-control" style="width:30%"  data-id-local="<?php echo $local['id_local']; ?>" min="<?php echo date('Y-m-d'); ?>"/>
 
-                    <button type="button" id="guardarDisponibilidad" class="btn btn-primary" disabled>Guardar</button>
+                    <button type="button" id="guardarDisponibilidad" class="btn btn-primary" disabled>Buscar</button>
                     <label id="estadoDisponibilidad" style="font-weight: bold; color: green;"></label>
                 </div>
             </div>
@@ -275,7 +275,9 @@ include "configuracion/infoLocal.php";
                             </div>
                         </div>
                         <label>Fecha del evento:</label>
-                        <input type="date" id="fecha1" class="form-control">
+                        <input type="date" id="fecha1" class="form-control" data-id-local="<?php echo $local['id_local']; ?>" required min="<?php echo date('Y-m-d'); ?>">
+                        <small id="error-fecha" class="text-danger"></small>
+
                          <br>
                         <label>Número de invitados:</label><br>
                         <input type="number" id="invitados" class="form-control" min="20" max="<?php echo htmlspecialchars($local['capacidad_maxima'], ENT_QUOTES, 'UTF-8'); ?>" 
@@ -292,7 +294,7 @@ include "configuracion/infoLocal.php";
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn-continuar" data-bs-target="#modalPagar" data-bs-toggle="modal">Continuar</button>
+                    <button type="submit" class="btn-continuar" id="continuarReserva" data-bs-target="#modalPagar" data-bs-toggle="modal">Continuar</button>
                     <?php
                     echo '<p class="text-center text-muted mt-2"> ' . $local['nombre'] .  ' se pondrá en contacto contigo lo más pronto posible.</p>';
                     ?>

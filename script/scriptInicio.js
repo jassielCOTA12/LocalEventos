@@ -1,3 +1,5 @@
+//Buscar locales disponibles por fecha - Inicio.php
+// available.php - BK
 document.addEventListener('DOMContentLoaded', function () {
     const guardarBtn = document.querySelector('#calendarioModal .btn-primary');
     const fechaInput = document.getElementById('fecha');

@@ -1,18 +1,91 @@
 
-    document.getElementById('invitados').addEventListener('input', function () {
-    const maxInvitados = parseInt(this.max); // Máximo permitido
-    const errorMensaje = document.getElementById('error-invitados');
-    if (parseInt(this.value) > maxInvitados) {
-        errorMensaje.textContent = `El número de invitados no puede exceder ${maxInvitados}.`;
-        this.classList.add('is-invalid'); // Agrega una clase para estilos adicionales si es necesario
-    } else {
-        errorMensaje.textContent = ''; // Limpia el mensaje de error si es válido
-        this.classList.remove('is-invalid');
-    }
+document.getElementById('invitados').addEventListener('input', function () {
+const maxInvitados = parseInt(this.max); // Máximo permitido
+const errorMensaje = document.getElementById('error-invitados');
+if (parseInt(this.value) > maxInvitados) {
+    errorMensaje.textContent = `El número de invitados no puede exceder ${maxInvitados}.`;
+    this.classList.add('is-invalid'); // Agrega una clase para estilos adicionales si es necesario
+} else {
+    errorMensaje.textContent = ''; // Limpia el mensaje de error si es válido
+    this.classList.remove('is-invalid');
+}
 });
 
-//Validacion de pagar reservas
+//Validacion de pagar y reservas
 document.addEventListener('DOMContentLoaded', function () {
+
+    const fechaInput = document.getElementById('fecha1');
+    const errorFecha = document.getElementById('error-fecha');
+    const btnContinuar = document.querySelector('.btn-continuar');
+    const idLocal = fechaInput.getAttribute('data-id-local'); // Obtener el id del local
+
+    // Verificación de la disponibilidad al cambiar la fecha
+    fechaInput.addEventListener('change', function () {
+        const fecha = fechaInput.value;
+
+        if (!fecha) {
+            errorFecha.textContent = ''; 
+        } else {
+            // Verificar si la fecha es en el pasado
+            const fechaSeleccionada = new Date(fecha);
+            const fechaActual = new Date();
+
+            if (fechaSeleccionada < fechaActual) {
+                errorFecha.textContent = 'La fecha seleccionada ya ha pasado, por favor elija una fecha futura.';
+                errorFecha.classList.add('is-invalid');
+                fechaInput.classList.add('is-invalid');
+                btnContinuar.disabled = true; // Deshabilitar botón "Continuar"
+            } else {
+                fetch('configuracion/checkAvailability.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `fecha=${fecha}&id_local=${idLocal}`
+                })
+                .then(response => response.text())
+                .then(data => {
+                    if (data === "Disponible") {
+                        errorFecha.textContent = ''; // No hay error
+                        errorFecha.classList.remove('is-invalid');
+                        fechaInput.classList.remove('is-invalid');
+                        btnContinuar.disabled = false; // Habilitar botón "Continuar"
+                        // Obtener horario 
+                        fetch('configuracion/schedules.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            },
+                            body: `fecha=${fecha}&id_local=${idLocal}`
+                        })
+                        .then(response => response.text()) 
+                        .then(data => {
+                            document.querySelector('.horario').textContent = data;
+                        })
+                        .catch(error => {
+                            console.error('Error al obtener el horario:', error);
+                            document.querySelector('.horario').textContent = "Error al obtener el horario.";
+                        });
+                    } else if (data === "Reservado") {
+                        errorFecha.textContent = 'Fecha no disponible, seleccione otra.';
+                        errorFecha.classList.add('is-invalid');
+                        fechaInput.classList.add('is-invalid');
+                        btnContinuar.disabled = true; // Deshabilitar botón "Continuar"
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al verificar disponibilidad:', error);
+                    errorFecha.textContent = 'Error al verificar disponibilidad.';
+                    errorFecha.classList.add('is-invalid');
+                    fechaInput.classList.add('is-invalid');
+                    btnContinuar.disabled = true;
+                });
+            }
+        }
+    });
+
+    
+
     const nombreTitular = document.getElementById('nombreTitular');
     const numeroTarjeta = document.getElementById('numeroTarjeta');
     const fechaExpiracion = document.getElementById('fechaExpiracion');
@@ -24,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const errorNombre = document.getElementById('error-nombre');
     const errorTarjeta = document.getElementById('error-tarjeta');
-    const errorFecha = document.getElementById('error-fecha');
+    const errorFechaTarjeta = document.getElementById('error-fecha');
     const errorCvv = document.getElementById('error-cvv');
 
     // Validación del nombre del titular
@@ -59,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const fecha = fechaExpiracion.value.trim();
     
         if (!formato.test(fecha)) {
-            errorFecha.textContent = 'Formato inválido. Usa MM/AA.';
+            errorFechaTarjeta.textContent = 'Formato inválido. Usa MM/AA.';
             fechaExpiracion.classList.add('is-invalid');
             return;
         }
@@ -75,13 +148,14 @@ document.addEventListener('DOMContentLoaded', function () {
     
         // Validar que la fecha no esté expirada
         if (anioCompleto < anioActual || (anioCompleto === anioActual && mes < mesActual)) {
-            errorFecha.textContent = 'La fecha está expirada.';
+            errorFechaTarjeta.textContent = 'La fecha está expirada.';
             fechaExpiracion.classList.add('is-invalid');
         } else {
-            errorFecha.textContent = '';
+            errorFechaTarjeta.textContent = '';
             fechaExpiracion.classList.remove('is-invalid');
         }
     });
+    
     
 
     // Validación del CVV
@@ -218,3 +292,4 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Error:', error));
     }
 });
+

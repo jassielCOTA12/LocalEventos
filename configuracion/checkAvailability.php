@@ -1,4 +1,5 @@
 <?php
+//Fecha por local individual
 include "Database.php";
 
 $db = new Database();
@@ -21,6 +22,4 @@ if ($result['total'] > 0) {
 } else {
     echo "Disponible"; // Si no hay reservas, el local está disponible
 }
-
-var_dump($result['total']);
 ?>
