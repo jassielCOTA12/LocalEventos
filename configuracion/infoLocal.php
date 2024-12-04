@@ -60,11 +60,15 @@ if (isset($_GET['id'])) {
     $totalRespuesta = 0;
     $totalProfesionalidad = 0;
     $totalCalidadPrecio = 0;
-
+    $promedioCalidadServicio = 0;
+    $promedioRespuesta = 0;
+    $promedioProfesionalidad = 0;
+    $promedioCalidadPrecio = 0;
+    
     // Verificar que haya opiniones para evitar la división por cero
-    if ($numOpiniones > 0) {
+    if ($num_opiniones > 0) {
     // Procesar cada opinión
-    foreach ($opiniones as $opinion) {
+    foreach ($num_opiniones as $opinion) {
         // Sumar los valores de cada campo
         $totalCalidadServicio += $opinion['calidad_servicio'];
         $totalRespuesta += $opinion['respuesta'];
@@ -73,29 +77,40 @@ if (isset($_GET['id'])) {
     }
 
     // Calcular los promedios
-    $promedioCalidadServicio = $totalCalidadServicio / $numOpiniones;
-    $promedioRespuesta = $totalRespuesta / $numOpiniones;
-    $promedioProfesionalidad = $totalProfesionalidad / $numOpiniones;
-    $promedioCalidadPrecio = $totalCalidadPrecio / $numOpiniones;
+    $promedioCalidadServicio = $totalCalidadServicio / $num_opiniones;
+    $promedioRespuesta = $totalRespuesta / $num_opiniones;
+    $promedioProfesionalidad = $totalProfesionalidad / $num_opiniones;
+    $promedioCalidadPrecio = $totalCalidadPrecio / $num_opiniones;
     }
 
-    // Obtener el promedio de calificación del local
-        $promedioCalificacion = $local['promedio_calificacion'];
+    $promedioCalificacion = $local['promedio_calificacion'];
+   
 
-        // Número de estrellas completas
-        $estrellasCompletas = floor($promedioCalificacion);
+    $queryPropietario = "
+                            SELECT p.id_propietarios, p.nombre, p.telefono 
+                            FROM propietarios p
+                            INNER JOIN local l ON p.id_propietarios = l.propietario_id
+                            WHERE l.id_local = :id_local";
+    $stmtPropietario = $conn->prepare($queryPropietario);
+    $stmtPropietario->bindParam(':id_local', $idLocal, PDO::PARAM_INT);
+    $stmtPropietario->execute();
+    $propietario = $stmtPropietario->fetch(PDO::FETCH_ASSOC);
 
-        // Verificar si hay una media estrella
-        $mediaEstrella = ($promedioCalificacion - $estrellasCompletas) >= 0.5 ? true : false;
 
-    // Número de estrellas vacías
-    $estrellasVacias = 5 - $estrellasCompletas - ($mediaEstrella ? 1 : 0);
-
+    $queryOpiniones = "
+    SELECT id_opinion, id_local, comentario, fecha, nombre_usuario, calidad_servicio, respuesta, profesionalidad, calidad_precio 
+    FROM opiniones
+    WHERE id_local = :id_local";
     
-
+    $stmtOpiniones = $conn->prepare($queryOpiniones);
+    $stmtOpiniones->bindParam(':id_local', $idLocal, PDO::PARAM_INT);
+    $stmtOpiniones->execute();
+    $opiniones = $stmtOpiniones->fetchAll(PDO::FETCH_ASSOC);
 } else {
     echo "<p>ID de local no proporcionada.</p>";
     exit;
 }
+
+
 
 ?>

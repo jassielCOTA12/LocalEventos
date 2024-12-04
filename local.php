@@ -69,7 +69,9 @@ include "configuracion/infoLocal.php";
                             </div>
                             <div class="local-info">
                                 <img class="icon" src="imagenes/mensajeIcon.png" alt="Mensaje Icon">  
-                                <?php include 'include/estrellas.php' ?>
+                                <?php include 'include/estrellas.php';
+                                $estrellas = new Estrellas($promedioCalificacion);
+                                $estrellas->imprimirEstrellas(); ?>
                                 <a href="#op" class="opiniones">(<?php echo $num_opiniones; ?> opiniones)</a>
                             </div>
 
@@ -79,9 +81,11 @@ include "configuracion/infoLocal.php";
                             </div>
                             <div class="botonesReservar-compartir-like">
                                 <button class="btn-reservar" data-bs-toggle="modal" data-bs-target="#reservarModal">Reservar</button>
+                                <?php if (isset($_SESSION['id_cliente']) && !empty($_SESSION['id_cliente'])): ?>
                                 <button class="btn-like" id="btn-favorito" data-id-local="<?php echo $local['id_local']; ?>" data-id-cliente="<?php echo $_SESSION['id_cliente']; ?>">
-                                <i class="fa-solid fa-heart <?php echo $isFavorito ? 'text-danger' : ''; ?>" id="icono-favorito"></i>
+                                    <i class="fa-solid fa-heart <?php echo $isFavorito ? 'text-danger' : ''; ?>" id="icono-favorito"></i>
                                 </button>
+                            <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -154,23 +158,41 @@ include "configuracion/infoLocal.php";
                 <div class="panel-opiniones-container">
                     <div class="estrellas">
                         <div>
-                            <?php include 'include/estrellas.php' ?>
+                        <?php
+                                $estrellas2 = new Estrellas($promedioCalificacion);
+                                $estrellas2->imprimirEstrellas(); ?>
                         </div>
                         <div class="info-opinion">
                             <p>Calidad de servicio</p>
-                            <img src="imagenes/estrellas.png" alt="estrellas">
+                            <div>
+                                <?php
+                                $estrellas2 = new Estrellas($promedioCalidadServicio);
+                                $estrellas2->imprimirEstrellas(); ?>
+                            </div>
                         </div>
                         <div class="info-opinion">
                             <p >Resuestas</p>
-                            <img src="imagenes/estrellas.png" alt="estrellas">
+                            <div>
+                                <?php
+                                $estrellas2 = new Estrellas($promedioRespuesta);
+                                $estrellas2->imprimirEstrellas(); ?>
+                            </div>
                         </div>
                         <div class="info-opinion">
                             <p>Profesionalidad</p>
-                            <img src="imagenes/estrellas.png" alt="estrellas">
+                            <div>
+                                <?php
+                                $estrellas2 = new Estrellas($promedioProfesionalidad);
+                                $estrellas2->imprimirEstrellas(); ?>
+                            </div>
                         </div>
                         <div class="info-opinion">
                             <p >Calidad / Precio</p>
-                            <img src="imagenes/estrellas.png" alt="estrellas">
+                            <div>
+                                <?php
+                                $estrellas2 = new Estrellas($promedioCalidadPrecio);
+                                $estrellas2->imprimirEstrellas(); ?>
+                            </div>
                         </div>
                         <div class="btn-opinion">
                             <button class="btn-agregarComentario" data-bs-toggle="modal" data-bs-target="#opinionModal">Escribe una opinión</button>
@@ -179,28 +201,26 @@ include "configuracion/infoLocal.php";
                     
                     
                     <div class="cards-wrapper">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="headerComments">
-                                    <img src="imagenes/personaIcon.png" alt="">
-                                    <h4>Anónime</h4>
-                                </div>
-                                <div class="center-Comments"><img src="imagenes/estrellas.png" alt="estrellas"></div>
-                            <p class="card-text">SLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce blandit commodo nibh, et scelerisque purus sodales in. Mauris sit amet nunc sodales, accumsan erat a, ultricies turpis. .</p>
-                            <p class="card-date">Enviado el 05/03/24</p>
-                            </div>
-                        </div>
-                        <div class="card v2">
-                            <div class="card-body">
-                                <div class="headerComments">
-                                    <img src="imagenes/personaIcon.png" alt="">
-                                    <h4>Anónime</h4>
-                                </div>
-                                <div class="center-Comments"><img src="imagenes/estrellas.png" alt="estrellas"></div>
-                            <p class="card-text">SLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce blandit commodo nibh, et scelerisque purus sodales in. Mauris sit amet nunc sodales, accumsan erat a, ultricies turpis. In hac habitasse platea dictumst. Duis at lectus non orci ornare tincidunt. Mauris venenatis justo et auctor vestibulum.</p>
-                            <p class="card-date">Enviado el 05/03/24</p>
-                            </div>
-                        </div>
+                    <?php
+                            foreach ($opiniones as $opinion) {
+                                // Imprimir la estructura de la tarjeta con los datos de la opinión
+                                echo '<div class="card">
+                                        <div class="card-body">
+                                            <div class="headerComments">
+                                                <img src="imagenes/personaIcon.png" alt="">
+                                                <h4>Anónimo</h4></div> <br>';
+                                                $estrellas2 = new Estrellas($opinion['calidad_servicio']);
+                                                $estrellas2->imprimirEstrellas();
+                                            echo '
+                                            <div class="center-Comments">
+                                                <!-- Aquí ya no se incluyen las estrellas -->
+                                            </div>
+                                            <p class="card-text">' . htmlspecialchars($opinion['comentario']) . '</p>
+                                            <p class="card-date">Enviado el ' . htmlspecialchars($opinion['fecha']) . '</p>
+                                        </div>
+                                    </div>';
+                            }
+                            ?>
                     </div>
                 </div>
             </div>
@@ -209,11 +229,11 @@ include "configuracion/infoLocal.php";
                 <div class="infoContacto">
                     <div class="formato-info">
                         <img src="imagenes/llavesIcon.png" alt="llavesIcon">
-                        <p>Dueño: Juan Gómez</p>
+                        <?php echo "<p>Dueño: {$propietario['nombre']}</p>"; ?>
                     </div>
                     <div class="formato-info">
                         <img src="imagenes/telefonoICon.png" alt="telefonoICon">
-                        <p>Telefono: 123 123 1234</p>
+                        <?php echo "<p>Telefono: {$propietario['telefono']}"; ?></p>
                     </div>
                 </div>
             </div>

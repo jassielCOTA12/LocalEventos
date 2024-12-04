@@ -40,12 +40,9 @@
                                     <h3>{$local['nombre']}</h3>
                                     <p>Hasta {$local['capacidad_maxima']} personas</p>
                                     <p>Desde \${$local['precio_base']} </p>
-                                    <p><span><i class='fa-starIcon-card fa-solid fa-star'></i></span>4.2 (4)</p>
-                                </article>
-                            </a>";
-                            
-                     
-                        
+                                    <p><span><i class='fa-starIcon-card fa-solid fa-star'></i></span> {$local['promedio_calificacion']}</p>
+                                    </article>
+                            </a>"; 
                     }
                 ?>
             </div>
