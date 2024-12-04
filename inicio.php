@@ -33,16 +33,28 @@
                     require 'configuracion/fetchLocales.php'; // Incluye la conexión y la consulta
                     foreach ($locales_finales as $local) {
                         
-                            echo "
-                            <a href='local.php?id={$local['id_local']}'>
-                                <article class='localCard-gen'>
-                                    <img src='imagenes/imgLocal1.png' alt='imagen de local no cargada'>
-                                    <h3>{$local['nombre']}</h3>
-                                    <p>Hasta {$local['capacidad_maxima']} personas</p>
-                                    <p>Desde \${$local['precio_base']} </p>
-                                    <p><span><i class='fa-starIcon-card fa-solid fa-star'></i></span> {$local['promedio_calificacion']}</p>
-                                    </article>
-                            </a>"; 
+                        // Obtener el id del local
+                        $idLocal = $local['id_local'];
+
+                        // Verificar si el id_local tiene una imagen asociada en el arreglo
+                        if (array_key_exists($idLocal, $imagenesLocales)) {
+                            $imagenLocal = $imagenesLocales[$idLocal];
+                        } else {
+                            // Si no se encuentra una imagen para el id_local, usar una imagen por defecto
+                            $imagenLocal = 'imagenesLocales/SalonFiestaBonita.png';
+                        }
+                        
+                        // Mostrar el local con su imagen
+                        echo "
+                        <a href='local.php?id={$local['id_local']}'>
+                            <article class='localCard-gen'>
+                                <img src='{$imagenLocal}' alt='imagen de local no cargada'>
+                                <h3>{$local['nombre']}</h3>
+                                <p>Hasta {$local['capacidad_maxima']} personas</p>
+                                <p>Desde \${$local['precio_base']} </p>
+                                <p><span><i class='fa-starIcon-card fa-solid fa-star'></i></span> {$local['promedio_calificacion']}</p>
+                            </article>
+                        </a>";
                     }
                 ?>
             </div>
