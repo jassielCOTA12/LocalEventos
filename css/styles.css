@@ -1069,8 +1069,9 @@ body.login .panelCentral-gen{
         border-right: 1px solid #ccc;
     } 
     .btn-agregarComentario{
-        width: 100%;
+        min-width: 50%;
         margin-top: 10px;
+        max-width: 100%;
     }  
     .btn-agregarComentario:hover{
         background-color: var(--color-hover);
