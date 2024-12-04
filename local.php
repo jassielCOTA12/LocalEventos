@@ -263,14 +263,14 @@ include "configuracion/infoLocal.php";
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
                                     <input type="email" class="form-control" placeholder="Correo electrónico" required
-                                    value="<?php echo isset($_SESSION['correo']) ? htmlspecialchars($_SESSION['correo'], ENT_QUOTES, 'UTF-8') : ''; ?>" >
+                                    value="<?php echo isset($_SESSION['correo']) ? htmlspecialchars($_SESSION['correo'], ENT_QUOTES, 'UTF-8') : ''; ?>" readonly>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-                                    <input type="tel" class="form-control" placeholder="Teléfono" required
-                                    value="<?php echo isset($_SESSION['telefono']) ? htmlspecialchars($_SESSION['telefono'], ENT_QUOTES, 'UTF-8') : ''; ?>" >
+                                    <input type="number" id="telefono" class="form-control" placeholder="Teléfono" required
+                                    value="<?php echo isset($_SESSION['telefono']) ? htmlspecialchars($_SESSION['telefono'], ENT_QUOTES, 'UTF-8') : ''; ?>">
                                 </div>
                             </div>
                         </div>
@@ -283,10 +283,11 @@ include "configuracion/infoLocal.php";
                         <input type="number" id="invitados" class="form-control" min="20" max="<?php echo htmlspecialchars($local['capacidad_maxima'], ENT_QUOTES, 'UTF-8'); ?>" 
                         placeholder="Máximo <?php echo htmlspecialchars($local['capacidad_maxima'], ENT_QUOTES, 'UTF-8'); ?> invitados" required>
                         <small id="error-invitados" class="text-danger"></small>
-                        <div>
+                        <div><br>
                         <label>Horario:</label>
-                        <p class="horario"></p>
+                        <p class="horario" id="horarioReserva"></p>
                         </div>
+                        <p id="precioPrueba" style="display:none"></p>
                         <div class="form-group mt-3">
                             <label for="extraInfo">Información extra:</label>
                             <textarea class="form-control" id="extraInfo" rows="3" placeholder="Buen día, estoy interesado en un lugar para celebrar un cumpleaños infantil."></textarea>
@@ -316,7 +317,7 @@ include "configuracion/infoLocal.php";
                     <form>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa-solid fa-calendar"></i></span>
-                            <input type="text" class="form-control" placeholder="07 de enero de 2024" readonly>
+                            <input type="text" class="form-control" id="fechaReserva" readonly>
                         </div>
                         
                         <div class="input-group mb-3">
@@ -352,8 +353,8 @@ include "configuracion/infoLocal.php";
     
                         <div class="form-text mt-2">
                             <strong>Detalles de precio:</strong>
-                            <p>Total (MXN): <strong>$3200.00</strong></p>
-                            <?php echo '<p>Total (MXN): <strong>$' . $local['precio_total'] . '</strong></p>';?>
+                            <p>Total (MXN): <strong id="pagarReserva"></strong></p>
+                            
                         </div>
                     </form>
                 </div>

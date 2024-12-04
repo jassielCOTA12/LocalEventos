@@ -1,24 +1,10 @@
-
-document.getElementById('invitados').addEventListener('input', function () {
-const maxInvitados = parseInt(this.max); // Máximo permitido
-const errorMensaje = document.getElementById('error-invitados');
-if (parseInt(this.value) > maxInvitados) {
-    errorMensaje.textContent = `El número de invitados no puede exceder ${maxInvitados}.`;
-    this.classList.add('is-invalid'); // Agrega una clase para estilos adicionales si es necesario
-} else {
-    errorMensaje.textContent = ''; // Limpia el mensaje de error si es válido
-    this.classList.remove('is-invalid');
-}
-});
-
 //Validacion de pagar y reservas
 document.addEventListener('DOMContentLoaded', function () {
-
     const fechaInput = document.getElementById('fecha1');
     const errorFecha = document.getElementById('error-fecha');
     const btnContinuar = document.querySelector('.btn-continuar');
     const idLocal = fechaInput.getAttribute('data-id-local'); // Obtener el id del local
-
+    const errorMensaje = document.getElementById('error-invitados');
     // Verificación de la disponibilidad al cambiar la fecha
     fechaInput.addEventListener('change', function () {
         const fecha = fechaInput.value;
@@ -60,7 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         })
                         .then(response => response.text()) 
                         .then(data => {
-                            document.querySelector('.horario').textContent = data;
+                            const [horario, precio] = data.split("|");
+                            document.querySelector('.horario').textContent = horario;
+                            document.querySelector('#precioPrueba').textContent = `${precio}`;
                         })
                         .catch(error => {
                             console.error('Error al obtener el horario:', error);
@@ -83,18 +71,59 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+    //Input invitados
+    document.getElementById('invitados').addEventListener('input', function () {
+        const maxInvitados = parseInt(this.max); // Máximo permitido
+        const minInvitados = parseInt(this.min);
+        
+        if (parseInt(this.value) > maxInvitados) {
+            errorMensaje.textContent = `El número de invitados no puede exceder ${maxInvitados}.`;
+            this.classList.add('is-invalid'); // Agrega una clase para estilos adicionales si es necesario
+        } else if(parseInt(this.value) < minInvitados){
+            errorMensaje.textContent = `El número de invitados mínimo es ${minInvitados}.`;
+            this.classList.add('is-invalid'); 
+        } else {
+            errorMensaje.textContent = ''; // Limpia el mensaje de error si es válido
+            this.classList.remove('is-invalid');
+        }
+    }); 
 
+    function verificarCampos(){
+    const invitadosInput = document.getElementById('invitados');
+        if( invitadosInput.value.trim() == ''){
+            errorMensaje.textContent = "El campo no debe estar vacío";
+            this.classList.add('is-invalid');
+        }
+        if( fechaInput.value.trim() == ''){
+            errorFecha.textContent = "El campo no debe estar vacío";
+            this.classList.add('is-invalid');
+        }
+    }
+    //Boton continuar reserva - modal 1
+    document.getElementById("continuarReserva").addEventListener("click", function () {
+        const fecha = document.getElementById("fecha1").value;
+        const inputFecha = document.querySelector("#fechaReserva"); //Modal2
+        const precioPrueba = document.getElementById("precioPrueba");
+        const precioModal2 = document.getElementById("pagarReserva"); // Modal2
+
+        if (inputFecha) {
+            inputFecha.value = new Date(fecha).toLocaleDateString('es-MX', {
+                weekday: 'long', // dia 
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+        precioModal2.textContent = "$" + precioPrueba.textContent;
+        
+    });
+     
     
 
     const nombreTitular = document.getElementById('nombreTitular');
     const numeroTarjeta = document.getElementById('numeroTarjeta');
     const fechaExpiracion = document.getElementById('fechaExpiracion');
     const cvv = document.getElementById('cvv');
-    const nombreTitularMovil = document.getElementById('nombreTitularMovil');
-    const numeroTarjetaMovil = document.getElementById('numeroTarjetaMovil');
-    const fechaExpiracionMovil = document.getElementById('fechaExpiracionMovil');
-    const cvvMovil = document.getElementById('cvvMovil');
-
     const errorNombre = document.getElementById('error-nombre');
     const errorTarjeta = document.getElementById('error-tarjeta');
     const errorFechaTarjeta = document.getElementById('error-fecha');
