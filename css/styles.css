@@ -962,6 +962,16 @@ body.login .panelCentral-gen{
         flex-direction: column;
         row-gap:18px;
     }
+    .btn-comprobacion{
+        background-color: var(--color-secundario);
+        color: white;
+        width: 20%;
+        border-radius: 5px;
+        padding: 5px 60px;
+        margin-left: 20px;
+        font-size: 15px;
+        border-right: 1px solid #ccc;
+    }  
     
 
     /*panel Local*/

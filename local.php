@@ -144,15 +144,18 @@ include "configuracion/infoLocal.php";
             </div>
 
             <div class="panel-disponibilidad">
-                <h3><strong>Disponibilidad:</strong></h3>
-                <div class="calendario">
-                    <label for="fechaLocal">Fecha:</label>
-                    <div style="display:flex; flex-direction:row; align-items:center; column-gap:25px">
-                        <input type="date" id="fecha" method="GET" class="form-control" style="width:30%">
-                        <label id="estadoDisponibilidad" style="font-weight: bold; color: green;"></label>
-                    </div>
+            <h3><strong>Disponibilidad:</strong></h3>
+            <div class="calendario">
+                <label for="fechaLocal">Fecha:</label>
+                <div style="display:flex; flex-direction:row; align-items:center; column-gap:25px">
+
+                    <input type="date" id="fechaLocal" class="form-control" style="width:30%"  data-id-local="<?php echo $local['id_local']; ?>"/>
+
+                    <button type="button" id="guardarDisponibilidad" class="btn btn-primary" disabled>Guardar</button>
+                    <label id="estadoDisponibilidad" style="font-weight: bold; color: green;"></label>
                 </div>
             </div>
+        </div>
             <div class="panel-opiniones">
                 <h3 id="op"><strong>Opiniones:</strong></h3>
                 <div class="panel-opiniones-container">
@@ -425,6 +428,7 @@ include "configuracion/infoLocal.php";
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <?php include "localMovil.php"; ?>
     <script src="script/scriptLocal.js"></script>
+    <script src="script/scriptDisponibilidadLocal.js"></script>
     
     
 </body>
