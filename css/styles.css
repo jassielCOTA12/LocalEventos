@@ -1030,20 +1030,27 @@ body.login .panelCentral-gen{
 
     .info-opinion{
         display: flex;
-        columns: 2;
-        justify-content: space-between;
+      /*  columns: 2;*/
+        justify-content: space-around;
+        flex-direction: column;
         align-items: center;
-        gap: 3%;
+       /* gap: 3%;*/
     }
     .info-opinion img{
         width: 200px;
     }
     .info-opinion p{
-        margin: 0cqw;
+        margin: 0;
+        width: 100%;
+
     }
     .estrellas{
         display: flex;
         flex-direction: column;
+        width: 100%;
+    }
+    .comboEstrellas{
+        width: 100%;
     }
     .btn-opinion{
         display: flex;
@@ -1060,7 +1067,11 @@ body.login .panelCentral-gen{
         font-size: 15px;
         padding:10px;
         border-right: 1px solid #ccc;
-    }   
+    } 
+    .btn-agregarComentario{
+        width: 100%;
+        margin-top: 10px;
+    }  
     .btn-agregarComentario:hover{
         background-color: var(--color-hover);
         color: white;

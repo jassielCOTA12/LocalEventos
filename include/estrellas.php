@@ -18,13 +18,13 @@ class Estrellas {
 
     public function imprimirEstrellas() {
         for ($i = 0; $i < $this->estrellasCompletas; $i++) {
-            echo "<i class='fa-solid fa-star star-filled' style='color: #FFD43B; '></i>";
+            echo "<i class='fa-solid fa-star star-filled' style='color: #FFD43B; font-size:25px '></i>";
         }
         if ($this->mediaEstrella) {
-            echo "<i class='fa-solid fa-star-half-alt star-filled' style='color: #FFD43B;'></i>";
+            echo "<i class='fa-solid fa-star-half-alt star-filled' style='color: #FFD43B; font-size:25px'></i>";
         }
         for ($i = 0; $i < $this->estrellasVacias; $i++) {
-            echo "<i class='fa-regular fa-star star-empty' style='color: #ccc;'></i>";
+            echo "<i class='fa-regular fa-star star-empty' style='color: #ccc; font-size:25px'></i>";
         }
     }
 }

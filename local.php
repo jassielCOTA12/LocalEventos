@@ -162,9 +162,10 @@ include "configuracion/infoLocal.php";
                                 $estrellas2 = new Estrellas($promedioCalificacion);
                                 $estrellas2->imprimirEstrellas(); ?>
                         </div>
+                        <hr>
                         <div class="info-opinion">
                             <p>Calidad de servicio</p>
-                            <div>
+                            <div class="comboEstrellas">
                                 <?php
                                 $estrellas3 = new Estrellas($promedioCalidadServicio);
                                 $estrellas3->imprimirEstrellas(); ?>
@@ -172,15 +173,16 @@ include "configuracion/infoLocal.php";
                         </div>
                         <div class="info-opinion">
                             <p >Resuestas</p>
-                            <div>
+
+                            <div class="comboEstrellas" style="font-size:10px">
                                 <?php
                                 $estrellas2 = new Estrellas($promedioRespuesta);
                                 $estrellas2->imprimirEstrellas(); ?>
                             </div>
-                        </div>
+                        </div >
                         <div class="info-opinion">
                             <p>Profesionalidad</p>
-                            <div>
+                            <div class="comboEstrellas">
                                 <?php
                                 $estrellas2 = new Estrellas($promedioProfesionalidad);
                                 $estrellas2->imprimirEstrellas(); ?>
@@ -188,7 +190,7 @@ include "configuracion/infoLocal.php";
                         </div>
                         <div class="info-opinion">
                             <p >Calidad / Precio</p>
-                            <div>
+                            <div class="comboEstrellas">
                                 <?php
                                 $estrellas2 = new Estrellas($promedioCalidadPrecio);
                                 $estrellas2->imprimirEstrellas(); ?>
