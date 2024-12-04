@@ -166,8 +166,8 @@ include "configuracion/infoLocal.php";
                             <p>Calidad de servicio</p>
                             <div>
                                 <?php
-                                $estrellas2 = new Estrellas($promedioCalidadServicio);
-                                $estrellas2->imprimirEstrellas(); ?>
+                                $estrellas3 = new Estrellas($promedioCalidadServicio);
+                                $estrellas3->imprimirEstrellas(); ?>
                             </div>
                         </div>
                         <div class="info-opinion">

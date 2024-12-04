@@ -49,26 +49,35 @@ if (isset($_GET['id'])) {
 
     // Consulta para contar las opiniones
     $queryOpinion = "SELECT COUNT(*) AS num_opiniones FROM opiniones WHERE id_local = :id_local";
-    $stmtO = $conn->prepare($queryOpinion);
-    $stmtO->bindParam(':id_local', $idLocal, PDO::PARAM_INT);
-    $stmtO->execute();
-    $row = $stmtO->fetch();
+$stmtO = $conn->prepare($queryOpinion);
+$stmtO->bindParam(':id_local', $idLocal, PDO::PARAM_INT);
+$stmtO->execute();
+$row = $stmtO->fetch();
 
-    $num_opiniones = $row['num_opiniones'];
+$num_opiniones = $row['num_opiniones'];
 
-    $totalCalidadServicio = 0;
-    $totalRespuesta = 0;
-    $totalProfesionalidad = 0;
-    $totalCalidadPrecio = 0;
-    $promedioCalidadServicio = 0;
-    $promedioRespuesta = 0;
-    $promedioProfesionalidad = 0;
-    $promedioCalidadPrecio = 0;
-    
-    // Verificar que haya opiniones para evitar la división por cero
-    if ($num_opiniones > 0) {
+$totalCalidadServicio = 0;
+$totalRespuesta = 0;
+$totalProfesionalidad = 0;
+$totalCalidadPrecio = 0;
+
+// Inicialización de promedios
+$promedioCalidadServicio = 0;
+$promedioRespuesta = 0;
+$promedioProfesionalidad = 0;
+$promedioCalidadPrecio = 0;
+
+// Verificar que haya opiniones para evitar la división por cero
+if ($num_opiniones > 0) {
+    // Obtener las opiniones
+    $queryOpiniones = "SELECT calidad_servicio, respuesta, profesionalidad, calidad_precio FROM opiniones WHERE id_local = :id_local";
+    $stmtOpiniones = $conn->prepare($queryOpiniones);
+    $stmtOpiniones->bindParam(':id_local', $idLocal, PDO::PARAM_INT);
+    $stmtOpiniones->execute();
+
     // Procesar cada opinión
-    foreach ($num_opiniones as $opinion) {
+    $opiniones = $stmtOpiniones->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($opiniones as $opinion) {
         // Sumar los valores de cada campo
         $totalCalidadServicio += $opinion['calidad_servicio'];
         $totalRespuesta += $opinion['respuesta'];
@@ -81,7 +90,8 @@ if (isset($_GET['id'])) {
     $promedioRespuesta = $totalRespuesta / $num_opiniones;
     $promedioProfesionalidad = $totalProfesionalidad / $num_opiniones;
     $promedioCalidadPrecio = $totalCalidadPrecio / $num_opiniones;
-    }
+}
+
 
     $promedioCalificacion = $local['promedio_calificacion'];
    
