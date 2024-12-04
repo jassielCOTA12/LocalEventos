@@ -3,7 +3,7 @@
         <div class="panelBtn-movil">
             <button class="btnSuperior-movil"><a href="inicio.php"><</a></button>
             <div>
-                <button class="btnSuperior-movil"><i class="fa-duotone fa-solid fa-share-nodes"></i></button>
+                
             <button class="btnSuperior-movil"><i class="fa-solid fa-heart"></i></button>
             </div>
         </div>
@@ -28,36 +28,31 @@
             </div>
 
             <div class="panelInfo-movil">
-                <h2>Salón de Eventos "La Roca"</h2>
+                <h2><?php echo htmlspecialchars($local['nombre']); ?></h2>
                 <div class="info-opiniones">
-                    <img class="calificacion" src="imagenes/estrellas.png" alt="calificacion">
-                    <a href="#" class="">(4 opiniones)</a>  
+                    <?php
+                                $estrellas = new Estrellas($promedioCalificacion);
+                                $estrellas->imprimirEstrellas(); ?>
+                    <a href="#op" class="opiniones">(<?php echo $num_opiniones; ?> opiniones)</a>
                 </div>
                 <div class="detalles-movil">
                     <h3>Lo que ofrece este lugar</h3>
-                    <div class="local-info">
-                        <img class="icon" src="imagenes/albercaIcon.png" alt="AlbercaIcon">
-                        <p>Alberca</p>
-                    </div>
-                    <div class="local-info">
-                        <img class="icon" src="imagenes/mobiliarioIcon.png" alt="mobiliarioIcon">
-                        <p>Mobiliario</p>
-                    </div>
-                    <div class="local-info">
-                        <img class="icon" src="imagenes/estacionamientoIcon.png" alt="estacionamientoIcon">
-                        <p>Estacionamiento</p>
-                    </div>
-                    <div class="local-info">
-                        <img class="icon" src="imagenes/cocinaIcon.png" alt="cocinaIcon">
-                        <p>Cocina</p>
-                    </div>
+                    <?php foreach ($amenidades as $amenidad): ?>
+                        <?php if (isset($imagenesAmenidades[$amenidad['nombre']])): ?>
+                            <div class="local-info">
+                                <img class="icon" src="imagenes/<?php echo $imagenesAmenidades[$amenidad['nombre']]; ?>" alt="<?php echo $amenidad['nombre']; ?> Icon">
+                                <p><?php echo htmlspecialchars($amenidad['nombre']); ?></p>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                   
                 </div>
                 <div class="ubicacion-movil">
                     <h3>Ubicación del local</h3>
                     <div class="local-info">
-                        <img class="icon"  src="imagenes/ubicacionIcon.png" alt="Ubicacion-Icon" >
-                        <a href="#" class="">Carranza e/ Allende y Juárez, La Paz, Mexico.</a>  
-                    </div>
+                                <img class="icon" src="imagenes/ubicacionIcon.png" alt="Ubicación Icon">
+                                <a href="#mapa" class="direccion"><?php echo htmlspecialchars($local['ubicación']); ?></a>
+                            </div>
                     <div  class="contenedor-mapa-movil">
                         <iframe
                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14830.819116667762!2d-110.314637!3d24.101549!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDA2JzA1LjYiTiAxMTCCsDE4JzUzLjciVw!5e0!3m2!1ses!2smx!4v1615338507657!5m2!1ses!2smx"
@@ -73,27 +68,23 @@
                 <div class="horariosPrecios-movil">
                     <h3>Horarios y precios</h3>
                     <div class="dias">
-                        <div class="precio-item">
-                            <div class="icon-text">
-                                <img class="iconPrecio" src="imagenes/precio2Icon.png" alt="PrecioIcon">
-                                <div class="text">
-                                    <strong>Lunes - Jueves</strong>
-                                    <p>Horario: 2:00 pm - 8pm</p>
+                    <?php if (!empty($horarios)): ?>
+                        <?php foreach ($horarios as $horario): ?>
+                            <div class="precio-item">
+                                <div class="icon-text">
+                                    <img class="iconPrecio" src="imagenes/precio2Icon.png" alt="PrecioIcon">
+                                    <div class="text">
+                                        <strong><?php echo htmlspecialchars($horario['dia_inicio']) . " - " . htmlspecialchars($horario['dia_fin']); ?></strong>
+                                        <p>Horario: <?php echo date("g:i A", strtotime($horario['hora_inicio'])) . " - " . date("g:i A", strtotime($horario['hora_fin'])); ?></p>
+                                    </div>
                                 </div>
+                                <div class="precio">$<?php echo number_format($horario['precio'], 2); ?></div>
                             </div>
-                            <div class="precio">$3000</div>
-                        </div>
-                        <div class="precio-item">
-                            <div class="icon-text">
-                                <img class="iconPrecio" src="imagenes/precio2Icon.png" alt="PrecioIcon">
-                                <div class="text">
-                                    <strong>Viernes - Domingo</strong>
-                                    <p>Horario: 2:00 pm - 8pm</p>
-                                </div>
-                            </div>
-                            <div class="precio">$4200</div>
-                        </div>
-                    </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>No hay horarios disponibles para este local.</p>
+                    <?php endif; ?>
+                </div>
                 </div>
                 <hr>
                 <div class="disponibilidad-movil">
@@ -119,28 +110,48 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="padding-bottom: 10px;">
-                            <strong>★ 4.2 - 7 opiniones</strong></p>
+                            <strong>★ <?php echo $num_opiniones; ?>  opiniones</strong></p>
                           </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                           <div class="accordion-body">
                             <div class="estrellas">
-                                <img src="imagenes/estrellas.png" alt="Calificacion">
+                            <div>
+                        <?php
+                                $estrellas2 = new Estrellas($promedioCalificacion);
+                                $estrellas2->imprimirEstrellas(); ?>
+                        </div>
                                 <div class="info-opinion">
                                     <p>Calidad de servicio</p>
-                                    <img src="imagenes/estrellas.png" alt="estrellas">
+                                    <div>
+                        <?php
+                                $estrellas2 = new Estrellas($promedioCalidadServicio);
+                                $estrellas2->imprimirEstrellas(); ?>
+                        </div>
                                 </div>
                                 <div class="info-opinion">
                                     <p >Resuestas</p>
-                                    <img src="imagenes/estrellas.png" alt="estrellas">
+                                    <div>
+                        <?php
+                                $estrellas2 = new Estrellas($promedioRespuesta);
+                                $estrellas2->imprimirEstrellas(); ?>
+                        </div>
                                 </div>
                                 <div class="info-opinion">
                                     <p>Profesionalidad</p>
-                                    <img src="imagenes/estrellas.png" alt="estrellas">
+                                    <div>
+                        <?php
+                                $estrellas2 = new Estrellas($promedioProfesionalidad);
+                                $estrellas2->imprimirEstrellas(); ?>
+                        </div>
                                 </div>
                                 <div class="info-opinion">
                                     <p >Calidad / Precio</p>
-                                    <img src="imagenes/estrellas.png" alt="estrellas">
+                                    <div>
+                        <?php
+                                $estrellas2 = new Estrellas($promedioCalidadPrecio);
+                                $estrellas2->imprimirEstrellas(); ?>
+                        </div>
                                 </div>
                                 <div class="btn-opinion"  style="margin: 
                         20px 0";>
@@ -159,10 +170,16 @@
                                             <img src="imagenes/personaIcon.png" alt="">
                                             <h4>Anónime</h4>
                                         </div>
-                                        <div class="center-Comments"><img class="calificacion" src="imagenes/estrellas.png" alt="calificacion">
+                                        <div class="center-Comments">
+                                            <?php 
+                                            $estrellas2 = new Estrellas($opinion['calidad_servicio']);
+                                            $estrellas2->imprimirEstrellas();
+                                                ?>
                                         </div>
-                                    <p class="card-text">SLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce blandit commodo nibh, et scelerisque purus sodales in. Mauris sit amet nunc sodales, accumsan erat a, ultricies turpis. .</p>
-                                    <p class="card-date">Enviado el 05/03/24</p>
+                                        <?php  echo '
+                                        <p class="card-text">' . htmlspecialchars($opinion['comentario']) . '</p>
+                                        <p class="card-date">Enviado el ' . htmlspecialchars($opinion['fecha']) . '</p>';
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -175,11 +192,11 @@
                 <div class="infoContacto">
                     <div class="local-info">
                         <img src="imagenes/llavesIcon.png" alt="llavesIcon" class="icon">
-                        <p>Dueño: Juan Gómez</p>
+                        <?php echo "<p>Dueño: {$propietario['nombre']}</p>"; ?>
                     </div>
                     <div class="local-info">
                         <img src="imagenes/telefonoICon.png" alt="telefonoICon" class="icon">
-                        <p>Telefono: 123 123 1234</p>
+                        <?php echo "<p>Telefono: {$propietario['telefono']}"; ?></p>
                     </div>
                 </div>
                 <br><br><br>
