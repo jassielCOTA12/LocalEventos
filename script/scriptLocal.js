@@ -97,31 +97,46 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Favoritos
+//Favoritos
 document.addEventListener('DOMContentLoaded', function () {
     const btnFavorito = document.getElementById('btn-favorito');
-    if (btnFavorito) {
-        const iconoFavorito = btnFavorito.querySelector('#icono-favorito');
-        let esFavorito = iconoFavorito.classList.contains('text-danger');
+    const iconoFavorito = btnFavorito.querySelector('#icono-favorito');
+        let esFavorito = false; // Inicializa la variable como false
+        // Verificar si el local está en la tabla de favoritos
+        fetch('configuracion/favorites.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `accion=verificar&id_local=${btnFavorito.getAttribute('data-id-local')}&id_cliente=${btnFavorito.getAttribute('data-id-cliente')}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.isFavorito) {
+                iconoFavorito.classList.add('text-danger');
+                esFavorito = true; // Actualiza la variable si el local está en la tabla de favoritos
+            }
+        })
+        .catch(error => console.error('Errore', error));
 
-        // Si es favorito, mantenemos el color rojo
-        if (esFavorito) {
-            iconoFavorito.classList.add('text-danger');
-        }
+        
         btnFavorito.addEventListener('click', function () {
             const idLocal = this.getAttribute('data-id-local');
             const idCliente = this.getAttribute('data-id-cliente');
 
             if (esFavorito) {
-                iconoFavorito.classList.remove('text-danger');
                 cambiarFavorito(idLocal, idCliente, 'eliminar');
+                iconoFavorito.classList.remove('text-danger');
+                esFavorito = false; // Actualiza la variable
             } else {
-                iconoFavorito.classList.add('text-danger');
                 cambiarFavorito(idLocal, idCliente, 'agregar');
+                iconoFavorito.classList.add('text-danger');
+                esFavorito = true; // Actualiza la variable
             }
-            esFavorito = !esFavorito;
+
+            
         });
-    }
+    
 
     function cambiarFavorito(idLocal, idCliente, accion) {
         fetch('configuracion/favorites.php', {
@@ -139,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Error:', data.message);
             }
         })
-        .catch(error => console.error('Error en la petición AJAX:', error));
+        .catch(error => console.error('Error:', error));
     }
     
 });

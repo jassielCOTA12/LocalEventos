@@ -15,47 +15,51 @@ include 'Database.php';
 $db = new Database();
 $pdo = $db->getConnection();
 
+$response = ['success' => false, 'message' => '']; 
+try {
+    if ($accion === 'verificar') {
+        $query2 = "SELECT * FROM favoritos WHERE id_cliente = :id_cliente AND id_local = :id_local";
+        $stmt2 = $pdo->prepare($query2);
+        $stmt2->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt2->bindParam(':id_local', $id_local, PDO::PARAM_INT);
+        $stmt2->execute();
+        $isFavorito = $stmt2->rowCount() > 0 ? true : false;
 
- /*   $query2 = "SELECT * FROM favoritos WHERE id_cliente = :id_cliente AND id_local = :id_local";
-    $stmt2 = $pdo->prepare($query2);
-    $stmt2->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
-    $stmt2->bindParam(':id_local', $id_local, PDO::PARAM_INT);
-    $stmt2->execute();
-    $isFavorito = $stmt2->rowCount() > 0 ? true : false;*/
-    
-
-
-if ($accion === 'agregar') {
-    // Verificar si ya existe en la lista de favoritos
-    $stmt = $pdo->prepare("SELECT * FROM favoritos WHERE id_cliente = :id_cliente AND id_local = :id_local");
-    $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
-    $stmt->bindParam(':id_local', $id_local, PDO::PARAM_INT);
-    $stmt->execute();
-
-
-    if ($stmt->rowCount() > 0) {
-        $accion === 'eliminar';
-        // Eliminar de favoritos
-        $stmt = $pdo->prepare("DELETE FROM favoritos WHERE id_cliente = :id_cliente AND id_local = :id_local");
-        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
-        $stmt->bindParam(':id_local', $id_local, PDO::PARAM_INT);
-        $isFavorito = false;
-        $stmt->execute();
-
-        echo json_encode(['success' => true, 'message' => 'Favorito eliminado correctamente']);
-        exit();
+        $response = ['success' => true, 'isFavorito' => $isFavorito];
     }
 
-    // Agregar a favoritos
-    $stmt = $pdo->prepare("INSERT INTO favoritos (id_cliente, id_local) VALUES (:id_cliente, :id_local)");
-    $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
-    $stmt->bindParam(':id_local', $id_local, PDO::PARAM_INT);
-    $isFavorito = true; 
-    $stmt->execute();
+    if ($accion === 'agregar' || $accion === 'eliminar') {
+        // Verificar si ya existe en la lista de favoritos
+        $stmt = $pdo->prepare("SELECT * FROM favoritos WHERE id_cliente = :id_cliente AND id_local = :id_local");
+        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->bindParam(':id_local', $id_local, PDO::PARAM_INT);
+        $stmt->execute();
 
-    
-
-    echo json_encode(['success' => true, 'message' => 'Favorito agregado correctamente']);
+        if ($accion === 'agregar' && $stmt->rowCount() === 0) {
+            // Agregar a favoritos
+            $stmt = $pdo->prepare("INSERT INTO favoritos (id_cliente, id_local) VALUES (:id_cliente, :id_local)");
+            $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+            $stmt->bindParam(':id_local', $id_local, PDO::PARAM_INT);
+            $stmt->execute();
+            $response = ['success' => true, 'message' => 'Favorito agregado correctamente'];
+        } elseif ($accion === 'eliminar' && $stmt->rowCount() > 0) {
+            // Eliminar de favoritos
+            $stmt = $pdo->prepare("DELETE FROM favoritos WHERE id_cliente = :id_cliente AND id_local = :id_local");
+            $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+            $stmt->bindParam(':id_local', $id_local, PDO::PARAM_INT);
+            $stmt->execute();
+            $response = ['success' => true, 'message' => 'Favorito eliminado correctamente'];
+        } else {
+            // Si la acción no corresponde
+            $response = ['success' => false, 'message' => 'Acción no válida o el local no está en favoritos'];
+        }
+    }
+} catch (Exception $e) {
+    // Capturar cualquier error
+    $response = ['success' => false, 'message' => 'Ocurrió un error en el servidor: ' . $e->getMessage()];
 }
 
+// Asegurarse de que siempre se retorne un JSON
+echo json_encode($response);
+exit();
 ?>
