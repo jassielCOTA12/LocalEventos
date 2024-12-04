@@ -98,3 +98,48 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Favoritos
+document.addEventListener('DOMContentLoaded', function () {
+    const btnFavorito = document.getElementById('btn-favorito');
+    if (btnFavorito) {
+        const iconoFavorito = btnFavorito.querySelector('#icono-favorito');
+        let esFavorito = iconoFavorito.classList.contains('text-danger');
+
+        // Si es favorito, mantenemos el color rojo
+        if (esFavorito) {
+            iconoFavorito.classList.add('text-danger');
+        }
+        btnFavorito.addEventListener('click', function () {
+            const idLocal = this.getAttribute('data-id-local');
+            const idCliente = this.getAttribute('data-id-cliente');
+
+            if (esFavorito) {
+                iconoFavorito.classList.remove('text-danger');
+                cambiarFavorito(idLocal, idCliente, 'eliminar');
+            } else {
+                iconoFavorito.classList.add('text-danger');
+                cambiarFavorito(idLocal, idCliente, 'agregar');
+            }
+            esFavorito = !esFavorito;
+        });
+    }
+
+    function cambiarFavorito(idLocal, idCliente, accion) {
+        fetch('configuracion/favorites.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `accion=${accion}&id_local=${idLocal}&id_cliente=${idCliente}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log(data.message);
+            } else {
+                console.error('Error:', data.message);
+            }
+        })
+        .catch(error => console.error('Error en la petición AJAX:', error));
+    }
+    
+});

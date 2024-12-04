@@ -91,6 +91,8 @@ if (isset($_GET['id'])) {
     // Número de estrellas vacías
     $estrellasVacias = 5 - $estrellasCompletas - ($mediaEstrella ? 1 : 0);
 
+    
+
 } else {
     echo "<p>ID de local no proporcionada.</p>";
     exit;

@@ -6,7 +6,7 @@ include "configuracion/infoLocal.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salón de eventos "La Roca"</title>
+    <title>LocalMatch</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" /><!---importacion de font awsome para logos -->
      
@@ -79,8 +79,8 @@ include "configuracion/infoLocal.php";
                             </div>
                             <div class="botonesReservar-compartir-like">
                                 <button class="btn-reservar" data-bs-toggle="modal" data-bs-target="#reservarModal">Reservar</button>
-                                <button class="btn-like" id="btn-favorito" data-id-local="<?php echo $local['id_local']; ?>">
-                                    <i class="fa-solid fa-heart" id="icono-favorito"></i>
+                                <button class="btn-like" id="btn-favorito" data-id-local="<?php echo $local['id_local']; ?>" data-id-cliente="<?php echo $_SESSION['id_cliente']; ?>">
+                                <i class="fa-solid fa-heart <?php echo $isFavorito ? 'text-danger' : ''; ?>" id="icono-favorito"></i>
                                 </button>
                             </div>
                         </div>

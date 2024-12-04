@@ -21,17 +21,19 @@
             <h1 class="title-misDatos">Mis favoritos</h1>
             <div id="parteInferiorGrid-gen">
                 <?php
-                require 'configuracion/favorites.php'; // Incluye el archivo que obtiene los favoritos
+                require 'configuracion/myFavorites.php'; // Incluye el archivo que obtiene los favoritos
                 if (!empty($favoritos)) {
                     foreach ($favoritos as $local) {
                         echo "
+                        <a href='local.php?id={$local['id_local']}'>
                         <article class='localCard-gen'>
                             <img src='imagenes/imgLocal1.png' alt='imagen de local no cargada'>
                             <h3>{$local['nombre']}</h3>
                             <button class='btn-favorito' style='background:white; border:none'>
                             <i class='fa-solid fa-heart'></i>
                             </button>
-                        </article>";
+                        </article>
+                        </a>";
                     }
                 } else {
                     echo "<p>No tienes locales favoritos.</p>";
