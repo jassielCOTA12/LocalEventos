@@ -48,5 +48,7 @@ echo '
             </div>
         </div>
     </div>
+
+   <script src="script/scriptBusqueda.js"></script>
 '
 ?>
