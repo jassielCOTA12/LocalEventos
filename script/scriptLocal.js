@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
     const btnFavorito = document.getElementById('btn-favorito');
     const iconoFavorito = btnFavorito.querySelector('#icono-favorito');
-        let esFavorito = false; // Inicializa la variable como false
+        let esFavorito = false; 
         // Verificar si el local está en la tabla de favoritos
         fetch('configuracion/favorites.php', {
             method: 'POST',
@@ -157,4 +157,64 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Error:', error));
     }
     
+});
+
+// Favorito en movil
+document.addEventListener('DOMContentLoaded', function () {
+    const btnFavoritoMovil = document.getElementById('btn-favorito-movil');
+    const iconoFavoritoMovil = btnFavoritoMovil.querySelector('#icono-favorito-movil');
+    let esFavoritoMovil = false;
+
+    // Verificar si el local está en favoritos (versión móvil)
+    fetch('configuracion/favorites.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `accion=verificar&id_local=${btnFavoritoMovil.getAttribute('data-id-local')}&id_cliente=${btnFavoritoMovil.getAttribute('data-id-cliente')}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.isFavorito) {
+            iconoFavoritoMovil.classList.add('text-danger');
+            esFavoritoMovil = true;
+        }
+    })
+    .catch(error => console.error('Error:', error));
+
+    // Manejar clic en el botón de favoritos (versión móvil)
+    btnFavoritoMovil.addEventListener('click', function () {
+        const idLocal = this.getAttribute('data-id-local');
+        const idCliente = this.getAttribute('data-id-cliente');
+
+        if (esFavoritoMovil) {
+            cambiarFavoritoMovil(idLocal, idCliente, 'eliminar');
+            iconoFavoritoMovil.classList.remove('text-danger');
+            esFavoritoMovil = false;
+        } else {
+            cambiarFavoritoMovil(idLocal, idCliente, 'agregar');
+            iconoFavoritoMovil.classList.add('text-danger');
+            esFavoritoMovil = true;
+        }
+    });
+
+    // Función para cambiar el estado del favorito (versión móvil)
+    function cambiarFavoritoMovil(idLocal, idCliente, accion) {
+        fetch('configuracion/favorites.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `accion=${accion}&id_local=${idLocal}&id_cliente=${idCliente}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log(data.message);
+            } else {
+                console.error('Error:', data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
 });

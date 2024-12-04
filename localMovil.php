@@ -2,11 +2,17 @@
     <div class="versionMovil-local">
         <div class="panelBtn-movil">
             <button class="btnSuperior-movil"><a href="inicio.php"><</a></button>
-            <div>
+        <div>
                 
-            <button class="btnSuperior-movil"><i class="fa-solid fa-heart"></i></button>
+        <?php if (isset($_SESSION['id_cliente']) && !empty($_SESSION['id_cliente'])): ?>
+                <button class="btnSuperior-movil" id="btn-favorito-movil" data-id-local="<?php echo $local['id_local']; ?>" data-id-cliente="<?php echo $_SESSION['id_cliente']; ?>">
+                    <i class="fa-solid fa-heart <?php echo $isFavorito ? 'text-danger' : ''; ?>" id="icono-favorito-movil"></i>
+                </button>
+            <?php endif; ?>
+
+            
             </div>
-        </div>
+    </div>
         <div class="panelGeneral-movil">
             <div id="carouselMovil" class="carousel carousel-dark slide">
                 <div class="carousel-inner">
@@ -399,3 +405,4 @@
         </div>
     </div>
     
+    <script src="script/scriptLocal.js"></script>

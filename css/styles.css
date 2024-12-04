@@ -642,10 +642,12 @@ body.login .panelCentral-gen{
             margin-right: 0;
          }
          .fa-heart{
-            color: red;
+            color: black;
             font-size: 25px;
          }
-
+         .misFavoritos .fa-heart{
+            color:red;
+         }
 
           /* ===== Dropdown ======*/
          .dropdown, .dropdown-filtro {
