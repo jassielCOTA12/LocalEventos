@@ -11,6 +11,19 @@ $stmt->execute();
 // Almacena los resultados en la variable $locales
 $locales = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$imagenesLocales = [
+    1 => 'imagenesLocales/SalonFiestaBonita.png',
+    2 => 'imagenesLocales/JardinLosPinos.jpg',
+    3 => 'imagenesLocales/SalonsLasEstrellas.jpg',
+    4 => 'imagenesLocales/FiestaKids.jpg',
+    5 => 'imagenesLocales/BodasDeluxe.jpg',
+    6 => 'imagenesLocales/SalonElegance.jpeg',
+    7 => 'imagenesLocales/BodasDeluxe.jpg',
+    8 => 'imagenesLocales/CentroCorporativoElite.jpg',
+    9 => 'imagenesLocales/SalonFiestaFeliz.jpeg',
+    10 => 'imagenesLocales/HaciendaLosEncinos.jpg',
+];
+
 $query = "SELECT id_local, id_categoria FROM locales_categorias";
 $stmt = $conn->prepare($query);
 $stmt->execute();
