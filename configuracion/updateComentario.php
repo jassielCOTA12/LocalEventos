@@ -7,7 +7,7 @@ $conn = $database->getConnection();
     $comentario = $_POST['comentario'] ?? null;
     $id_local = $_POST['id_local'] ?? null;
     $nombre_usuario = $_POST['nombre_usuario'] ?? 'Anónimo'; // Nombre de usuario, si no se recibe, se pone "Anónimo"
-
+    $fecha=$_POST['fecha'];
     // Calificaciones
     $calidad_servicio = $_POST['calidad_servicio'] ?? null;
     $respuesta = $_POST['respuesta'] ?? null;
@@ -15,8 +15,8 @@ $conn = $database->getConnection();
     $calidad_precio = $_POST['calidad_precio'] ?? null;
 
     // Insertar el comentario y las calificaciones en la base de datos
-    $query = "INSERT INTO opiniones (id_local, comentario, nombre_usuario, calidad_servicio, respuesta, profesionalidad, calidad_precio)
-              VALUES (:id_local, :comentario, :nombre_usuario, :calidad_servicio, :respuesta, :profesionalidad, :calidad_precio)";
+    $query = "INSERT INTO opiniones (id_local, comentario, nombre_usuario, calidad_servicio, respuesta, profesionalidad,fecha, calidad_precio)
+              VALUES (:id_local, :comentario, :nombre_usuario, :calidad_servicio, :respuesta, :profesionalidad,:fecha, :calidad_precio)";
     $stmt = $conn->prepare($query);
     $stmt->bindParam(':id_local', $id_local);
     $stmt->bindParam(':comentario', $comentario);
@@ -24,6 +24,7 @@ $conn = $database->getConnection();
     $stmt->bindParam(':calidad_servicio', $calidad_servicio);
     $stmt->bindParam(':respuesta', $respuesta);
     $stmt->bindParam(':profesionalidad', $profesionalidad);
+    $stmt->bindParam(':fecha', $fecha);
     $stmt->bindParam(':calidad_precio', $calidad_precio);
 
     // Ejecutar la consulta

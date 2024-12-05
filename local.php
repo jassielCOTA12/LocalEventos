@@ -206,27 +206,33 @@ include "configuracion/infoLocal.php";
                     
                     
                     <div class="cards-wrapper">
-                    <?php
-                            foreach ($opiniones as $opinion) {
-                                // Imprimir la estructura de la tarjeta con los datos de la opinión
-                                echo '<div class="card">
-                                        <div class="card-body">
-                                            <div class="headerComments">
-                                                <img src="imagenes/personaIcon.png" alt="">
-                                                <h4>Anónimo</h4></div> <br>';
-                                                $estrellas2 = new Estrellas($opinion['calidad_servicio']);
-                                                $estrellas2->imprimirEstrellas();
-                                            echo '
-                                            <div class="center-Comments">
-                                                <!-- Aquí ya no se incluyen las estrellas -->
-                                            </div>
-                                            <p class="card-text">' . htmlspecialchars($opinion['comentario']) . '</p>
-                                            <p class="card-date">Enviado el ' . htmlspecialchars($opinion['fecha']) . '</p>
-                                        </div>
-                                    </div>';
-                            }
-                            ?>
+    <?php
+    $contador = 0; 
+    foreach ($opiniones as $opinion) {
+        if ($contador >= 2) break; 
+
+        echo '<div class="card">
+                <div class="card-body">
+                    <div class="headerComments">
+                        <img src="imagenes/personaIcon.png" alt="">
+                        <h4>Anónimo</h4>
+                    </div> <br>';
+                    $estrellas2 = new Estrellas($opinion['calidad_servicio']);
+                    $estrellas2->imprimirEstrellas();
+                echo '
+                    <div class="center-Comments">
+                        <!-- Aquí ya no se incluyen las estrellas -->
                     </div>
+                    <p class="card-text">' . htmlspecialchars($opinion['comentario']) . '</p>
+                    <p class="card-date">Enviado el ' . htmlspecialchars($opinion['fecha']) . '</p>
+                </div>
+            </div>';
+
+        $contador++; 
+    }
+    ?>
+</div>
+
                 </div>
             </div>
             <div class="contacto">
@@ -380,8 +386,8 @@ include "configuracion/infoLocal.php";
     </div>
 
      <!--Modal escribir opinion en version normal-->
-     <div class="modal fade" id="opinionModal" tabindex="-1" aria-labelledby="opinionModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+     <div class="modal fade" id="opinionModal" data-id_local="<?php echo $local['id_local']; ?>" tabindex="-1" aria-labelledby="opinionModalLabel" aria-hidden="true">
+  <div class="modal-dialog" >
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="opinionModalLabel"><strong>¡Tu opinión vale mucho!</strong></h5>
@@ -394,7 +400,7 @@ include "configuracion/infoLocal.php";
         <div class="rating-section">
           <div class="rating-item">
             <label>Calidad de servicio</label>
-            <div class="stars" data-category="calidad-servicio">
+            <div class="stars" data-category="calidad_servicio">
               <i class="star fa fa-star" data-value="1"></i>
               <i class="star fa fa-star" data-value="2"></i>
               <i class="star fa fa-star" data-value="3"></i>
@@ -424,7 +430,7 @@ include "configuracion/infoLocal.php";
           </div>
           <div class="rating-item">
             <label>Calidad / Precio</label>
-            <div class="stars" data-category="calidad-precio">
+            <div class="stars" data-category="calidad_precio">
               <i class="star fa fa-star" data-value="1"></i>
               <i class="star fa fa-star" data-value="2"></i>
               <i class="star fa fa-star" data-value="3"></i>
@@ -440,7 +446,8 @@ include "configuracion/infoLocal.php";
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="agregar_opinion" class="btn btn-primary" disabled>Aceptar</button>
+
+        <button type="button" id="agregar_opinion" class="btn btn-primary" disabled >Aceptar</button>
         <p class="text-muted">Información anónima</p>
       </div>
     </div>
