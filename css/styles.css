@@ -1111,18 +1111,14 @@ body.login .panelCentral-gen{
         justify-content: space-between;
         font-size: 14px;
     }
-
-    .stars span {
+    .star {
         font-size: 24px;
         color: #ccc;
         cursor: pointer;
-    }
-
-    .stars span:hover,
-    .stars span:hover ~ span {
-        color: #ffc107;
-    }
-
+      }
+      .star.selected {
+        color: #FFD700; /* Amarillo dorado */
+      }
     .form-group label {
         font-size: 16px;
     }

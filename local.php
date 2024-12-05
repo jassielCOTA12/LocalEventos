@@ -378,58 +378,76 @@ include "configuracion/infoLocal.php";
     </div>
 
      <!--Modal escribir opinion en version normal-->
-    <div class="modal fade" id="opinionModal" tabindex="-1" aria-labelledby="opinionModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="opinionModalLabel"><strong>¡Tu opinión vale mucho!</strong></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Evalúa este servicio de acuerdo con:</p>
-                    <h4>Salon de Eventos "La Roca"</h4>
-                    
-                    <div class="rating-section">
-                        <div class="rating-item">
-                            <label>Calidad de servicio</label>
-                            <div class="stars">
-                                <span>★★★★★</span>
-                            </div>
-                        </div>
-                        <div class="rating-item">
-                            <label>Respuesta</label>
-                            <div class="stars">
-                                <span>★★★★★</span>
-                            </div>
-                        </div>
-                        <div class="rating-item">
-                            <label>Profesionalidad</label>
-                            <div class="stars">
-                                <span>★★★★★</span>
-                            </div>
-                        </div>
-                        <div class="rating-item">
-                            <label>Calidad / Precio</label>
-                            <div class="stars">
-                                <span>★★★★★</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group mt-3">
-                        <label for="experience">Describe tu experiencia:</label>
-                        <textarea class="form-control" id="experience" rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn-aceptar" data-bs-dismiss="modal">Aceptar</button>
-                    <p class="text-muted">Información anónima</p>
-                </div>
-            </div>
-        </div>
-    </div>    
+     <div class="modal fade" id="opinionModal" tabindex="-1" aria-labelledby="opinionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="opinionModalLabel"><strong>¡Tu opinión vale mucho!</strong></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Evalúa este servicio de acuerdo con:</p>
+        <h4>Salón de Eventos "La Roca"</h4>
 
-    
+        <div class="rating-section">
+          <div class="rating-item">
+            <label>Calidad de servicio</label>
+            <div class="stars" data-category="calidad-servicio">
+              <i class="star fa fa-star" data-value="1"></i>
+              <i class="star fa fa-star" data-value="2"></i>
+              <i class="star fa fa-star" data-value="3"></i>
+              <i class="star fa fa-star" data-value="4"></i>
+              <i class="star fa fa-star" data-value="5"></i>
+            </div>
+          </div>
+          <div class="rating-item">
+            <label>Respuesta</label>
+            <div class="stars" data-category="respuesta">
+              <i class="star fa fa-star" data-value="1"></i>
+              <i class="star fa fa-star" data-value="2"></i>
+              <i class="star fa fa-star" data-value="3"></i>
+              <i class="star fa fa-star" data-value="4"></i>
+              <i class="star fa fa-star" data-value="5"></i>
+            </div>
+          </div>
+          <div class="rating-item">
+            <label>Profesionalidad</label>
+            <div class="stars" data-category="profesionalidad">
+              <i class="star fa fa-star" data-value="1"></i>
+              <i class="star fa fa-star" data-value="2"></i>
+              <i class="star fa fa-star" data-value="3"></i>
+              <i class="star fa fa-star" data-value="4"></i>
+              <i class="star fa fa-star" data-value="5"></i>
+            </div>
+          </div>
+          <div class="rating-item">
+            <label>Calidad / Precio</label>
+            <div class="stars" data-category="calidad-precio">
+              <i class="star fa fa-star" data-value="1"></i>
+              <i class="star fa fa-star" data-value="2"></i>
+              <i class="star fa fa-star" data-value="3"></i>
+              <i class="star fa fa-star" data-value="4"></i>
+              <i class="star fa fa-star" data-value="5"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="experience">Describe tu experiencia:</label>
+          <textarea class="form-control" id="experience" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="agregar_opinion" class="btn btn-primary" disabled>Aceptar</button>
+        <p class="text-muted">Información anónima</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <script src="script/scriptNuevoComentario.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
     <script src="script/scriptLocal.js"></script>
