@@ -3,9 +3,27 @@ include 'Database.php';
 $database = new Database();
 $conn = $database->getConnection();
 
+$imagenesLocales = [
+    1 => ['imagenesLocales/SalonFiestaBonita.png', 'imagenesLocales/SalonFiestaBonita2.png'],
+    2 => ['imagenesLocales/JardinLosPinos.jpg', 'imagenesLocales/JardinLosPinos2.jpg'],
+    3 => ['imagenesLocales/SalonsLasEstrellas.jpg', 'imagenesLocales/SalonsLasEstrellas2.jpg'],
+    4 => ['imagenesLocales/FiestaKids.jpg', 'imagenesLocales/FiestaKids2.jpg'],
+    5 => ['imagenesLocales/BodasDeluxe.jpg', 'imagenesLocales/BodasDeluxe2.jpg'],
+    6 => ['imagenesLocales/SalonElegance.jpeg', 'imagenesLocales/SalonElegance2.jpeg'],
+    7 => ['imagenesLocales/SalonAventuras.jpg', 'imagenesLocales/SalonAventuras2.jpg'],
+    8 => ['imagenesLocales/CentroCorporativoElite.jpg', 'imagenesLocales/CentroCorporativoElite2.jpg'],
+    9 => ['imagenesLocales/SalonFiestaFeliz.jpeg', 'imagenesLocales/SalonFiestaFeliz1.jpeg'],
+    10 => ['imagenesLocales/HaciendaLosEncinos.jpg', 'imagenesLocales/HaciendaLosEncinos2.jpg'],
+];
 if (isset($_GET['id'])) {
     $idLocal = $_GET['id'];
-
+    if (isset($imagenesLocales[$idLocal])) {
+        $imagen1 = $imagenesLocales[$idLocal][0];
+        $imagen2 = $imagenesLocales[$idLocal][1];
+    } else {
+        $imagen1 = 'imagenesLocales/HaciendaLosEncinos.jpg'; 
+        $imagen2 = 'imagenesLocales/HaciendaLosEncinos2.jpg'; 
+    }
     // Consulta para obtener los detalles del local
     $query = "SELECT * FROM local WHERE id_local = :id_local";
     $stmt = $conn->prepare($query);

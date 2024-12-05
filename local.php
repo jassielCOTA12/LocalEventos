@@ -29,10 +29,10 @@ include "configuracion/infoLocal.php";
                         <div id="carouselExample" class="carousel carousel-dark slide">
                             <div class="carousel-inner">
                               <div class="carousel-item active">
-                                <img src="imagenes/ImgLocal3.png" class="d-block w-100" alt="...">
+                                <img src="<?php echo $imagen1; ?>" class="d-block w-100" alt="...">
                               </div>
                               <div class="carousel-item">
-                                <img src="imagenes/ImgLocal2.png" class="d-block w-100" alt="...">
+                                <img src="<?php echo $imagen2; ?>" class="d-block w-100" alt="...">
                               </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
