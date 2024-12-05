@@ -32,44 +32,46 @@ JOIN
     horarios h ON r.id_local = h.id_local
 WHERE 
     r.id_cliente = :id_cliente
-AND 
-    (
-        (DAYOFWEEK(r.fecha) BETWEEN
-            CASE h.dia_inicio
-                WHEN 'Domingo' THEN 1
-                WHEN 'Lunes' THEN 2
-                WHEN 'Martes' THEN 3
-                WHEN 'Miércoles' THEN 4
-                WHEN 'Jueves' THEN 5
-                WHEN 'Viernes' THEN 6
-                WHEN 'Sábado' THEN 7
-            END
-        AND
-            CASE h.dia_fin
-                WHEN 'Domingo' THEN 1
-                WHEN 'Lunes' THEN 2
-                WHEN 'Martes' THEN 3
-                WHEN 'Miércoles' THEN 4
-                WHEN 'Jueves' THEN 5
-                WHEN 'Viernes' THEN 6
-                WHEN 'Sábado' THEN 7
-            END)
-        OR (
-            CASE h.dia_inicio
-                WHEN 'Sábado' THEN 7
-                WHEN 'Domingo' THEN 1
-                ELSE 0
-            END
-            <= DAYOFWEEK(r.fecha)
-        )
+AND (
+    -- Verificar si la fecha seleccionada cae dentro del rango de días de inicio y fin
+    (DAYOFWEEK(r.fecha) BETWEEN
+        CASE h.dia_inicio
+            WHEN 'Domingo' THEN 1
+            WHEN 'Lunes' THEN 2
+            WHEN 'Martes' THEN 3
+            WHEN 'Miércoles' THEN 4
+            WHEN 'Jueves' THEN 5
+            WHEN 'Viernes' THEN 6
+            WHEN 'Sábado' THEN 7
+        END
+    AND
+        CASE h.dia_fin
+            WHEN 'Domingo' THEN 1
+            WHEN 'Lunes' THEN 2
+            WHEN 'Martes' THEN 3
+            WHEN 'Miércoles' THEN 4
+            WHEN 'Jueves' THEN 5
+            WHEN 'Viernes' THEN 6
+            WHEN 'Sábado' THEN 7
+        END)
+    OR (
+        -- Verificar si la fecha seleccionada cae en un rango específico de días (por ejemplo, Lunes a Viernes)
+        (DAYOFWEEK(r.fecha) = CASE h.dia_inicio
+            WHEN 'Domingo' THEN 1
+            WHEN 'Lunes' THEN 2
+            WHEN 'Martes' THEN 3
+            WHEN 'Miércoles' THEN 4
+            WHEN 'Jueves' THEN 5
+            WHEN 'Viernes' THEN 6
+            WHEN 'Sábado' THEN 7
+        END)
+        
+    ) 
+    OR (
+        (DAYOFWEEK(r.fecha) = 1 AND (h.dia_inicio = 'Domingo' OR h.dia_fin = 'Domingo'))
     )
-AND 
-    (
-        (h.dia_inicio = 'Lunes' AND h.dia_fin = 'Viernes' AND DAYOFWEEK(r.fecha) BETWEEN 2 AND 6)
-        OR 
-        (h.dia_inicio = 'Sábado' AND h.dia_fin = 'Domingo' AND DAYOFWEEK(r.fecha) IN (1, 7))
-    )
-";
+)";
+
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
 $stmt->execute();
