@@ -23,7 +23,7 @@ include "configuracion/infoLocal.php";
 }
     </style>
 </head>
-<body class="local">
+<body class="local" id="local">
     <div class="contenedor-gen">
 
         <?php
@@ -267,7 +267,7 @@ include "configuracion/infoLocal.php";
                 </div>
                 <div class="modal-body">
                     <?php echo '<h4 class="text-center">' . $local['nombre'] . '</h4>';?>
-                    <form action="configuracion/newReservation.php" method="POST">
+                    <form action="configuracion/newReservation.php" method="POST" id="formReservar">
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
                             <input type="text" id="inputNombre"class="form-control" placeholder="Nombre y apellido" required name="nombre"
@@ -292,7 +292,7 @@ include "configuracion/infoLocal.php";
                             </div>
                         </div>
                         <label>Fecha del evento:</label>
-                        <input type="date" id="fecha1" class="form-control" data-id-local="<?php echo $local['id_local']; ?>" name="fecha"
+                        <input type="date" id="fecha1" class="form-control" data-id-local="<?php echo $local['id_local']; ?>" name="fecha"  value="<?php echo isset($_SESSION['fecha']) ? $_SESSION['fecha'] : ''; ?>"
                         required min="<?php echo date('Y-m-d'); ?>">
                         <small id="error-fecha" class="text-danger"></small>
 
@@ -300,13 +300,16 @@ include "configuracion/infoLocal.php";
                         <label>Número de invitados:</label><br>
                         <input type="number" id="invitados" class="form-control" min="20" name="no_invitados"
                         max="<?php echo htmlspecialchars($local['capacidad_maxima'], ENT_QUOTES, 'UTF-8'); ?>" 
+                        value="<?php echo isset($_SESSION['invitados']) ? htmlspecialchars($_SESSION['invitados'], ENT_QUOTES, 'UTF-8') : ''; ?>"
                         placeholder="Máximo <?php echo htmlspecialchars($local['capacidad_maxima'], ENT_QUOTES, 'UTF-8'); ?> invitados" required>
                         <small id="error-invitados" class="text-danger"></small>
                         <div><br>
                         <label>Horario:</label>
                         <p class="horario" id="horarioReserva"></p>
                         </div>
-                        <p id="precioPrueba" style="display:none" name="precio_total"></p>
+                        <p id="precioPrueba" style="display:none"></p>
+                        <input type="hidden" name="id_local" value="<?php echo $local['id_local']; ?>">
+                        <input type="hidden" name="precio_total"id="precioPrueba1" value="<?php echo $local['precio_base']; ?>">
                         <div class="form-group mt-3">
                             <label for="extraInfo">Información extra:</label>
                             <textarea class="form-control" name="información_extra"id="extraInfo" rows="3" placeholder="Buen día, estoy interesado en un lugar para celebrar un cumpleaños infantil."></textarea>
@@ -314,7 +317,7 @@ include "configuracion/infoLocal.php";
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn-continuar" id="continuarReserva" data-bs-target="#modalPagar" data-bs-toggle="modal" disabled>Continuar</button>
+                    <button type="button" class="btn-continuar"  id="continuarReserva" data-bs-dismiss="modal" onclick="abrirModal()" disabled>Continuar</button>
                     <?php
                     echo '<p class="text-center text-muted mt-2"> ' . $local['nombre'] .  ' se pondrá en contacto contigo lo más pronto posible.</p>';
                     ?>
@@ -323,6 +326,7 @@ include "configuracion/infoLocal.php";
             </div>
         </div>
     </div>
+
      <!--Modal pagar en version normal-->
     <div class="modal fade" id="modalPagar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -351,15 +355,15 @@ include "configuracion/infoLocal.php";
                         </div>
                         <div class="row g-2 mb-3">
                             <div class="col">
-                                <input type="text" id="numeroTarjeta" class="form-control" placeholder="0000 0000 0000 0000" maxlength="19" required>
+                                <input type="text" id="numeroTarjeta" class="form-control" placeholder="0000 0000 0000 0000" min="19" max="19" maxlength="19" required>
                                 <small id="error-tarjeta" class="text-danger"></small>
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="MM/AA" id="fechaExpiracion" maxlenght="7" required>
+                                <input type="text" class="form-control" placeholder="MM/AA" id="fechaExpiracion" min="5" max="5" maxlenght="5" required>
                                 <small id="error-fecha" class="text-danger"></small>
                             </div>
                             <div class="col">
-                                <input type="password" class="form-control" placeholder="000" required maxlenght="3" id="cvv">
+                                <input type="password" class="form-control" placeholder="000" required min="3" max="3" maxlenght="3" id="cvv">
                                 <small id="error-cvv" class="text-danger"></small>
                             </div>
                         </div>
@@ -378,7 +382,7 @@ include "configuracion/infoLocal.php";
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-aceptar" data-bs-dismiss="modal" disabled>Pagar</button>
+                    <button type="button" class="btn-aceptar" id="confirmarReserva" data-bs-dismiss="modal" disabled>Pagar</button>
                     <p class="text-center text-muted mt-2">Al seleccionar el botón, acepta los términos de la reservación.</p>
                 </div>
             </div>
@@ -463,6 +467,25 @@ include "configuracion/infoLocal.php";
     <script src="script/scriptDisponibilidadLocal.js"></script>
     <?php include "localMovil.php"; ?>
     
+    <script>
+        function abrirModal() {
+        const modalReservar = document.getElementById('reservarModal');
+        modalReservar.classList.remove('show');
+        const local = document.getElementById('local');
+        local.classList.remove('modal-open');
+        event.preventDefault();
+
+        
+        const modalPagar = new bootstrap.Modal(document.getElementById('modalPagar'));
+        modalPagar.show();
+
+        
+    }
+
+    document.getElementById('confirmarReserva').addEventListener('click', function () {
+      document.getElementById('formReservar').submit();
+    });
+    </script>
     
 </body>
 </html>

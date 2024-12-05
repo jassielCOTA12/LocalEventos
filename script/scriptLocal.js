@@ -125,6 +125,9 @@ document.addEventListener('DOMContentLoaded', function () {
                             const [horario, precio] = data.split("|");
                             document.querySelector('.horario').textContent = horario;
                             document.querySelector('#precioPrueba').textContent = `${precio}`;
+
+                            document.querySelector('#precioPrueba1').value = precio;
+                            
                         })
                         .catch(error => {
                             console.error('Error al obtener el horario:', error);
