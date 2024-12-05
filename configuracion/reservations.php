@@ -2,7 +2,18 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
+$imagenesLocales = [
+    1 => 'imagenesLocales/SalonFiestaBonita.png',
+    2 => 'imagenesLocales/JardinLosPinos.jpg',
+    3 => 'imagenesLocales/SalonsLasEstrellas.jpg',
+    4 => 'imagenesLocales/FiestaKids.jpg',
+    5 => 'imagenesLocales/BodasDeluxe.jpg',
+    6 => 'imagenesLocales/SalonElegance.jpeg',
+    7 => 'imagenesLocales/SalonAventuras.jpg',
+    8 => 'imagenesLocales/CentroCorporativoElite.jpg',
+    9 => 'imagenesLocales/SalonFiestaFeliz.jpeg',
+    10 => 'imagenesLocales/HaciendaLosEncinos.jpg',
+];
 // Verificar si el cliente está logueado
 if (!isset($_SESSION['id_cliente'])) {
     header("Location: /LocalEventos/login.php");
@@ -20,6 +31,7 @@ $pdo = $db->getConnection();
 
 $query = "
 SELECT 
+    r.id_local,
     r.fecha, 
     h.hora_inicio, 
     h.hora_fin, 
@@ -78,5 +90,4 @@ $stmt->execute();
 
 // Obtener los resultados
 $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 ?>

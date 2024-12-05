@@ -24,10 +24,13 @@
                 require 'configuracion/myFavorites.php'; // Incluye el archivo que obtiene los favoritos
                 if (!empty($favoritos)) {
                     foreach ($favoritos as $local) {
+                        $id_local = $local['id_local']; 
+                        $ruta_imagen = isset($imagenesLocales[$id_local]) ? $imagenesLocales[$id_local] : 'imagenesLocales/HaciendaLosEncinos.jpg';
+            
                         echo "
                         <a href='local.php?id={$local['id_local']}'>
                         <article class='localCard-gen'>
-                            <img src='imagenes/imgLocal1.png' alt='imagen de local no cargada'>
+                            <img src='$ruta_imagen' alt='imagen de local no cargada'>
                             <h3>{$local['nombre']}</h3>
                             <button class='btn-favorito' style='background:white; border:none'>
                             <i class='fa-solid fa-heart'></i>

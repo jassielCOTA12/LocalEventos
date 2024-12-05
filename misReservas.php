@@ -22,21 +22,23 @@
                 
                 <div id="parteInferiorGrid-gen">
                     <?php
-                    require 'configuracion/reservations.php'; // Incluye el archivo que obtiene las reservaciones
-                    if (!empty($reservas)) {
-                        foreach ($reservas as $local) {
-                            echo "
-                            <article class='localCard-gen'>
-                                <img src='imagenes/imgLocal1.png' alt='imagen de local no cargada'>
-                                <h3>{$local['nombre_local']}</h3>
-                                <p><strong>Fecha: </strong>{$local['fecha']}</p>
-                                <p><strong>Horario: </strong>"; echo date("g:i A", strtotime($local['hora_inicio'])) . " - " . date("g:i A", strtotime($local['hora_fin']));echo"</p>
+                        require 'configuracion/reservations.php'; // Incluye el archivo que obtiene las reservaciones
+                        if (!empty($reservas)) {
+                            foreach ($reservas as $local) {
+                                $id_local = $local['id_local']; 
+                                $ruta_imagen = isset($imagenesLocales[$id_local]) ? $imagenesLocales[$id_local] : 'imagenesLocales/HaciendaLosEncinos.jpg';
+                                echo "
+                                <article class='localCard-gen'>
+                                    <img src='$ruta_imagen' alt='Imagen de {$local['nombre_local']}'>
+                                                    <h3>{$local['nombre_local']}</h3>
+                                                    <p><strong>Fecha: </strong>{$local['fecha']}</p>
+                                                    <p><strong>Horario: </strong>"; echo date("g:i A", strtotime($local['hora_inicio'])) . " - " . date("g:i A", strtotime($local['hora_fin']));echo"</p>
 
-                            </article>";
+                                                </article>";
+                                            }
+                        } else {
+                            echo "<p>No tienes reservas de locales.</p>";
                         }
-                    } else {
-                        echo "<p>No tienes reservas de locales.</p>";
-                    }
                     ?>
             </div>
         </div>
