@@ -11,7 +11,8 @@ echo '
         
         <button type="button" id="calendario" data-bs-toggle="modal" data-bs-target="#calendarioModal">
             <label for="date-picker">
-                <span><i class="fas fa-calendar-days"></i></span> ¿Cuándo?
+                <span><i class="fas fa-calendar-days"></i></span> 
+                <span id="fechaSeleccionada">¿Cuándo?</span> 
             </label>
         </button>
         
@@ -44,7 +45,7 @@ echo '
                 </div>
                 <div class="modal-footer d-flex gap-2" style="flex-direction:row; justify-content:center;">
                     <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary w-25"  data-bs-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-primary w-25"  id="guardarFecha" data-bs-dismiss="modal">Guardar</button>
                 </div>
             </div>
         </div>
