@@ -30,8 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['correo'] = $user['email'];
             $_SESSION['telefono'] = $user['telefono'];
 
-            // Redirigir al usuario a la página de inicio
-            header("Location: /LocalEventos/inicio.php");
+            $redirectUrl = isset($_SESSION['redirect_url']) ? $_SESSION['redirect_url'] : '/LocalEventos/inicio.php';
+                unset($_SESSION['redirect_url']); // Limpiar la URL almacenada
+                header("Location: $redirectUrl");
             exit();
         } else {
             // Contraseña incorrecta

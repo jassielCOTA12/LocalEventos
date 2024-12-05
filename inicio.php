@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" /><!---importacion de font awsome para logos -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/stylesMedia.css">
+    <style>
+    .activo {
+        background-color: #2D5CEA; 
+        color: white;
+    }
+    </style>
 
 </head>
 <body class="inicio">

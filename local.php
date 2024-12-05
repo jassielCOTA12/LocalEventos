@@ -80,7 +80,15 @@ include "configuracion/infoLocal.php";
                                 <p class="precioAprox">Desde $<?php echo number_format($local['precio_base'], 2); ?></p>
                             </div>
                             <div class="botonesReservar-compartir-like">
-                                <button class="btn-reservar" data-bs-toggle="modal" data-bs-target="#reservarModal">Reservar</button>
+                                <?php
+                                if (!isset($_SESSION['id_cliente']) || empty($_SESSION['id_cliente'])) {
+                                    // Guardar la URL actual para redirigir después del login
+                                    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+                                    echo '<button class="btn-reservar" onclick="redirigirALogin()">Reservar</button>';
+                                } else {
+                                    echo '<button class="btn-reservar" data-bs-toggle="modal" data-bs-target="#reservarModal">Reservar</button>';
+                                }
+                                ?>
                                 <?php if (isset($_SESSION['id_cliente']) && !empty($_SESSION['id_cliente'])): ?>
                                 <button class="btn-like" id="btn-favorito" data-id-local="<?php echo $local['id_local']; ?>" data-id-cliente="<?php echo $_SESSION['id_cliente']; ?>">
                                     <i class="fa-solid fa-heart <?php echo $isFavorito ? 'text-danger' : ''; ?>" id="icono-favorito"></i>
@@ -206,32 +214,32 @@ include "configuracion/infoLocal.php";
                     
                     
                     <div class="cards-wrapper">
-    <?php
-    $contador = 0; 
-    foreach ($opiniones as $opinion) {
-        if ($contador >= 2) break; 
+            <?php
+            $contador = 0; 
+            foreach ($opiniones as $opinion) {
+                if ($contador >= 2) break; 
 
-        echo '<div class="card">
-                <div class="card-body">
-                    <div class="headerComments">
-                        <img src="imagenes/personaIcon.png" alt="">
-                        <h4>Anónimo</h4>
-                    </div> <br>';
-                    $estrellas2 = new Estrellas($opinion['calidad_servicio']);
-                    $estrellas2->imprimirEstrellas();
-                echo '
-                    <div class="center-Comments">
-                        <!-- Aquí ya no se incluyen las estrellas -->
-                    </div>
-                    <p class="card-text">' . htmlspecialchars($opinion['comentario']) . '</p>
-                    <p class="card-date">Enviado el ' . htmlspecialchars($opinion['fecha']) . '</p>
-                </div>
-            </div>';
+                echo '<div class="card">
+                        <div class="card-body">
+                            <div class="headerComments">
+                                <img src="imagenes/personaIcon.png" alt="">
+                                <h4>Anónimo</h4>
+                            </div> <br>';
+                            $estrellas2 = new Estrellas($opinion['calidad_servicio']);
+                            $estrellas2->imprimirEstrellas();
+                        echo '
+                            <div class="center-Comments">
+                                <!-- Aquí ya no se incluyen las estrellas -->
+                            </div>
+                            <p class="card-text">' . htmlspecialchars($opinion['comentario']) . '</p>
+                            <p class="card-date">Enviado el ' . htmlspecialchars($opinion['fecha']) . '</p>
+                        </div>
+                    </div>';
 
-        $contador++; 
-    }
-    ?>
-</div>
+                $contador++; 
+            }
+            ?>
+        </div>
 
                 </div>
             </div>
@@ -285,7 +293,7 @@ include "configuracion/infoLocal.php";
                             <div class="col">
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-                                    <input type="number" id="telefono" class="form-control" placeholder="Teléfono" required name="telefono"
+                                    <input type="text" id="telefono" class="form-control" placeholder="Teléfono" required name="telefono" maxlength="10"
                                     value="<?php echo isset($_SESSION['telefono']) ? htmlspecialchars($_SESSION['telefono'], ENT_QUOTES, 'UTF-8') : ''; ?>">
                                     
                                 </div>
@@ -348,22 +356,23 @@ include "configuracion/infoLocal.php";
                             <input type="text" class="form-control" value="Tarjeta de crédito o débito" readonly>
                         </div>
     
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3" style="margin-bottom:0 !important;">
                             <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" id="nombreTitular" class="form-control" placeholder="Nombre del titular" required>
-                            <small id="error-nombre" class="text-danger"></small>
+                            <input type="text" id="nombreTitular" class="form-control" placeholder="Nombre del titular" required>  
                         </div>
+                        <small id="error-nombre" class="text-danger"></small>
+                        <br>
                         <div class="row g-2 mb-3">
                             <div class="col">
                                 <input type="text" id="numeroTarjeta" class="form-control" placeholder="0000 0000 0000 0000" min="19" max="19" maxlength="19" required>
                                 <small id="error-tarjeta" class="text-danger"></small>
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="MM/AA" id="fechaExpiracion" min="5" max="5" maxlenght="5" required>
+                                <input type="text" class="form-control" placeholder="MM/AA" id="fechaExpiracion" min="5" max="5" maxlength="5" required>
                                 <small id="error-fecha" class="text-danger"></small>
                             </div>
                             <div class="col">
-                                <input type="password" class="form-control" placeholder="000" required min="3" max="3" maxlenght="3" id="cvv">
+                                <input type="password" class="form-control" placeholder="000" required min="3" max="3" maxlength="3" id="cvv">
                                 <small id="error-cvv" class="text-danger"></small>
                             </div>
                         </div>
@@ -481,6 +490,9 @@ include "configuracion/infoLocal.php";
 
         
     }
+    function redirigirALogin() {
+    window.location.href = 'login.php';
+}
 
     document.getElementById('confirmarReserva').addEventListener('click', function () {
       document.getElementById('formReservar').submit();

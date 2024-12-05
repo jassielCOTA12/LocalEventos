@@ -1,4 +1,5 @@
 <?php
+$idSeleccionado = isset($_GET['id']) ? intval($_GET['id']) : '';
 echo '
     <div id="contenedor-busqueda">
         <div class="barraBusqueda">
@@ -24,10 +25,10 @@ echo '
 
     </div>
     <div id="contenedorSeleccion">
-        <a href="inicio.php?id=1" class="secciones">Populares<span><i class="fa-solid fa-star"></i></span></a>
-        <a href="inicio.php?id=2" class="secciones">Albercas <span><i class="fa-solid fa-water-ladder"></i></span></a>
-        <a href="inicio.php?id=3" class="secciones">Infantiles <span><i class="fa-solid fa-gopuram"></i></span></a>
-        <a href="inicio.php?id=4" class="secciones">Formales <span><i class="fa-solid fa-user-tie"></i></span></a>
+        <a href="inicio.php?id=1" class="secciones ' . ($idSeleccionado === 1 ? 'activo' : '') . '">Populares<span><i class="fa-solid fa-star"></i></span></a>
+        <a href="inicio.php?id=2" class="secciones ' . ($idSeleccionado === 2 ? 'activo' : '') . '">Albercas <span><i class="fa-solid fa-water-ladder"></i></span></a>
+        <a href="inicio.php?id=3" class="secciones ' . ($idSeleccionado === 3 ? 'activo' : '') . '">Infantiles <span><i class="fa-solid fa-gopuram"></i></span></a>
+        <a href="inicio.php?id=4" class="secciones ' . ($idSeleccionado === 4 ? 'activo' : '') . '">Formales <span><i class="fa-solid fa-user-tie"></i></span></a>
     </div>
 
     <div class="modal fade" id="calendarioModal" tabindex="-1" aria-labelledby="calendarioModalLabel" aria-hidden="true">

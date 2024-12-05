@@ -5,15 +5,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const fechaInput = document.getElementById('fecha1');
     const invitadosInput = document.getElementById('invitados');
     const correoInput = document.querySelector('input[placeholder="Correo electrónico"]');
-
+    const capacidadMaxima = parseInt(invitadosInput.max); 
     // Función para verificar si todos los campos están completos
     function verificarCampos() {
+        const numInvitados = parseInt(invitadosInput.value.trim());
         const todosCompletos = inputNombre.value.trim() !== '' && inputNombre.value.trim().length >= 3 &&
             telefonoInput.value.trim() !== '' &&  telefonoInput.value.trim().length === 10 &&
             fechaInput.value.trim() !== '' &&
             invitadosInput.value.trim() !== '' &&
-            !isNaN(invitadosInput.value) &&
-            parseInt(invitadosInput.value) >= 20 &&
+            !isNaN(numInvitados) &&
+            numInvitados >= 20 && // Asegurarse de que haya al menos 20 invitados
+            numInvitados <= capacidadMaxima &&
             correoInput.value.trim() !== '';
 
         // Habilitar o deshabilitar el botón "Continuar"
@@ -47,10 +49,35 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Función para verificar si todos los campos están completos
     function verificarCamposPago() {
+        const fechaExpiracionValor = fechaExpiracionInput.value.trim(); // Obtener valor del input
+        
+        let fechaExpiracionValida = true;
+
+        // Verificar que la fecha tenga el formato MM/AA
+        if (fechaExpiracionValor.length === 5 && fechaExpiracionValor.includes('/')) {
+            const mes = parseInt(fechaExpiracionValor.substring(0, 2)); // Extraemos el mes
+            const anio = parseInt(fechaExpiracionValor.substring(3, 5)); // Extraemos el año (AA)
+            const anioCompleto = 2000 + anio; // Convertir AA a formato 20XX
+            const fechaActual = new Date();
+            const mesActual = fechaActual.getMonth() + 1; // Los meses comienzan desde 0
+            const anioActual = fechaActual.getFullYear();
+
+            // Verificar que el mes sea válido (1-12)
+            if (mes < 1 || mes > 12) {
+                fechaExpiracionValida = false; // Mes inválido
+            }
+
+            // Verifica si la fecha está expirada
+            if (anioCompleto < anioActual || (anioCompleto === anioActual && mes < mesActual)) {
+                fechaExpiracionValida = false; // La fecha ha expirado
+            }
+        } else {
+            fechaExpiracionValida = false; // Formato incorrecto
+        }
         const todosCompletos = nombreTitularInput.value.trim() !== '' && nombreTitularInput.value.trim().length >= 3  &&
-            numeroTarjetaInput.value.trim() !== '' && numeroTarjetaInput.value.trim().length === 19 && 
-            fechaExpiracionInput.value.trim() !== '' && fechaExpiracionInput.value.trim().length === 5 &&
-            cvvInput.value.trim() !== '' && cvvInput.value.trim().length === 3; 
+        numeroTarjetaInput.value.trim() !== '' && numeroTarjetaInput.value.trim().length === 19 && 
+        fechaExpiracionValida && fechaExpiracionValor.trim() !== '' && fechaExpiracionValor.trim().length === 5 &&
+        cvvInput.value.trim() !== '' && cvvInput.value.trim().length === 3; 
         // Habilitar o deshabilitar el botón "Pagar"
         if (todosCompletos) {
             btnPagar.disabled = false;
@@ -61,6 +88,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    fechaExpiracionInput.addEventListener('input', function() {
+        let valor = fechaExpiracionInput.value.replace(/[^0-9]/g, ''); // Eliminar todo excepto números
+        if (valor.length > 2) {
+            valor = valor.slice(0, 2) + '/' + valor.slice(2, 4); // Añadir la diagonal después de 2 dígitos
+        }
+        fechaExpiracionInput.value = valor; // Actualizar el valor del input
+        verificarCamposPago(); // Verificar los campos después de la actualización
+    });
     // Agregar eventos de 'input' a los campos para verificar cuando cambian
     nombreTitularInput.addEventListener('input', verificarCamposPago);
     numeroTarjetaInput.addEventListener('input', verificarCamposPago);
@@ -167,9 +202,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }); 
 
-    const invitadosInput = document.getElementById('invitados');
-    const nombreInput = document.getElementById('inputNombre');
-    const  telefonoInput = document.getElementById('telefono');
+    const telefono = document.getElementById('telefono');
+
+    // Solo permitir números
+    telefono.addEventListener('input', () => {
+        // Eliminar cualquier carácter que no sea un número
+        telefono.value = telefono.value.replace(/\D/g, '');
+
+        // Limitar el número de caracteres a 10
+        if (telefono.value.length > 10) {
+            telefono.value = telefono.value.slice(0, 10);
+        }
+    });
+
         
     //Boton continuar reserva - modal 1
     document.getElementById("continuarReserva").addEventListener("click", function () {
@@ -202,6 +247,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Validación del nombre del titular
     nombreTitular.addEventListener('input', () => {
+        const sanitized = nombreTitular.value.replace(/[^a-zA-Z\s]/g, ''); // Eliminar todo excepto letras y espacios
+        nombreTitular.value = sanitized;
+        
         const formato = /^[a-zA-Z\s]+$/;
         if (!formato.test(nombreTitular.value.trim())) {
             errorNombre.textContent = 'El nombre solo puede contener letras y espacios.';
@@ -226,40 +274,47 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Validación de la fecha de expiración
-    fechaExpiracion.addEventListener('input', () => {
-        const formato = /^(0[1-9]|1[0-2])\/\d{2}$/; // Formato MM/AA
-        const fecha = fechaExpiracion.value.trim();
-    
-        if (!formato.test(fecha)) {
-            errorFechaTarjeta.textContent = 'Formato inválido. Usa MM/AA.';
-            fechaExpiracion.classList.add('is-invalid');
-            return;
-        }
-    
-        // Dividir la fecha en mes y año
-        const [mes, anio] = fecha.split('/').map(Number); // Convertir a números
-        const anioCompleto = 2000 + anio; // Convertir AA a formato 20XX
-    
-        // Obtener el mes y año actual
-        const fechaActual = new Date();
-        const mesActual = fechaActual.getMonth() + 1; // Los meses comienzan en 0
-        const anioActual = fechaActual.getFullYear();
-    
-        // Validar que la fecha no esté expirada
-        if (anioCompleto < anioActual || (anioCompleto === anioActual && mes < mesActual)) {
-            errorFechaTarjeta.textContent = 'La fecha está expirada.';
-            fechaExpiracion.classList.add('is-invalid');
-        } else {
-            errorFechaTarjeta.textContent = '';
-            fechaExpiracion.classList.remove('is-invalid');
-        }
-    });
+   // Validación de la fecha de expiración
+fechaExpiracion.addEventListener('input', () => {
+    let sanitized = fechaExpiracion.value.replace(/[^0-9\/]/g, ''); // Eliminar todo excepto números y "/"
+    fechaExpiracion.value = sanitized;
+
+    const formato = /^(0[1-9]|1[0-2])\/\d{2}$/; // Formato MM/AA
+
+    if (!formato.test(fechaExpiracion.value)) {
+        errorFechaTarjeta.textContent = 'Formato inválido. Usa MM/AA.';
+        fechaExpiracion.classList.add('is-invalid');
+        return;
+    }
+
+    // Extraer mes y año de la fecha de expiración
+    const mes = parseInt(fechaExpiracion.value.substring(0, 2)); // Los primeros dos dígitos son el mes
+    const anio = parseInt(fechaExpiracion.value.substring(3, 5)); // Los dos últimos dígitos son el año (AA)
+    const anioCompleto = 2000 + anio; // Convertir AA a formato 20XX
+
+    // Obtener la fecha actual
+    const fechaActual = new Date();
+    const mesActual = fechaActual.getMonth() + 1; // Los meses comienzan en 0, por eso sumamos 1
+    const anioActual = fechaActual.getFullYear();
+
+    // Validar que la fecha no esté expirada
+    if (anioCompleto < anioActual || (anioCompleto === anioActual && mes < mesActual)) {
+        errorFechaTarjeta.textContent = 'La fecha está expirada.';
+        fechaExpiracion.classList.add('is-invalid');
+    } else {
+        errorFechaTarjeta.textContent = '';
+        fechaExpiracion.classList.remove('is-invalid');
+    }
+});
+
     
     
 
     // Validación del CVV
     cvv.addEventListener('input', () => {
+        const sanitized = cvv.value.replace(/\D/g, ''); // Eliminar caracteres no numéricos
+        cvv.value = sanitized;
+
         const formato = /^\d{3}$/; // Solo 3 dígitos
         if (!formato.test(cvv.value.trim())) {
             errorCvv.textContent = 'El CVV debe tener 3 dígitos.';

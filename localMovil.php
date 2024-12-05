@@ -214,9 +214,16 @@
         </div>
             <!--Btn Modal Reservar -->
         <div class="divBtn-movil">
-            <button type="button" class="btn btn-primary btnReservar-movil" data-bs-toggle="modal" data-bs-target="#reservarModal">
-                Reservar
-            </button>
+            
+            <?php
+            if (!isset($_SESSION['id_cliente']) || empty($_SESSION['id_cliente'])) {
+                // Guardar la URL actual para redirigir después del login
+                $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+                echo '<button class="btn btn-primary btnReservar-movil" onclick="redirigirALogin()">Reservar</button>';
+            } else {
+                echo '<button class="btn btn-primary btnReservar-movil" data-bs-toggle="modal" data-bs-target="#reservarModal">Reservar</button>';
+            }
+            ?>
         </div>
     </div>
    
