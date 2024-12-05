@@ -43,12 +43,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const id_local = 1; // Cambia este valor según el local correspondiente
         const nombre_usuario = "Anónimo"; // Puedes reemplazarlo por el nombre de usuario si tienes uno
     
-        const datos = {
-            comentarios,
-            calificaciones,
-            id_local,
-            nombre_usuario
-        };
+        const datos = new URLSearchParams();
+            datos.append('comentario', comentarios);
+            datos.append('id_local', id_local);
+            datos.append('nombre_usuario', nombre_usuario);
+            datos.append('calidad_servicio', calificaciones.calidad_servicio);
+            datos.append('respuesta', calificaciones.respuesta);
+            datos.append('profesionalidad', calificaciones.profesionalidad);
+            datos.append('calidad_precio', calificaciones.calidad_precio);
+
     
         // Enviar los datos al archivo PHP
         fetch('configuracion/updateComentario.php', {
@@ -56,11 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: (datos)
+            body:datos.toString()
         })
         .then(response => response.text())
         .then(data => {
-            if (data.message === "Opinión guardada con éxito") {
+            if (data === "Opinión guardada con éxito") {
                 alert('¡Gracias por tu opinión!');
                 // Limpiar formulario
                 commentInput.value = '';

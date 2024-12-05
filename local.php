@@ -261,10 +261,10 @@ include "configuracion/infoLocal.php";
                 </div>
                 <div class="modal-body">
                     <?php echo '<h4 class="text-center">' . $local['nombre'] . '</h4>';?>
-                    <form>
+                    <form action="configuracion/newReservation.php" method="POST">
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" id="inputNombre"class="form-control" placeholder="Nombre y apellido" required
+                            <input type="text" id="inputNombre"class="form-control" placeholder="Nombre y apellido" required name="nombre"
                             value="<?php echo isset($_SESSION['nombre']) ? htmlspecialchars($_SESSION['nombre'], ENT_QUOTES, 'UTF-8') : ''; ?>" >
                             
                         </div>
@@ -272,36 +272,38 @@ include "configuracion/infoLocal.php";
                             <div class="col">
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-                                    <input type="email" class="form-control" placeholder="Correo electrónico" required
+                                    <input type="email" class="form-control" placeholder="Correo electrónico" required name="correo"
                                     value="<?php echo isset($_SESSION['correo']) ? htmlspecialchars($_SESSION['correo'], ENT_QUOTES, 'UTF-8') : ''; ?>" readonly>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-                                    <input type="number" id="telefono" class="form-control" placeholder="Teléfono" required
+                                    <input type="number" id="telefono" class="form-control" placeholder="Teléfono" required name="telefono"
                                     value="<?php echo isset($_SESSION['telefono']) ? htmlspecialchars($_SESSION['telefono'], ENT_QUOTES, 'UTF-8') : ''; ?>">
                                     
                                 </div>
                             </div>
                         </div>
                         <label>Fecha del evento:</label>
-                        <input type="date" id="fecha1" class="form-control" data-id-local="<?php echo $local['id_local']; ?>" required min="<?php echo date('Y-m-d'); ?>">
+                        <input type="date" id="fecha1" class="form-control" data-id-local="<?php echo $local['id_local']; ?>" name="fecha"
+                        required min="<?php echo date('Y-m-d'); ?>">
                         <small id="error-fecha" class="text-danger"></small>
 
                          <br>
                         <label>Número de invitados:</label><br>
-                        <input type="number" id="invitados" class="form-control" min="20" max="<?php echo htmlspecialchars($local['capacidad_maxima'], ENT_QUOTES, 'UTF-8'); ?>" 
+                        <input type="number" id="invitados" class="form-control" min="20" name="no_invitados"
+                        max="<?php echo htmlspecialchars($local['capacidad_maxima'], ENT_QUOTES, 'UTF-8'); ?>" 
                         placeholder="Máximo <?php echo htmlspecialchars($local['capacidad_maxima'], ENT_QUOTES, 'UTF-8'); ?> invitados" required>
                         <small id="error-invitados" class="text-danger"></small>
                         <div><br>
                         <label>Horario:</label>
                         <p class="horario" id="horarioReserva"></p>
                         </div>
-                        <p id="precioPrueba" style="display:none"></p>
+                        <p id="precioPrueba" style="display:none" name="precio_total"></p>
                         <div class="form-group mt-3">
                             <label for="extraInfo">Información extra:</label>
-                            <textarea class="form-control" id="extraInfo" rows="3" placeholder="Buen día, estoy interesado en un lugar para celebrar un cumpleaños infantil."></textarea>
+                            <textarea class="form-control" name="información_extra"id="extraInfo" rows="3" placeholder="Buen día, estoy interesado en un lugar para celebrar un cumpleaños infantil."></textarea>
                         </div>
                     </form>
                 </div>
