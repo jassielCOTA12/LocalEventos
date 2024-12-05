@@ -255,8 +255,9 @@ include "configuracion/infoLocal.php";
                     <form>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" class="form-control" placeholder="Nombre y apellido" required
+                            <input type="text" id="inputNombre"class="form-control" placeholder="Nombre y apellido" required
                             value="<?php echo isset($_SESSION['nombre']) ? htmlspecialchars($_SESSION['nombre'], ENT_QUOTES, 'UTF-8') : ''; ?>" >
+                            
                         </div>
                         <div class="row g-2 mb-3">
                             <div class="col">
@@ -271,6 +272,7 @@ include "configuracion/infoLocal.php";
                                     <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
                                     <input type="number" id="telefono" class="form-control" placeholder="Teléfono" required
                                     value="<?php echo isset($_SESSION['telefono']) ? htmlspecialchars($_SESSION['telefono'], ENT_QUOTES, 'UTF-8') : ''; ?>">
+                                    
                                 </div>
                             </div>
                         </div>
@@ -295,7 +297,7 @@ include "configuracion/infoLocal.php";
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn-continuar" id="continuarReserva" data-bs-target="#modalPagar" data-bs-toggle="modal">Continuar</button>
+                    <button type="submit" class="btn-continuar" id="continuarReserva" data-bs-target="#modalPagar" data-bs-toggle="modal" disabled>Continuar</button>
                     <?php
                     echo '<p class="text-center text-muted mt-2"> ' . $local['nombre'] .  ' se pondrá en contacto contigo lo más pronto posible.</p>';
                     ?>
@@ -359,7 +361,7 @@ include "configuracion/infoLocal.php";
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-aceptar" data-bs-dismiss="modal">Pagar</button>
+                    <button type="button" class="btn-aceptar" data-bs-dismiss="modal" disabled>Pagar</button>
                     <p class="text-center text-muted mt-2">Al seleccionar el botón, acepta los términos de la reservación.</p>
                 </div>
             </div>

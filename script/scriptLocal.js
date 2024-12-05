@@ -1,3 +1,79 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const btnContinuar = document.getElementById('continuarReserva');
+    const inputNombre = document.getElementById('inputNombre');
+    const telefonoInput = document.getElementById('telefono');
+    const fechaInput = document.getElementById('fecha1');
+    const invitadosInput = document.getElementById('invitados');
+    const correoInput = document.querySelector('input[placeholder="Correo electrónico"]');
+
+    // Función para verificar si todos los campos están completos
+    function verificarCampos() {
+        const todosCompletos = inputNombre.value.trim() !== '' && inputNombre.value.trim().length >= 3 &&
+            telefonoInput.value.trim() !== '' &&  telefonoInput.value.trim().length === 10 &&
+            fechaInput.value.trim() !== '' &&
+            invitadosInput.value.trim() !== '' &&
+            !isNaN(invitadosInput.value) &&
+            parseInt(invitadosInput.value) >= 20 &&
+            correoInput.value.trim() !== '';
+
+        // Habilitar o deshabilitar el botón "Continuar"
+        if (todosCompletos) {
+            btnContinuar.disabled = false;
+            btnContinuar.style.background = '#4563C0'; 
+        } else {
+            btnContinuar.disabled = true;
+            btnContinuar.style.background = 'gray';
+        }
+    }
+
+    // Agregar eventos de 'input' a los campos para verificar cuando cambian
+    inputNombre.addEventListener('input', verificarCampos);
+    telefonoInput.addEventListener('input', verificarCampos);
+    fechaInput.addEventListener('change', verificarCampos);
+    invitadosInput.addEventListener('input', verificarCampos);
+    extraInfo.addEventListener('input', verificarCampos);
+
+   
+    verificarCampos();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const btnPagar = document.querySelector('.btn-aceptar');
+    const nombreTitularInput = document.getElementById('nombreTitular');
+    const numeroTarjetaInput = document.getElementById('numeroTarjeta');
+    const fechaExpiracionInput = document.getElementById('fechaExpiracion');
+    const cvvInput = document.getElementById('cvv');
+    const fechaReservaInput = document.getElementById('fechaReserva');
+    
+    // Función para verificar si todos los campos están completos
+    function verificarCamposPago() {
+        const todosCompletos = nombreTitularInput.value.trim() !== '' && nombreTitularInput.value.trim().length >= 3  &&
+            numeroTarjetaInput.value.trim() !== '' && numeroTarjetaInput.value.trim().length === 19 && 
+            fechaExpiracionInput.value.trim() !== '' && fechaExpiracionInput.value.trim().length === 5 &&
+            cvvInput.value.trim() !== '' && cvvInput.value.trim().length === 3; 
+        // Habilitar o deshabilitar el botón "Pagar"
+        if (todosCompletos) {
+            btnPagar.disabled = false;
+            btnPagar.style.background = '#4563C0'; 
+        } else {
+            btnPagar.disabled = true;
+            btnPagar.style.background = 'gray';
+        }
+    }
+
+    // Agregar eventos de 'input' a los campos para verificar cuando cambian
+    nombreTitularInput.addEventListener('input', verificarCamposPago);
+    numeroTarjetaInput.addEventListener('input', verificarCamposPago);
+    fechaExpiracionInput.addEventListener('input', verificarCamposPago);
+    cvvInput.addEventListener('input', verificarCamposPago);
+    fechaReservaInput.addEventListener('input', verificarCamposPago);
+
+   
+    verificarCamposPago();
+});
+
+
+
 //Validacion de pagar y reservas
 document.addEventListener('DOMContentLoaded', function () {
     const fechaInput = document.getElementById('fecha1');
@@ -88,17 +164,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }); 
 
-    function verificarCampos(){
     const invitadosInput = document.getElementById('invitados');
-        if( invitadosInput.value.trim() == ''){
-            errorMensaje.textContent = "El campo no debe estar vacío";
-            this.classList.add('is-invalid');
-        }
-        if( fechaInput.value.trim() == ''){
-            errorFecha.textContent = "El campo no debe estar vacío";
-            this.classList.add('is-invalid');
-        }
-    }
+    const nombreInput = document.getElementById('inputNombre');
+    const  telefonoInput = document.getElementById('telefono');
+        
     //Boton continuar reserva - modal 1
     document.getElementById("continuarReserva").addEventListener("click", function () {
         const fecha = document.getElementById("fecha1").value;
@@ -118,7 +187,6 @@ document.addEventListener('DOMContentLoaded', function () {
         
     });
      
-    
 
     const nombreTitular = document.getElementById('nombreTitular');
     const numeroTarjeta = document.getElementById('numeroTarjeta');
