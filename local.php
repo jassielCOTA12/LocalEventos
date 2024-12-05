@@ -14,7 +14,14 @@ include "configuracion/infoLocal.php";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/stylesMedia.css">
-    
+    <style>
+        .carousel-inner img {
+  width: 100%;
+ /* height: 300px;*/ 
+  object-fit: cover; 
+  height:350px;
+}
+    </style>
 </head>
 <body class="local">
     <div class="contenedor-gen">
@@ -24,12 +31,13 @@ include "configuracion/infoLocal.php";
         ?>
         
         <div class="panelCentral-gen">
-            <div class="panelSuperior">
+            <div class="panelSuperior" >
                     <div class="panelSuperior-izq">
+                        <div class="panelSuperior-derecha-info">
                         <div id="carouselExample" class="carousel carousel-dark slide">
                             <div class="carousel-inner">
                               <div class="carousel-item active">
-                                <img src="<?php echo $imagen1; ?>" class="d-block w-100" alt="...">
+                                <img src="<?php echo $imagen1; ?>"class="d-block w-100" alt="...">
                               </div>
                               <div class="carousel-item">
                                 <img src="<?php echo $imagen2; ?>" class="d-block w-100" alt="...">
@@ -44,6 +52,7 @@ include "configuracion/infoLocal.php";
                                 <span class="visually-hidden">Next</span>
                               </button>
                             
+                        </div>
                         </div>
     
                     </div>
