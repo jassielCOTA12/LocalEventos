@@ -83,6 +83,10 @@
                 <div class="modal-body">
                     <h6>Precio</h6>
                     <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="precio" checked>
+                        <label class="form-check-label" for="precio">Todos</label>
+                    </div>
+                    <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="precio1">
                         <label class="form-check-label" for="precio1">Menos de $2000</label>
                     </div>
@@ -91,7 +95,7 @@
                         <label class="form-check-label" for="precio2">$2000 - $3000</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="precio3" checked>
+                        <input class="form-check-input" type="checkbox" id="precio3">
                         <label class="form-check-label" for="precio3">$3000 - $4000</label>
                     </div>
                     <div class="form-check">
@@ -101,43 +105,25 @@
     
                     <h6 class="mt-3">N° de invitados</h6>
                     <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="invitados" checked>
+                        <label class="form-check-label" for="invitados">Todos</label>
+                    </div>
+                    <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="invitados1">
-                        <label class="form-check-label" for="invitados1">20 - 40</label>
+                        <label class="form-check-label" for="invitados1">Desde 50</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="invitados2">
-                        <label class="form-check-label" for="invitados2">40 - 60</label>
+                        <label class="form-check-label" for="invitados2">Desde 100</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="invitados3" checked>
-                        <label class="form-check-label" for="invitados3">60 - 80</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="invitados4">
-                        <label class="form-check-label" for="invitados4">Más de 80</label>
-                    </div>
-    
-                    <h6 class="mt-3">Espacios</h6>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="espacio1">
-                        <label class="form-check-label" for="espacio1">Jardín</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="espacio2" checked>
-                        <label class="form-check-label" for="espacio2">Alberca</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="espacio3">
-                        <label class="form-check-label" for="espacio3">Terraza</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="espacio4">
-                        <label class="form-check-label" for="espacio4">Pista de baile</label>
+                        <input class="form-check-input" type="checkbox" id="invitados3">
+                        <label class="form-check-label" for="invitados3">Mas de 200</label>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <div style="display: flex; flex-direction:row; width: 100%; justify-content:space-around">
-                        <button type="button" class="btn" data-bs-dismiss="modal">Quitar filtros</button>
+                        <button id="btn-close" type="button" class="btn" data-bs-dismiss="modal">Quitar filtros</button>
                         <button type="button" class="btnFecha-movil" data-bs-dismiss="modal">Aplicar</button>
                     </div>
                 </div>
@@ -145,11 +131,89 @@
         </div>
     </div>
 
-
-
     <script src="script/scriptInicio.js"></script>
     <script src="script/scriptBusqueda.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        const precioCheckboxes = document.querySelectorAll('#precio, #precio1, #precio2, #precio3, #precio4');
+        const invitadosCheckboxes = document.querySelectorAll('#invitados, #invitados1, #invitados2, #invitados3');
+
+        function handleCheckboxChange(checkboxes) {
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    if (this.checked) {
+                        checkboxes.forEach(box => {
+                            if (box !== this) {
+                                box.checked = false;
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+
+        handleCheckboxChange(precioCheckboxes);
+        handleCheckboxChange(invitadosCheckboxes);
+
+
+        // Reiniciar los filtros
+        document.getElementById('btn-close').addEventListener('click', function () {
+            precioCheckboxes.forEach(checkbox => checkbox.checked = false);
+            invitadosCheckboxes.forEach(checkbox => checkbox.checked = false);
+
+            if (document.getElementById('precio').checked === false) {
+                document.getElementById('precio').checked = true;
+            }
+
+            if (document.getElementById('invitados').checked === false) {
+                document.getElementById('invitados').checked = true;
+            }
+        });
+
+
+        document.querySelector('.btnFecha-movil').addEventListener('click', function () {
+            const url = new URL(window.location.href);
+
+            const params = new URLSearchParams(url.search);
+            const ids = params.get('id');
+
+            // Construir filtros seleccionados
+            let filtros = {
+                precio_min: 0,
+                precio_max: 999999999,
+                capacidad_min: 0,
+                capacidad_max: 99999,
+                id: ids
+            };
+
+            // Procesar los filtros de precio
+            if (document.getElementById('precio1').checked) filtros.precio_max = 2000;
+            if (document.getElementById('precio2').checked) filtros.precio_min = 2000, filtros.precio_max = 3000;
+            if (document.getElementById('precio3').checked) filtros.precio_min = 3000, filtros.precio_max = 4000;
+            if (document.getElementById('precio4').checked) filtros.precio_min = 4000;
+
+            // Procesar los filtros de capacidad
+            if (document.getElementById('invitados1').checked) filtros.capacidad_max = 50;
+            if (document.getElementById('invitados2').checked) filtros.capacidad_max = 100;
+            if (document.getElementById('invitados3').checked) filtros.capacidad_min = 200;
+
+
+            // Enviar la solicitud al backend
+            fetch('configuracion/filtrar_locales.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(filtros)
+            })
+                .then(response => response.text())
+                .then(data => {
+                    // Actualizar la sección con los resultados
+                    document.getElementById('parteInferiorGrid-gen').innerHTML = data;
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 
 
