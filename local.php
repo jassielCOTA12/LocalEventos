@@ -269,7 +269,7 @@ include "configuracion/infoLocal.php";
     
     <!--Modal reservar en version normal-->
     <div class="modal fade" id="reservarModal" tabindex="-1" aria-labelledby="reservarModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div id="modalReservarDialog"class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="reservarModalLabel"><strong>Reservación</strong></h5>
@@ -339,7 +339,7 @@ include "configuracion/infoLocal.php";
 
      <!--Modal pagar en version normal-->
     <div class="modal fade" id="modalPagar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
+        <div id="modalPagarDialog" class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalToggleLabel2"><Strong>Solicitud de pagos</Strong></h1>
@@ -402,7 +402,7 @@ include "configuracion/infoLocal.php";
 
      <!--Modal escribir opinion en version normal-->
      <div class="modal fade" id="opinionModal" data-id_local="<?php echo $local['id_local']; ?>" tabindex="-1" aria-labelledby="opinionModalLabel" aria-hidden="true">
-        <div class="modal-dialog" >
+        <div  id="modalDialog" class="modal-dialog" >
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="opinionModalLabel"><strong>¡Tu opinión vale mucho!</strong></h5>

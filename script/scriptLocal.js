@@ -107,6 +107,36 @@ document.addEventListener('DOMContentLoaded', function () {
     verificarCamposPago();
 });
 
+//Cambiar modal a version movil
+document.addEventListener('DOMContentLoaded', () => {
+    // Función para aplicar la validación a un modal específico
+    const applyModalValidation = (modalDialog, modal) => {
+        modal.addEventListener('shown.bs.modal', () => {
+            if (window.innerWidth < 519) {
+                modalDialog.classList.add('modal-fullscreen');
+                modalDialog.style.minWidth = '420px';
+            } else {
+                modalDialog.classList.remove('modal-fullscreen');
+                modalDialog.style.minWidth = '';
+            }
+        });
+    };
+
+    // Obtener referencias a los modales y sus diálogos
+    const opinionModal = document.getElementById('opinionModal');
+    const modalDialog = document.getElementById('modalDialog');
+
+    const modalPagar = document.getElementById('modalPagar');
+    const modalPagarDialog = document.getElementById('modalPagarDialog');
+
+    const reservarModal = document.getElementById('reservarModal');
+    const modalReservarDialog = document.getElementById('modalReservarDialog');
+
+    // Aplicar la validación a cada modal
+    applyModalValidation(modalDialog, opinionModal);
+    applyModalValidation(modalPagarDialog, modalPagar);
+    applyModalValidation(modalReservarDialog, reservarModal);
+});
 
 
 //Validacion de pagar y reservas

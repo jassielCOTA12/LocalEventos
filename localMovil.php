@@ -159,11 +159,10 @@
                                 $estrellas2->imprimirEstrellas(); ?>
                         </div>
                                 </div>
-                                <div class="btn-opinion"  style="margin: 
-                        20px 0";>
-                                   <button type="button" class="btn btn-agregarComentario" data-bs-toggle="modal" data-bs-target="#opinionModal">
-                                    Escribe una opinión
-                                </button>
+                                <div class="btn-opinion"  style="margin:20px 0";>
+                                <?php if (isset($_SESSION['id_cliente']) && !empty($_SESSION['id_cliente'])): ?>
+                            <button class="btn-agregarComentario" data-bs-toggle="modal" data-bs-target="#opinionModal">Escribe una opinión</button>
+                            <?php endif; ?>
                                 </div>
                             </div>
                           </div>
@@ -227,74 +226,6 @@
         </div>
     </div>
    
-    <!-- Modal de Opinión -->
-    <div class="modal fade" id="opinionModalMovil" tabindex="-1" aria-labelledby="opinionModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen" style="min-width: 420px;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="opinionModalLabel">¡Tu opinión vale mucho!</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Evalúa este servicio de acuerdo con:</p>
-                    <h6>Salon de Eventos "La Roca"</h6>
-
-                    <!-- Calificación con estrellas -->
-                    <form>
-                        <div class="mb-3">
-                            <label class="form-label">Calidad de servicio</label>
-                            <div class="star-rating" data-rating="0">
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Respuesta</label>
-                            <div class="star-rating" data-rating="0">
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Profesionalidad</label>
-                            <div class="star-rating" data-rating="0">
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Calidad / Precio</label>
-                            <div class="star-rating" data-rating="0">
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-
-                        <!-- Campo de texto para la experiencia -->
-                        <div class="mb-3">
-                            <label class="form-label">Describe tu experiencia:</label>
-                            <textarea class="form-control" rows="3" placeholder="Escribe aquí tu opinión"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary w-100">Enviar opinión</button>
-                        <p class="text-center small mt-2">Información anónima</p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Modal reservar movil -->
     <div class="modal fade" id="reservarModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen" style="min-width: 420px;">
