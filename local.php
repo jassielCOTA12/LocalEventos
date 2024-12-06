@@ -170,8 +170,11 @@ include "configuracion/infoLocal.php";
                         <div>
                         <?php
                                 $estrellas2 = new Estrellas($promedioCalificacion);
-                                $estrellas2->imprimirEstrellas(); ?>
+                                $estrellas2->imprimirEstrellas(); 
+                                echo " (" . $local['promedio_calificacion'] . ")"; ?>
+                                
                         </div>
+
                         <hr>
                         <div class="info-opinion">
                             <p>Calidad de servicio</p>

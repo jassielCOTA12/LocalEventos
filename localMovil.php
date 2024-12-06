@@ -112,7 +112,8 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="padding-bottom: 10px;">
-                            <strong>★ <?php echo $num_opiniones; ?>  opiniones</strong></p>
+                            <strong>★ <?php echo $num_opiniones .'opiniones (' . $local['promedio_calificacion'] . ")";?>
+                            </strong></p>
                           </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -345,6 +346,6 @@
     
     
     // Llama a la función para inicializar el mapa con el ID del local
-    const idLocal = <?php echo json_encode($id_local); ?>;
+    idLocal = <?php echo json_encode($id_local); ?>;
     initMapMovil(idLocal);
     </script>

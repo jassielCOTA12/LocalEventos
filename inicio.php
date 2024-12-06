@@ -92,15 +92,15 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="precio2">
-                        <label class="form-check-label" for="precio2">$2000 - $3000</label>
+                        <label class="form-check-label" for="precio2">$2000 - $5000</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="precio3">
-                        <label class="form-check-label" for="precio3">$3000 - $4000</label>
+                        <label class="form-check-label" for="precio3">$5000 - $7000</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="precio4">
-                        <label class="form-check-label" for="precio4">Más de $4000</label>
+                        <label class="form-check-label" for="precio4">Más de $7000</label>
                     </div>
     
                     <h6 class="mt-3">N° de invitados</h6>
@@ -110,20 +110,20 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="invitados1">
-                        <label class="form-check-label" for="invitados1">Desde 50</label>
+                        <label class="form-check-label" for="invitados1">Hasta 100</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="invitados2">
-                        <label class="form-check-label" for="invitados2">Desde 100</label>
+                        <label class="form-check-label" for="invitados2">Hasta 200</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="invitados3">
-                        <label class="form-check-label" for="invitados3">Mas de 200</label>
+                        <label class="form-check-label" for="invitados3">Mas de 500</label>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <div style="display: flex; flex-direction:row; width: 100%; justify-content:space-around">
-                        <button id="btn-close" type="button" class="btn" data-bs-dismiss="modal">Quitar filtros</button>
+                        <button id="btn-close" type="button" class="btn" data-bs-dismiss="modal" onclick="location.reload();">Quitar filtros</button>
                         <button type="button" class="btnFecha-movil" data-bs-dismiss="modal">Aplicar</button>
                     </div>
                 </div>
@@ -190,14 +190,14 @@
 
             // Procesar los filtros de precio
             if (document.getElementById('precio1').checked) filtros.precio_max = 2000;
-            if (document.getElementById('precio2').checked) filtros.precio_min = 2000, filtros.precio_max = 3000;
-            if (document.getElementById('precio3').checked) filtros.precio_min = 3000, filtros.precio_max = 4000;
-            if (document.getElementById('precio4').checked) filtros.precio_min = 4000;
+            if (document.getElementById('precio2').checked) filtros.precio_min = 2000, filtros.precio_max = 5000;
+            if (document.getElementById('precio3').checked) filtros.precio_min = 5001, filtros.precio_max = 7000;
+            if (document.getElementById('precio4').checked) filtros.precio_min = 7000;
 
             // Procesar los filtros de capacidad
-            if (document.getElementById('invitados1').checked) filtros.capacidad_max = 50;
-            if (document.getElementById('invitados2').checked) filtros.capacidad_max = 100;
-            if (document.getElementById('invitados3').checked) filtros.capacidad_min = 200;
+            if (document.getElementById('invitados1').checked) filtros.capacidad_max = 100;
+            if (document.getElementById('invitados2').checked) filtros.capacidad_max = 200;
+            if (document.getElementById('invitados3').checked) filtros.capacidad_min = 500;
 
 
             // Enviar la solicitud al backend
