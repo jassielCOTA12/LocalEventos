@@ -448,3 +448,45 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+function abrirModal() {
+    const modalReservar = document.getElementById('reservarModal');
+    modalReservar.classList.remove('show');
+    const local = document.getElementById('local');
+    local.classList.remove('modal-open');
+    event.preventDefault();
+
+    
+    const modalPagar = new bootstrap.Modal(document.getElementById('modalPagar'));
+    modalPagar.show();
+
+    
+}
+function redirigirALogin() {
+    window.location.href = 'login.php';
+}
+
+document.getElementById('confirmarReserva').addEventListener('click', function () {
+//  document.getElementById('formReservar').submit();
+  let timerInterval;
+            Swal.fire({
+              html: "Reserva creada con éxito.",
+              timer: 1000,
+              timerProgressBar: false,
+              icon: "success",
+              showConfirmButton: false, 
+              didOpen: () => {
+                const timer = Swal.getPopup().querySelector("b");
+                timerInterval = setInterval(() => {
+                  timer.textContent = `${Swal.getTimerLeft()}`;
+                }, 100);
+              },
+              willClose: () => {
+                clearInterval(timerInterval);
+              }
+            }).then((result) => {
+              if (result.dismiss === Swal.DismissReason.timer) {
+               // console.log("I was closed by the timer");
+              // location.reload();
+              }
+            });
+});

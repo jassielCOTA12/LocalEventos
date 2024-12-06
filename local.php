@@ -9,7 +9,9 @@ include "configuracion/infoLocal.php";
     <title>LocalMatch</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" /><!---importacion de font awsome para logos -->
-     
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <link rel="icon"  type="image/png" href="./imagenes/logo.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
@@ -118,15 +120,12 @@ include "configuracion/infoLocal.php";
             <div class="panel-ubicacionLocal">
                 <h3 id="mapa"><strong>Ubicación:</strong></h3>
                 <div  class="contenedor-mapa">
-                    <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14830.819116667762!2d-110.314637!3d24.101549!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDA2JzA1LjYiTiAxMTCCsDE4JzUzLjciVw!5e0!3m2!1ses!2smx!4v1615338507657!5m2!1ses!2smx"
-                    width="100%"
-                    height="400"
-                    style="border:0;"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    ></iframe>
+                <div id="map" style="height: 400px; width: 100%; z-index:0">
+                <?php
+                    $id_local = $local['id_local'];
+                ?>
+                </div>
+                
                 </div>
             </div>
             <div class="panel-horariosPrecios">
@@ -471,7 +470,8 @@ include "configuracion/infoLocal.php";
     </div>
 
 
-
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script/mapa.js"></script> 
     <script src="script/scriptNuevoComentario.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
@@ -480,50 +480,13 @@ include "configuracion/infoLocal.php";
     <?php include "localMovil.php"; ?>
     
     <script>
-    function abrirModal() {
-        const modalReservar = document.getElementById('reservarModal');
-        modalReservar.classList.remove('show');
-        const local = document.getElementById('local');
-        local.classList.remove('modal-open');
-        event.preventDefault();
-
-        
-        const modalPagar = new bootstrap.Modal(document.getElementById('modalPagar'));
-        modalPagar.show();
-
-        
-    }
-    function redirigirALogin() {
-        window.location.href = 'login.php';
-    }
-
-    document.getElementById('confirmarReserva').addEventListener('click', function () {
-    //  document.getElementById('formReservar').submit();
-      let timerInterval;
-                Swal.fire({
-                  html: "Reserva creada con éxito.",
-                  timer: 1000,
-                  timerProgressBar: false,
-                  icon: "success",
-                  showConfirmButton: false, 
-                  didOpen: () => {
-                    const timer = Swal.getPopup().querySelector("b");
-                    timerInterval = setInterval(() => {
-                      timer.textContent = `${Swal.getTimerLeft()}`;
-                    }, 100);
-                  },
-                  willClose: () => {
-                    clearInterval(timerInterval);
-                  }
-                }).then((result) => {
-                  if (result.dismiss === Swal.DismissReason.timer) {
-                   // console.log("I was closed by the timer");
-                  // location.reload();
-                  }
-                });
-    });
     
+    
+    // Llama a la función para inicializar el mapa con el ID del local
+    const idLocal = <?php echo json_encode($id_local); ?>;
+    initMap(idLocal);
     </script>
     
+
 </body>
 </html>
