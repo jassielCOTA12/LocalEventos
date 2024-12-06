@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Validar nombre
-    if (strlen($nombre) < 3) {
+  /*  if (strlen($nombre) < 3) {
         $_SESSION['error'] = "El nombre debe tener al menos 3 caracteres.";
         header("Location: /LocalEventos/registro.php");
         exit();
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['error'] = "La contraseña debe tener al menos 6 caracteres.";
         header("Location: /LocalEventos/registro.php");
         exit();
-    }
+    }*/
 
     // Crear instancia de la base de datos
     $db = new Database();

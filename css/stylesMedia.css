@@ -596,7 +596,7 @@ width: 30px;
 .inicioFiltros .divBtn-filtro{
     display: none;
 }
-@media screen and (min-width: 340px) and (max-width: 519px) {
+@media screen and (min-width: 150px) and (max-width: 519px) {
     .local .contenedor-gen, .local .btnSubir{
         display: none;
     }
