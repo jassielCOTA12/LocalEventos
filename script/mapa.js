@@ -1,5 +1,5 @@
-// Datos de los locales por ID
-const locales = {
+// Datos de los localesUbicacion por ID
+const localesUbicacion = {
     1: { nombre: "Salón Fiesta Bonita", lat: 25.75920728490945, lng: -100.39535897425083 },
     2: { nombre: "Jardín Los Pinos", lat: 22.921514672029186 , lng: -109.92875851342298 },
     3: { nombre: "Salón Las Estrellas", lat: 23.102677442989872, lng: -109.73162307767058 },
@@ -15,8 +15,8 @@ document
 
 // Función para inicializar el mapa
 function initMap(idLocal) {
-    if (locales[idLocal]) {
-        const local = locales[idLocal];
+    if (localesUbicacion[idLocal]) {
+        const local = localesUbicacion[idLocal];
 
         // Inicializa el mapa centrado en el local
         const map = L.map('map', {
@@ -42,9 +42,14 @@ function initMap(idLocal) {
 }
 
 function initMapMovil(idLocal) {
-    if (locales[idLocal]) {
-        const local = locales[idLocal];
-        const map = L.map('mapa').setView([local.lat, local.lng], 14);
+    if (localesUbicacion[idLocal]) {
+        const local = localesUbicacion[idLocal];
+        const map = L.map('mapaMovil', {
+            center: [local.lat, local.lng],
+            zoom: 14,
+            scrollWheelZoom: false,  // Desactivar el zoom con la rueda del ratón
+            touchZoom: false          // Desactivar el zoom táctil
+        });
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

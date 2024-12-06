@@ -60,15 +60,11 @@
                                 <a href="#mapa" class="direccion"><?php echo htmlspecialchars($local['ubicación']); ?></a>
                             </div>
                     <div  class="contenedor-mapa-movil">
-                        <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14830.819116667762!2d-110.314637!3d24.101549!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDA2JzA1LjYiTiAxMTCCsDE4JzUzLjciVw!5e0!3m2!1ses!2smx!4v1615338507657!5m2!1ses!2smx"
-                        width="100%"
-                        height="400"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                        ></iframe>
+                    <div id="mapaMovil" style="height: 400px; width: 100%; z-index:0">
+                        <?php
+                            $id_local = $local['id_local'];
+                        ?>
+                    </div>
                     </div>
                 </div>
                 <div class="horariosPrecios-movil">
@@ -345,3 +341,10 @@
     </div>
     
     <script src="script/scriptLocal.js"></script>
+    <script>
+    
+    
+    // Llama a la función para inicializar el mapa con el ID del local
+    const idLocal = <?php echo json_encode($id_local); ?>;
+    initMapMovil(idLocal);
+    </script>
