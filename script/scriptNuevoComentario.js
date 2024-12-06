@@ -80,21 +80,55 @@ const fechaFormateada = `${year}-${month}-${day}`;
         .then(response => response.text())
         .then(data => {
             if (data === "Opinión guardada con éxito") {
-                alert('¡Gracias por tu opinión!');
+                //alert('¡Gracias por tu opinión!');
                 // Limpiar formulario
                 commentInput.value = '';
                 starSections.forEach(container => {
                     container.querySelectorAll('.selected').forEach(star => star.classList.remove('selected'));
                 });
                 aceptarBtn.disabled = true; // Desactivar el botón después de enviar
+                
+                const modalOpinion = document.getElementById('opinionModal');
+                modalOpinion.classList.remove('show');
+                modalOpinion.style.display= 'none';
+               // document.body.classList.remove('modal-open'); // Remueve la clase de bloqueo de scroll
+
+                // Eliminar el backdrop manualmente
+                const backdrop = document.querySelector('.modal-backdrop');
+                if (backdrop) {
+                    backdrop.remove();
+                }
+                let timerInterval;
+                Swal.fire({
+                  html: "Comentario añadido con éxito.",
+                  timer: 1000,
+                  timerProgressBar: false,
+                  icon: "success",
+                  showConfirmButton: false, 
+                  didOpen: () => {
+                    const timer = Swal.getPopup().querySelector("b");
+                    timerInterval = setInterval(() => {
+                      timer.textContent = `${Swal.getTimerLeft()}`;
+                    }, 100);
+                  },
+                  willClose: () => {
+                    clearInterval(timerInterval);
+                  }
+                }).then((result) => {
+                  if (result.dismiss === Swal.DismissReason.timer) {
+                   // console.log("I was closed by the timer");
+                   location.reload();
+                  }
+                });
+                
             } else {
-                alert('Error al enviar tu opinión. Inténtalo de nuevo.');
+                //alert('Error al enviar tu opinión. Inténtalo de nuevo.');
             }
             console.log(data);
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Error al enviar tu opinión. Inténtalo más tarde.');
+            //alert('Error al enviar tu opinión. Inténtalo más tarde.');
         });
     });
     
