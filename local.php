@@ -410,7 +410,8 @@ include "configuracion/infoLocal.php";
             </div>
             <div class="modal-body">
                 <p>Evalúa este servicio de acuerdo con:</p>
-                <h4>Salón de Eventos "La Roca"</h4>
+                
+                <?php echo '<h4 class="text-center">' . $local['nombre'] . '</h4>';?>
 
                 <div class="rating-section">
                 <div class="rating-item">
