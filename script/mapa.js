@@ -19,7 +19,12 @@ function initMap(idLocal) {
         const local = locales[idLocal];
 
         // Inicializa el mapa centrado en el local
-        const map = L.map('map').setView([local.lat, local.lng], 14);
+        const map = L.map('map', {
+            center: [local.lat, local.lng],
+            zoom: 14,
+            scrollWheelZoom: false,  // Desactivar el zoom con la rueda del ratón
+            touchZoom: false          // Desactivar el zoom táctil
+        });
 
         // Capa de mapa base
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
