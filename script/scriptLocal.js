@@ -267,7 +267,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 weekday: 'long', // dia 
                 year: 'numeric',
                 month: 'long',
-                day: 'numeric'
+                day: 'numeric',
+                timeZone: 'UTC' 
             });
         }
         precioModal2.textContent = "$" + precioPrueba.textContent;
