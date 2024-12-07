@@ -131,13 +131,25 @@ include "configuracion/infoLocal.php";
             <div class="panel-horariosPrecios">
                 <h3><strong>Horarios y precios:</strong></h3>
                 <div class="dias">
+                    <?php 
+                    // Arreglo para convertir números de días a texto
+                    $diasSemana = [
+                        1 => 'Domingo',
+                        2 => 'Lunes',
+                        3 => 'Martes',
+                        4 => 'Miércoles',
+                        5 => 'Jueves',
+                        6 => 'Viernes',
+                        7 => 'Sábado'
+                    ];
+                    ?>
                     <?php if (!empty($horarios)): ?>
                         <?php foreach ($horarios as $horario): ?>
                             <div class="precio-item">
                                 <div class="icon-text">
                                     <img class="iconPrecio" src="imagenes/precio2Icon.png" alt="PrecioIcon">
                                     <div class="text">
-                                        <strong><?php echo htmlspecialchars($horario['dia_inicio']) . " - " . htmlspecialchars($horario['dia_fin']); ?></strong>
+                                        <strong><?php echo htmlspecialchars($diasSemana[$horario['dia_inicio']]). " - " . htmlspecialchars($diasSemana[$horario['dia_fin']]); ?></strong>
                                         <p>Horario: <?php echo date("g:i A", strtotime($horario['hora_inicio'])) . " - " . date("g:i A", strtotime($horario['hora_fin'])); ?></p>
                                     </div>
                                 </div>
@@ -276,7 +288,7 @@ include "configuracion/infoLocal.php";
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="reservarModalLabel"><strong>Reservación</strong></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="location.reload();" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <?php echo '<h4 class="text-center">' . $local['nombre'] . '</h4>';?>
@@ -311,7 +323,7 @@ include "configuracion/infoLocal.php";
 
                          <br>
                         <label>Número de invitados:</label><br>
-                        <input type="number" id="invitados" class="form-control" min="20" name="no_invitados"
+                        <input type="number" id="invitados" class="form-control" min="1" name="no_invitados"
                         max="<?php echo htmlspecialchars($local['capacidad_maxima'], ENT_QUOTES, 'UTF-8'); ?>" 
                         value="<?php echo isset($_SESSION['invitados']) ? htmlspecialchars($_SESSION['invitados'], ENT_QUOTES, 'UTF-8') : ''; ?>"
                         placeholder="Máximo <?php echo htmlspecialchars($local['capacidad_maxima'], ENT_QUOTES, 'UTF-8'); ?> invitados" required>
@@ -346,32 +358,30 @@ include "configuracion/infoLocal.php";
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalToggleLabel2"><Strong>Solicitud de pagos</Strong></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="location.reload();" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <?php echo '<h4 class="text-center">' . $local['nombre'] . '</h4>';?>
+                    <p class="text-center text-secondary">Pago con tarjeta de crédito o débito</p>
+                    <br>
                     <form>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa-solid fa-calendar"></i></span>
                             <input type="text" class="form-control" id="fechaReserva" readonly>
                         </div>
-                        
-                        <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="fa-solid fa-credit-card"></i></span>
-                            <input type="text" class="form-control" value="Tarjeta de crédito o débito" readonly>
-                        </div>
-    
                         <div class="input-group mb-3" style="margin-bottom:0 !important;">
                             <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
                             <input type="text" id="nombreTitular" class="form-control" placeholder="Nombre del titular" required>  
                         </div>
                         <small id="error-nombre" class="text-danger"></small>
                         <br>
+                        <div class="input-group mb-3" style="margin-bottom:0 !important;">
+                            <span class="input-group-text"><i class="fa-solid fa-credit-card"></i></span>
+                            <input type="text" id="numeroTarjeta" class="form-control" placeholder="0000 0000 0000 0000" min="19" max="19" maxlength="19" required>
+                        </div>
+                        <small id="error-tarjeta" class="text-danger"></small>
+                        <br>
                         <div class="row g-2 mb-3">
-                            <div class="col">
-                                <input type="text" id="numeroTarjeta" class="form-control" placeholder="0000 0000 0000 0000" min="19" max="19" maxlength="19" required>
-                                <small id="error-tarjeta" class="text-danger"></small>
-                            </div>
                             <div class="col">
                                 <input type="text" class="form-control" placeholder="MM/AA" id="fechaExpiracion" min="5" max="5" maxlength="5" required>
                                 <small id="error-fecha" class="text-danger"></small>

@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             // Si el registro es exitoso, redirigir al login
             $_SESSION['success'] = true; // Indicador de éxito
-            header("Location: /LocalEventos/login.php");
+            header("Location: /LocalEventos/registro.php");
             exit();
         } else {
             // Si hubo un error en la inserción, mostrar mensaje de error

@@ -32,11 +32,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     // Validación de Nombre
     nombreRegistro.addEventListener('input', () => {
-        const sanitized = nombreRegistro.value.replace(/[^a-zA-Z\s]/g, ''); // Eliminar todo excepto letras y espacios
+        // Eliminar espacios al inicio y al final del valor
+        const sanitized = nombreRegistro.value.trimStart().replace(/[^a-zA-Z\s]/g, '');
         nombreRegistro.value = sanitized;
 
         if (nombreRegistro.value.trim().length < 3) {
             errorNombre.textContent = 'El nombre debe tener al menos 3 caracteres.';
+            nombreRegistro.classList.add('is-invalid');
+        } else if (/^\s/.test(nombreRegistro.value) || /\s$/.test(nombreRegistro.value)) {
+            errorNombre.textContent = 'El nombre no puede comenzar ni terminar con espacios.';
             nombreRegistro.classList.add('is-invalid');
         } else {
             errorNombre.textContent = '';
@@ -47,8 +51,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Validación de Correo
     correoRegistro.addEventListener('input', () => {
+        // Eliminar espacios al inicio y al final
+        correoRegistro.value = correoRegistro.value.trimStart();
+    
         if (!correoFormato.test(correoRegistro.value.trim())) {
             errorCorreo.textContent = 'El correo electrónico no es válido.';
+            correoRegistro.classList.add('is-invalid');
+        } else if (/^\s/.test(correoRegistro.value) || /\s$/.test(correoRegistro.value)) {
+            errorCorreo.textContent = 'El correo no puede comenzar ni terminar con espacios.';
             correoRegistro.classList.add('is-invalid');
         } else {
             errorCorreo.textContent = '';
@@ -56,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         validacion();
     });
+    
 
     // Validación de Teléfono
     telefonoRegistro.addEventListener('input', () => {
@@ -74,8 +85,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // Validación de Contraseña
 
     passwordRegistro.addEventListener('input', () => {
-        if (!passwordRegex.test(passwordRegistro.value)) {
+        // Eliminar espacios al inicio mientras el usuario escribe
+        passwordRegistro.value = passwordRegistro.value.trimStart();
+    
+        if (passwordRegistro.value.trim().length < 6) {
             errorPassword.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+            passwordRegistro.classList.add('is-invalid');
+        } else if (/^\s/.test(passwordRegistro.value) || /\s$/.test(passwordRegistro.value)) {
+            errorPassword.textContent = 'La contraseña no puede comenzar ni terminar con espacios.';
+            passwordRegistro.classList.add('is-invalid');
+        } else if (!passwordRegex.test(passwordRegistro.value)) {
+            errorPassword.textContent = 'La contraseña no cumple con el formato requerido.';
             passwordRegistro.classList.add('is-invalid');
         } else {
             errorPassword.textContent = '';
@@ -83,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         validacion();
     });
+    
 
     // Enviar formulario
     const formularioRegistro = document.querySelector('.formularioRegistro');

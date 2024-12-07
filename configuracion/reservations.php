@@ -48,39 +48,39 @@ AND (
     -- Verificar si la fecha seleccionada cae dentro del rango de días de inicio y fin
     (DAYOFWEEK(r.fecha) BETWEEN
         CASE h.dia_inicio
-            WHEN 'Domingo' THEN 1
-            WHEN 'Lunes' THEN 2
-            WHEN 'Martes' THEN 3
-            WHEN 'Miércoles' THEN 4
-            WHEN 'Jueves' THEN 5
-            WHEN 'Viernes' THEN 6
-            WHEN 'Sábado' THEN 7
+            WHEN '1' THEN 1
+            WHEN '2' THEN 2
+            WHEN '3' THEN 3
+            WHEN '4' THEN 4
+            WHEN '5' THEN 5
+            WHEN '6' THEN 6
+            WHEN '7' THEN 7
         END
     AND
         CASE h.dia_fin
-            WHEN 'Domingo' THEN 1
-            WHEN 'Lunes' THEN 2
-            WHEN 'Martes' THEN 3
-            WHEN 'Miércoles' THEN 4
-            WHEN 'Jueves' THEN 5
-            WHEN 'Viernes' THEN 6
-            WHEN 'Sábado' THEN 7
+            WHEN '1' THEN 1
+            WHEN '2' THEN 2
+            WHEN '3' THEN 3
+            WHEN '4' THEN 4
+            WHEN '5' THEN 5
+            WHEN '6' THEN 6
+            WHEN '7' THEN 7
         END)
     OR (
         -- Verificar si la fecha seleccionada cae en un rango específico de días (por ejemplo, Lunes a Viernes)
         (DAYOFWEEK(r.fecha) = CASE h.dia_inicio
-            WHEN 'Domingo' THEN 1
-            WHEN 'Lunes' THEN 2
-            WHEN 'Martes' THEN 3
-            WHEN 'Miércoles' THEN 4
-            WHEN 'Jueves' THEN 5
-            WHEN 'Viernes' THEN 6
-            WHEN 'Sábado' THEN 7
+            WHEN '1' THEN 1
+            WHEN '2' THEN 2
+            WHEN '3' THEN 3
+            WHEN '4' THEN 4
+            WHEN '5' THEN 5
+            WHEN '6' THEN 6
+            WHEN '7' THEN 7
         END)
         
     ) 
     OR (
-        (DAYOFWEEK(r.fecha) = 1 AND (h.dia_inicio = 'Domingo' OR h.dia_fin = 'Domingo'))
+        (DAYOFWEEK(r.fecha) = 1 AND (h.dia_inicio = '1' OR h.dia_fin = '1'))
     )
 )";
 

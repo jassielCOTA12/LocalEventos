@@ -14,9 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
             fechaInput.value.trim() !== '' &&
             invitadosInput.value.trim() !== '' &&
             !isNaN(numInvitados) &&
-            numInvitados >= 20 && // Asegurarse de que haya al menos 20 invitados
+            numInvitados >= 1 && // Asegurarse de que haya al menos 20 invitados
             numInvitados <= capacidadMaxima &&
-            correoInput.value.trim() !== '';
+            correoInput.value.trim() !== '' &&
+            esFechaValida(fechaInput.value.trim()); ;
 
         // Habilitar o deshabilitar el botón "Continuar"
         if (todosCompletos) {
@@ -26,6 +27,12 @@ document.addEventListener('DOMContentLoaded', function () {
             btnContinuar.disabled = true;
             btnContinuar.style.background = 'gray';
         }
+    }
+    function esFechaValida(fecha) {
+        const fechaSeleccionada = new Date(fecha);
+        const fechaActual = new Date();
+        // Comparar si la fecha seleccionada es mayor o igual a la fecha actual
+        return fechaSeleccionada >= fechaActual;
     }
 
     // Agregar eventos de 'input' a los campos para verificar cuando cambian
@@ -143,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', function () {
     const fechaInput = document.getElementById('fecha1');
     const errorFecha = document.getElementById('error-fecha');
-    const btnContinuar = document.querySelector('.btn-continuar');
+    const btnContinuar = document.getElementById('continuarReserva');
     const idLocal = fechaInput.getAttribute('data-id-local'); // Obtener el id del local
     const errorMensaje = document.getElementById('error-invitados');
     // Verificación de la disponibilidad al cambiar la fecha
@@ -162,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 errorFecha.classList.add('is-invalid');
                 fechaInput.classList.add('is-invalid');
                 btnContinuar.disabled = true; // Deshabilitar botón "Continuar"
+                btnContinuar.style.background = 'gray';
             } else {
                 fetch('configuracion/checkAvailability.php', {
                     method: 'POST',
@@ -203,6 +211,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         errorFecha.classList.add('is-invalid');
                         fechaInput.classList.add('is-invalid');
                         btnContinuar.disabled = true; // Deshabilitar botón "Continuar"
+                        btnContinuar.style.background = 'gray';
                     }
                 })
                 .catch(error => {
@@ -277,18 +286,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Validación del nombre del titular
     nombreTitular.addEventListener('input', () => {
-        const sanitized = nombreTitular.value.replace(/[^a-zA-Z\s]/g, ''); // Eliminar todo excepto letras y espacios
-        nombreTitular.value = sanitized;
-        
+        // Eliminar espacios al inicio y al final del valor
+        const trimmedValue = nombreTitular.value.trimStart().replace(/[^a-zA-Z\s]/g, '');
+        nombreTitular.value = trimmedValue;
+
         const formato = /^[a-zA-Z\s]+$/;
         if (!formato.test(nombreTitular.value.trim())) {
             errorNombre.textContent = 'El nombre solo puede contener letras y espacios.';
+            nombreTitular.classList.add('is-invalid');
+        } else if (nombreTitular.value.trim().length === 0) {
+            errorNombre.textContent = 'El nombre no puede estar vacío ni tener solo espacios.';
             nombreTitular.classList.add('is-invalid');
         } else {
             errorNombre.textContent = '';
             nombreTitular.classList.remove('is-invalid');
         }
     });
+
 
     // Validación del número de tarjeta
     numeroTarjeta.addEventListener('input', () => {
@@ -496,27 +510,29 @@ function redirigirALogin() {
 }
 
 document.getElementById('confirmarReserva').addEventListener('click', function () {
-//  document.getElementById('formReservar').submit();
-  let timerInterval;
-            Swal.fire({
-              html: "Reserva creada con éxito.",
-              timer: 1000,
-              timerProgressBar: false,
-              icon: "success",
-              showConfirmButton: false, 
-              didOpen: () => {
-                const timer = Swal.getPopup().querySelector("b");
-                timerInterval = setInterval(() => {
-                  timer.textContent = `${Swal.getTimerLeft()}`;
-                }, 100);
-              },
-              willClose: () => {
-                clearInterval(timerInterval);
-              }
-            }).then((result) => {
-              if (result.dismiss === Swal.DismissReason.timer) {
-               // console.log("I was closed by the timer");
-              // location.reload();
-              }
-            });
-});
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "¿Deseas confirmar la reserva?",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#2D5CEA',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, confirmar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Mostrar un mensaje de éxito y luego enviar el formulario
+        Swal.fire({
+            title: 'Reserva creada con éxito',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500, // Mostrar por 2 segundos
+            didClose: () => {
+                // Enviar el formulario después de que el mensaje desaparezca
+                document.getElementById('formReservar').submit();
+            }
+        });
+      }
+    });
+  });
+  

@@ -70,13 +70,25 @@
                 <div class="horariosPrecios-movil">
                     <h3>Horarios y precios</h3>
                     <div class="dias">
+                    <?php 
+                    // Arreglo para convertir números de días a texto
+                    $diasSemana = [
+                        1 => 'Domingo',
+                        2 => 'Lunes',
+                        3 => 'Martes',
+                        4 => 'Miércoles',
+                        5 => 'Jueves',
+                        6 => 'Viernes',
+                        7 => 'Sábado'
+                    ];
+                    ?>
                     <?php if (!empty($horarios)): ?>
                         <?php foreach ($horarios as $horario): ?>
                             <div class="precio-item">
                                 <div class="icon-text">
                                     <img class="iconPrecio" src="imagenes/precio2Icon.png" alt="PrecioIcon">
                                     <div class="text">
-                                        <strong><?php echo htmlspecialchars($horario['dia_inicio']) . " - " . htmlspecialchars($horario['dia_fin']); ?></strong>
+                                        <strong><?php echo htmlspecialchars($diasSemana[$horario['dia_inicio']]) . " - " . htmlspecialchars($diasSemana[$horario['dia_fin']]); ?></strong>
                                         <p>Horario: <?php echo date("g:i A", strtotime($horario['hora_inicio'])) . " - " . date("g:i A", strtotime($horario['hora_fin'])); ?></p>
                                     </div>
                                 </div>
@@ -223,7 +235,7 @@
         </div>
     </div>
    
-    <!-- Modal reservar movil -->
+    <!-- Modal reservar movil
     <div class="modal fade" id="reservarModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen" style="min-width: 420px;">
             <div class="modal-content">
@@ -282,7 +294,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Modal pagar movil -->
     <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen" style="min-width: 420px;">

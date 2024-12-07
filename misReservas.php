@@ -28,6 +28,7 @@
                                 $id_local = $local['id_local']; 
                                 $ruta_imagen = isset($imagenesLocales[$id_local]) ? $imagenesLocales[$id_local] : 'imagenesLocales/HaciendaLosEncinos.jpg';
                                 echo "
+                                <a href='local.php?id={$local['id_local']}'>
                                 <article class='localCard-gen'>
                                     <img src='$ruta_imagen' alt='Imagen de {$local['nombre_local']}'>
                                                     <h3>{$local['nombre_local']}</h3>

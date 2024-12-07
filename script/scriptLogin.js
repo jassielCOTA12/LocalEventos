@@ -25,14 +25,19 @@
         // Seleccionamos los campos de entrada
         const inputs = document.querySelectorAll('#correoLogin, #passwordLogin');
 
-        // Añadimos el evento de 'input' para eliminar el mensaje de error cuando se escribe en los campos
+        // Añadimos el evento 'input' a cada campo
         inputs.forEach(input => {
             input.addEventListener('input', function() {
+                // Eliminar espacios al inicio mientras el usuario escribe
+                this.value = this.value.trimStart();
+
+                // Ocultar el mensaje de error si existe
                 const errorMessage = document.getElementById('error-message');
                 if (errorMessage) {
-                    errorMessage.style.display = 'none'; // Ocultar el mensaje de error
+                    errorMessage.style.display = 'none';
                 }
             });
         });
+
     });
 
