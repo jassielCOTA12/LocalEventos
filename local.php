@@ -175,88 +175,100 @@ include "configuracion/infoLocal.php";
                 </div>
             </div>
         </div>
-            <div class="panel-opiniones">
-                <h3 id="op"><strong>Opiniones:</strong></h3>
-                <div class="panel-opiniones-container">
-                    <div class="estrellas">
-                        <div>
-                        <?php
-                                $estrellas2 = new Estrellas($promedioCalificacion);
-                                $estrellas2->imprimirEstrellas(); 
-                                echo " (" . $local['promedio_calificacion'] . ")"; ?>
-                                
-                        </div>
-
-                        <hr>
-                        <div class="info-opinion">
-                            <p>Calidad de servicio</p>
-                            <div class="comboEstrellas">
-                                <?php
-                                $estrellas3 = new Estrellas($promedioCalidadServicio);
-                                $estrellas3->imprimirEstrellas(); ?>
-                            </div>
-                        </div>
-                        <div class="info-opinion">
-                            <p >Resuestas</p>
-
-                            <div class="comboEstrellas" style="font-size:10px">
-                                <?php
-                                $estrellas2 = new Estrellas($promedioRespuesta);
-                                $estrellas2->imprimirEstrellas(); ?>
-                            </div>
-                        </div >
-                        <div class="info-opinion">
-                            <p>Profesionalidad</p>
-                            <div class="comboEstrellas">
-                                <?php
-                                $estrellas2 = new Estrellas($promedioProfesionalidad);
-                                $estrellas2->imprimirEstrellas(); ?>
-                            </div>
-                        </div>
-                        <div class="info-opinion">
-                            <p >Calidad / Precio</p>
-                            <div class="comboEstrellas">
-                                <?php
-                                $estrellas2 = new Estrellas($promedioCalidadPrecio);
-                                $estrellas2->imprimirEstrellas(); ?>
-                            </div>
-                        </div>
-                        <div class="btn-opinion">
-                        <?php if (isset($_SESSION['id_cliente']) && !empty($_SESSION['id_cliente'])): ?>
-                            <button class="btn-agregarComentario" data-bs-toggle="modal" data-bs-target="#opinionModal">Escribe una opinión</button>
-                            <?php endif; ?>
-                            
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="cards-wrapper">
-            <?php
-            $contador = 0; 
-            foreach ($opiniones as $opinion) {
-                if ($contador >= 2) break; 
-
-                echo '<div class="card">
-                        <div class="card-body">
-                            <div class="headerComments">
-                                <img src="imagenes/personaIcon.png" alt="">
-                                <h4>Anónimo</h4>
-                            </div> <br>';
-                            $estrellas2 = new Estrellas($opinion['calidad_servicio']);
-                            $estrellas2->imprimirEstrellas();
-                        echo '
+        <div class="panel-opiniones">
+    <h3 id="op"><strong>Opiniones:</strong></h3>
+    <div class="panel-opiniones-container">
+        <div class="estrellas">
+            <div>
+                <?php
+                    $estrellas2 = new Estrellas($promedioCalificacion);
+                    $estrellas2->imprimirEstrellas();
+                ?>
+            </div>
+            <hr>
+            <div class="info-opinion">
+                <p>Calidad de servicio</p>
+                <div class="comboEstrellas">
+                    <?php
+                    $estrellas3 = new Estrellas($promedioCalidadServicio);
+                    $estrellas3->imprimirEstrellas();
+                    ?>
+                </div>
+            </div>
+            <div class="info-opinion">
+                <p>Respuestas</p>
+                <div class="comboEstrellas" style="font-size:10px">
+                    <?php
+                    $estrellas2 = new Estrellas($promedioRespuesta);
+                    $estrellas2->imprimirEstrellas();
+                    ?>
+                </div>
+            </div>
+            <div class="info-opinion">
+                <p>Profesionalidad</p>
+                <div class="comboEstrellas">
+                    <?php
+                    $estrellas2 = new Estrellas($promedioProfesionalidad);
+                    $estrellas2->imprimirEstrellas();
+                    ?>
+                </div>
+            </div>
+            <div class="info-opinion">
+                <p>Calidad / Precio</p>
+                <div class="comboEstrellas">
+                    <?php
+                    $estrellas2 = new Estrellas($promedioCalidadPrecio);
+                    $estrellas2->imprimirEstrellas();
+                    ?>
+                </div>
+            </div>
+            <div class="btn-opinion">
+                <?php if (isset($_SESSION['id_cliente']) && !empty($_SESSION['id_cliente'])): ?>
+                    <button class="btn-agregarComentario" data-bs-toggle="modal" data-bs-target="#opinionModal">Escribe una opinión</button>
+                <?php endif; ?>
+            </div>
+        </div>
+        
+        <!-- Carrusel de comentarios -->
+        <div id="carouselComments" class="carousel slide carousel-comments" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <?php
+                foreach ($opiniones as $index => $opinion) {
+                    // Determina si es el primer comentario para agregar la clase 'active'
+                    $activeClass = ($index === 0) ? 'active' : '';
+                    echo '
+                    <div class="carousel-item ' . $activeClass . '">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="headerComments">
+                                    <img src="imagenes/personaIcon.png" alt="">
+                                    <h4>Anónimo</h4>
+                                </div> <br>';
+                                $estrellas2 = new Estrellas($opinion['calidad_servicio']);
+                                $estrellas2->imprimirEstrellas();
+                            echo '
                             <div class="center-Comments">
                                 <!-- Aquí ya no se incluyen las estrellas -->
                             </div>
                             <p class="card-text">' . htmlspecialchars($opinion['comentario']) . '</p>
                             <p class="card-date">Enviado el ' . htmlspecialchars($opinion['fecha']) . '</p>
                         </div>
-                    </div>';
-
-                $contador++; 
-            }
-            ?>
+                    </div>
+                </div>';
+                }
+                ?>
+            </div>
+            <!-- Controles del carrusel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselComments" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselComments" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
+    </div>
 
                 </div>
             </div>
@@ -499,6 +511,15 @@ include "configuracion/infoLocal.php";
     // Llama a la función para inicializar el mapa con el ID del local
     const idLocal = <?php echo json_encode($id_local); ?>;
     initMap(idLocal);
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var carouselImages = document.querySelectorAll("#carouselComments .carousel-inner img");
+    carouselImages.forEach(function(img) {
+      img.style.width = 'auto';
+      img.style.height = 'auto';
+      img.style.objectFit = 'unset';
+    });
+  });
     </script>
     
 
