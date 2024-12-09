@@ -1084,6 +1084,7 @@ body.login .panelCentral-gen{
         min-width: 50%;
         margin-top: 10px;
         max-width: 100%;
+        width: 50%;
     }  
     .btn-agregarComentario:hover{
         background-color: var(--color-hover);

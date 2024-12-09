@@ -32,7 +32,7 @@
                                 <article class='localCard-gen'>
                                     <img src='$ruta_imagen' alt='Imagen de {$local['nombre_local']}'>
                                                     <h3>{$local['nombre_local']}</h3>
-                                                    <p><strong>Fecha: </strong>{$local['fecha']}</p>
+                                                    <p><strong>Fecha: </strong>" . date("d-m-Y", strtotime($local['fecha'])) . "</p>
                                                     <p><strong>Horario: </strong>"; echo date("g:i A", strtotime($local['hora_inicio'])) . " - " . date("g:i A", strtotime($local['hora_fin']));echo"</p>
 
                                                 </article>";

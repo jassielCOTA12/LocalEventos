@@ -45,7 +45,7 @@ echo '
                 </div>
                 <div class="modal-footer d-flex gap-2" style="flex-direction:row; justify-content:center;">
                     <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary w-25"  id="guardarFecha" data-bs-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-primary w-25"  id="guardarFecha" data-bs-dismiss="modal">Buscar</button>
                 </div>
             </div>
         </div>

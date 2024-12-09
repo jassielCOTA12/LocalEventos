@@ -21,7 +21,8 @@ echo '
                     <a href="##" class="btnBarras-gen"><i class="fa-solid fa-bars"></i></a>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item active" href="misDatos.php">Mis datos</a></li>
+                <li><a class="dropdown-item" href="inicio.php">Inicio</a></li>
+                  <li><a class="dropdown-item" href="misDatos.php">Mis datos</a></li>
                   <li><a class="dropdown-item" href="misReservas.php">Mis reservas</a></li>
                   <li><a class="dropdown-item" href="misFavoritos.php">Mis favoritos</a></li> 
                   <li><a class="dropdown-item" href="configuracion/logout.php">Cerrar sesión</a></li>

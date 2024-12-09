@@ -90,4 +90,11 @@ $stmt->execute();
 
 // Obtener los resultados
 $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if (!empty($reservas)) {
+    usort($reservas, function ($a, $b) {
+        return strtotime($a['fecha']) - strtotime($b['fecha']);
+    });
+}
 ?>
+

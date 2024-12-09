@@ -247,6 +247,14 @@
         transform: scale(0.9);
      }
 
+     .espacio-opinion{
+        display: none;
+     }
+
+     .btn-opinion{
+        width:100%;
+     }
+
      .local .botonesReservar-compartir-like .btn-like i, .local .botonesReservar-compartir-like .btn-compartir img{
         width: auto;
      }

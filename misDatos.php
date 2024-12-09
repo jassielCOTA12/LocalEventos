@@ -43,6 +43,12 @@
             <h2>Pagos y cobros</h2>
             <div class="areaPagos">
                     <h3>Mis pagos </h3>
+                    <?php 
+                    // Ordenar las reservas por fecha
+                    usort($reservas, function ($a, $b) {
+                        return strtotime($a['fecha']) - strtotime($b['fecha']);
+                    });
+                    ?>
                     <?php if (count($reservas) > 0): ?>
                         <table class="table">
                             <thead>
@@ -55,7 +61,7 @@
                             <tbody>
                                 <?php foreach ($reservas as $reserva): ?>
                                     <tr>
-                                        <td><?= htmlspecialchars($reserva['fecha']) ?></td>
+                                        <td><?= date("d-m-Y", strtotime($reserva['fecha'])) ?></td>
                                         <td><?= htmlspecialchars($reserva['nombre']) ?></td>
                                         <td>$<?= number_format($reserva['precio_total'], 2) ?></td>
                                     </tr>

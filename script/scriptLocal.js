@@ -6,6 +6,114 @@ document.addEventListener('DOMContentLoaded', function () {
     const invitadosInput = document.getElementById('invitados');
     const correoInput = document.querySelector('input[placeholder="Correo electrónico"]');
     const capacidadMaxima = parseInt(invitadosInput.max); 
+    const errorFecha = document.getElementById('error-fecha');
+    const idLocal = fechaInput.getAttribute('data-id-local'); // Obtener el id del local
+    const errorMensaje = document.getElementById('error-invitados');
+    let isFechaReservada = false; 
+    // Verificación de la disponibilidad al cambiar la fecha
+    fechaInput.addEventListener('change', function () {
+        const fecha = fechaInput.value;
+
+        if (!fecha) {
+            errorFecha.textContent = ''; 
+        } else {
+            // Verificar si la fecha es en el pasado
+            const fechaSeleccionada = new Date(fecha);
+            const fechaActual = new Date();
+
+            if (fechaSeleccionada < fechaActual) {
+                errorFecha.textContent = 'La fecha seleccionada ya ha pasado, por favor elija una fecha futura.';
+                errorFecha.classList.add('is-invalid');
+                fechaInput.classList.add('is-invalid');
+                btnContinuar.disabled = true; // Deshabilitar botón "Continuar"
+                btnContinuar.style.background = 'gray';
+                isFechaReservada = true;
+            } else {
+                fetch('configuracion/checkAvailability.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `fecha=${fecha}&id_local=${idLocal}`
+                })
+                .then(response => response.text())
+                .then(data => {
+                    if (data === "Disponible") {
+                        errorFecha.textContent = ''; // No hay error
+                        errorFecha.classList.remove('is-invalid');
+                        fechaInput.classList.remove('is-invalid');
+                        isFechaReservada = false; // Fecha válida
+                        verificarCampos();
+                        // Obtener horario 
+                        fetch('configuracion/schedules.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            },
+                            body: `fecha=${fecha}&id_local=${idLocal}`
+                        })
+                        .then(response => response.text()) 
+                        .then(data => {
+                            const [horario, precio] = data.split("|");
+                            document.querySelector('.horario').textContent = horario;
+                            document.querySelector('#precioPrueba').textContent = `${precio}`;
+
+                            document.querySelector('#precioPrueba1').value = precio;
+                            
+                        })
+                        .catch(error => {
+                            console.error('Error al obtener el horario:', error);
+                            document.querySelector('.horario').textContent = "Error al obtener el horario.";
+                        });
+                    } else if (data === "Reservado") {
+                        errorFecha.textContent = 'Fecha no disponible, seleccione otra.';
+                        errorFecha.classList.add('is-invalid');
+                        fechaInput.classList.add('is-invalid');
+                        isFechaReservada = true;
+                        btnContinuar.disabled = true; // Deshabilitar botón "Continuar"
+                        btnContinuar.style.background = 'gray';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al verificar disponibilidad:', error);
+                    errorFecha.textContent = 'Error al verificar disponibilidad.';
+                    errorFecha.classList.add('is-invalid');
+                    fechaInput.classList.add('is-invalid');
+                    btnContinuar.disabled = true;
+                    isFechaReservada = true;
+                });
+            }
+        }
+    });
+    //Input invitados
+    document.getElementById('invitados').addEventListener('input', function () {
+        const maxInvitados = parseInt(this.max); // Máximo permitido
+        const minInvitados = parseInt(this.min);
+        
+        if (parseInt(this.value) > maxInvitados) {
+            errorMensaje.textContent = `El número de invitados no puede exceder ${maxInvitados}.`;
+            this.classList.add('is-invalid'); // Agrega una clase para estilos adicionales si es necesario
+        } else if(parseInt(this.value) < minInvitados){
+            errorMensaje.textContent = `El número de invitados mínimo es ${minInvitados}.`;
+            this.classList.add('is-invalid'); 
+        } else {
+            errorMensaje.textContent = ''; // Limpia el mensaje de error si es válido
+            this.classList.remove('is-invalid');
+        }
+        verificarCampos();
+    }); 
+
+    const telefono = document.getElementById('telefono');
+    // Solo permitir números
+    telefono.addEventListener('input', () => {
+        // Eliminar cualquier carácter que no sea un número
+        telefono.value = telefono.value.replace(/\D/g, '');
+
+        // Limitar el número de caracteres a 10
+        if (telefono.value.length > 10) {
+            telefono.value = telefono.value.slice(0, 10);
+        }
+    });
     // Función para verificar si todos los campos están completos
     function verificarCampos() {
         const numInvitados = parseInt(invitadosInput.value.trim());
@@ -17,7 +125,9 @@ document.addEventListener('DOMContentLoaded', function () {
             numInvitados >= 1 && // Asegurarse de que haya al menos 20 invitados
             numInvitados <= capacidadMaxima &&
             correoInput.value.trim() !== '' &&
-            esFechaValida(fechaInput.value.trim()); ;
+            esFechaValida(fechaInput.value.trim()) &&
+            !isFechaReservada;
+            
 
         // Habilitar o deshabilitar el botón "Continuar"
         if (todosCompletos) {
@@ -28,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
             btnContinuar.style.background = 'gray';
         }
     }
+
     function esFechaValida(fecha) {
         const fechaSeleccionada = new Date(fecha);
         const fechaActual = new Date();
@@ -41,9 +152,117 @@ document.addEventListener('DOMContentLoaded', function () {
     fechaInput.addEventListener('change', verificarCampos);
     invitadosInput.addEventListener('input', verificarCampos);
     extraInfo.addEventListener('input', verificarCampos);
-
-   
     verificarCampos();
+
+    //Boton continuar reserva - modal 1
+    document.getElementById("continuarReserva").addEventListener("click", function () {
+        const fecha = document.getElementById("fecha1").value;
+        const inputFecha = document.querySelector("#fechaReserva"); //Modal2
+        const precioPrueba = document.getElementById("precioPrueba");
+        const precioModal2 = document.getElementById("pagarReserva"); // Modal2
+
+        if (inputFecha) {
+            inputFecha.value = new Date(fecha).toLocaleDateString('es-MX', {
+                weekday: 'long', // dia 
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                timeZone: 'UTC' 
+            });
+        }
+        precioModal2.textContent = "$" + precioPrueba.textContent; 
+    });
+
+    const nombreTitular = document.getElementById('nombreTitular');
+    const numeroTarjeta = document.getElementById('numeroTarjeta');
+    const fechaExpiracion = document.getElementById('fechaExpiracion');
+    const cvv = document.getElementById('cvv');
+    const errorNombre = document.getElementById('error-nombre');
+    const errorTarjeta = document.getElementById('error-tarjeta');
+    const errorFechaTarjeta = document.getElementById('error-fecha');
+    const errorCvv = document.getElementById('error-cvv');
+
+    // Validación del nombre del titular
+    nombreTitular.addEventListener('input', () => {
+        // Eliminar espacios al inicio y al final del valor
+        const trimmedValue = nombreTitular.value.trimStart().replace(/[^a-zA-Z\s]/g, '');
+        nombreTitular.value = trimmedValue;
+
+        const formato = /^[a-zA-Z\s]+$/;
+        if (!formato.test(nombreTitular.value.trim())) {
+            errorNombre.textContent = 'El nombre solo puede contener letras y espacios.';
+            nombreTitular.classList.add('is-invalid');
+        } else if (nombreTitular.value.trim().length === 0) {
+            errorNombre.textContent = 'El nombre no puede estar vacío ni tener solo espacios.';
+            nombreTitular.classList.add('is-invalid');
+        } else {
+            errorNombre.textContent = '';
+            nombreTitular.classList.remove('is-invalid');
+        }
+    });
+
+
+    // Validación del número de tarjeta
+    numeroTarjeta.addEventListener('input', () => {
+        const sanitized = numeroTarjeta.value.replace(/\D/g, ''); // Eliminar caracteres no numéricos
+        numeroTarjeta.value = sanitized.replace(/(\d{4})(?=\d)/g, '$1 '); // Formato XXXX XXXX XXXX XXXX
+
+        if (sanitized.length !== 16) {
+            errorTarjeta.textContent = 'El número de tarjeta debe tener 16 dígitos.';
+            numeroTarjeta.classList.add('is-invalid');
+        } else {
+            errorTarjeta.textContent = '';
+            numeroTarjeta.classList.remove('is-invalid');
+        }
+    });
+
+   // Validación de la fecha de expiración
+fechaExpiracion.addEventListener('input', () => {
+    let sanitized = fechaExpiracion.value.replace(/[^0-9\/]/g, ''); // Eliminar todo excepto números y "/"
+    fechaExpiracion.value = sanitized;
+
+    const formato = /^(0[1-9]|1[0-2])\/\d{2}$/; // Formato MM/AA
+
+    if (!formato.test(fechaExpiracion.value)) {
+        errorFechaTarjeta.textContent = 'Formato inválido. Usa MM/AA.';
+        fechaExpiracion.classList.add('is-invalid');
+        return;
+    }
+
+    // Extraer mes y año de la fecha de expiración
+    const mes = parseInt(fechaExpiracion.value.substring(0, 2)); // Los primeros dos dígitos son el mes
+    const anio = parseInt(fechaExpiracion.value.substring(3, 5)); // Los dos últimos dígitos son el año (AA)
+    const anioCompleto = 2000 + anio; // Convertir AA a formato 20XX
+
+    // Obtener la fecha actual
+    const fechaActual = new Date();
+    const mesActual = fechaActual.getMonth() + 1; // Los meses comienzan en 0, por eso sumamos 1
+    const anioActual = fechaActual.getFullYear();
+
+    // Validar que la fecha no esté expirada
+    if (anioCompleto < anioActual || (anioCompleto === anioActual && mes < mesActual)) {
+        errorFechaTarjeta.textContent = 'La fecha está expirada.';
+        fechaExpiracion.classList.add('is-invalid');
+    } else {
+        errorFechaTarjeta.textContent = '';
+        fechaExpiracion.classList.remove('is-invalid');
+    }
+});
+
+    // Validación del CVV
+    cvv.addEventListener('input', () => {
+        const sanitized = cvv.value.replace(/\D/g, ''); // Eliminar caracteres no numéricos
+        cvv.value = sanitized;
+
+        const formato = /^\d{3}$/; // Solo 3 dígitos
+        if (!formato.test(cvv.value.trim())) {
+            errorCvv.textContent = 'El CVV debe tener 3 dígitos.';
+            cvv.classList.add('is-invalid');
+        } else {
+            errorCvv.textContent = '';
+            cvv.classList.remove('is-invalid');
+        }
+    });
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -145,232 +364,6 @@ document.addEventListener('DOMContentLoaded', () => {
     applyModalValidation(modalReservarDialog, reservarModal);
 });
 
-
-//Validacion de pagar y reservas
-document.addEventListener('DOMContentLoaded', function () {
-    const fechaInput = document.getElementById('fecha1');
-    const errorFecha = document.getElementById('error-fecha');
-    const btnContinuar = document.getElementById('continuarReserva');
-    const idLocal = fechaInput.getAttribute('data-id-local'); // Obtener el id del local
-    const errorMensaje = document.getElementById('error-invitados');
-    // Verificación de la disponibilidad al cambiar la fecha
-    fechaInput.addEventListener('change', function () {
-        const fecha = fechaInput.value;
-
-        if (!fecha) {
-            errorFecha.textContent = ''; 
-        } else {
-            // Verificar si la fecha es en el pasado
-            const fechaSeleccionada = new Date(fecha);
-            const fechaActual = new Date();
-
-            if (fechaSeleccionada < fechaActual) {
-                errorFecha.textContent = 'La fecha seleccionada ya ha pasado, por favor elija una fecha futura.';
-                errorFecha.classList.add('is-invalid');
-                fechaInput.classList.add('is-invalid');
-                btnContinuar.disabled = true; // Deshabilitar botón "Continuar"
-                btnContinuar.style.background = 'gray';
-            } else {
-                fetch('configuracion/checkAvailability.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: `fecha=${fecha}&id_local=${idLocal}`
-                })
-                .then(response => response.text())
-                .then(data => {
-                    if (data === "Disponible") {
-                        errorFecha.textContent = ''; // No hay error
-                        errorFecha.classList.remove('is-invalid');
-                        fechaInput.classList.remove('is-invalid');
-                        btnContinuar.disabled = false; // Habilitar botón "Continuar"
-                        // Obtener horario 
-                        fetch('configuracion/schedules.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded'
-                            },
-                            body: `fecha=${fecha}&id_local=${idLocal}`
-                        })
-                        .then(response => response.text()) 
-                        .then(data => {
-                            const [horario, precio] = data.split("|");
-                            document.querySelector('.horario').textContent = horario;
-                            document.querySelector('#precioPrueba').textContent = `${precio}`;
-
-                            document.querySelector('#precioPrueba1').value = precio;
-                            
-                        })
-                        .catch(error => {
-                            console.error('Error al obtener el horario:', error);
-                            document.querySelector('.horario').textContent = "Error al obtener el horario.";
-                        });
-                    } else if (data === "Reservado") {
-                        errorFecha.textContent = 'Fecha no disponible, seleccione otra.';
-                        errorFecha.classList.add('is-invalid');
-                        fechaInput.classList.add('is-invalid');
-                        btnContinuar.disabled = true; // Deshabilitar botón "Continuar"
-                        btnContinuar.style.background = 'gray';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error al verificar disponibilidad:', error);
-                    errorFecha.textContent = 'Error al verificar disponibilidad.';
-                    errorFecha.classList.add('is-invalid');
-                    fechaInput.classList.add('is-invalid');
-                    btnContinuar.disabled = true;
-                });
-            }
-        }
-    });
-    //Input invitados
-    document.getElementById('invitados').addEventListener('input', function () {
-        const maxInvitados = parseInt(this.max); // Máximo permitido
-        const minInvitados = parseInt(this.min);
-        
-        if (parseInt(this.value) > maxInvitados) {
-            errorMensaje.textContent = `El número de invitados no puede exceder ${maxInvitados}.`;
-            this.classList.add('is-invalid'); // Agrega una clase para estilos adicionales si es necesario
-        } else if(parseInt(this.value) < minInvitados){
-            errorMensaje.textContent = `El número de invitados mínimo es ${minInvitados}.`;
-            this.classList.add('is-invalid'); 
-        } else {
-            errorMensaje.textContent = ''; // Limpia el mensaje de error si es válido
-            this.classList.remove('is-invalid');
-        }
-    }); 
-
-    const telefono = document.getElementById('telefono');
-
-    // Solo permitir números
-    telefono.addEventListener('input', () => {
-        // Eliminar cualquier carácter que no sea un número
-        telefono.value = telefono.value.replace(/\D/g, '');
-
-        // Limitar el número de caracteres a 10
-        if (telefono.value.length > 10) {
-            telefono.value = telefono.value.slice(0, 10);
-        }
-    });
-
-        
-    //Boton continuar reserva - modal 1
-    document.getElementById("continuarReserva").addEventListener("click", function () {
-        const fecha = document.getElementById("fecha1").value;
-        const inputFecha = document.querySelector("#fechaReserva"); //Modal2
-        const precioPrueba = document.getElementById("precioPrueba");
-        const precioModal2 = document.getElementById("pagarReserva"); // Modal2
-
-        if (inputFecha) {
-            inputFecha.value = new Date(fecha).toLocaleDateString('es-MX', {
-                weekday: 'long', // dia 
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                timeZone: 'UTC' 
-            });
-        }
-        precioModal2.textContent = "$" + precioPrueba.textContent;
-        
-    });
-     
-
-    const nombreTitular = document.getElementById('nombreTitular');
-    const numeroTarjeta = document.getElementById('numeroTarjeta');
-    const fechaExpiracion = document.getElementById('fechaExpiracion');
-    const cvv = document.getElementById('cvv');
-    const errorNombre = document.getElementById('error-nombre');
-    const errorTarjeta = document.getElementById('error-tarjeta');
-    const errorFechaTarjeta = document.getElementById('error-fecha');
-    const errorCvv = document.getElementById('error-cvv');
-
-    // Validación del nombre del titular
-    nombreTitular.addEventListener('input', () => {
-        // Eliminar espacios al inicio y al final del valor
-        const trimmedValue = nombreTitular.value.trimStart().replace(/[^a-zA-Z\s]/g, '');
-        nombreTitular.value = trimmedValue;
-
-        const formato = /^[a-zA-Z\s]+$/;
-        if (!formato.test(nombreTitular.value.trim())) {
-            errorNombre.textContent = 'El nombre solo puede contener letras y espacios.';
-            nombreTitular.classList.add('is-invalid');
-        } else if (nombreTitular.value.trim().length === 0) {
-            errorNombre.textContent = 'El nombre no puede estar vacío ni tener solo espacios.';
-            nombreTitular.classList.add('is-invalid');
-        } else {
-            errorNombre.textContent = '';
-            nombreTitular.classList.remove('is-invalid');
-        }
-    });
-
-
-    // Validación del número de tarjeta
-    numeroTarjeta.addEventListener('input', () => {
-        const sanitized = numeroTarjeta.value.replace(/\D/g, ''); // Eliminar caracteres no numéricos
-        numeroTarjeta.value = sanitized.replace(/(\d{4})(?=\d)/g, '$1 '); // Formato XXXX XXXX XXXX XXXX
-
-        if (sanitized.length !== 16) {
-            errorTarjeta.textContent = 'El número de tarjeta debe tener 16 dígitos.';
-            numeroTarjeta.classList.add('is-invalid');
-        } else {
-            errorTarjeta.textContent = '';
-            numeroTarjeta.classList.remove('is-invalid');
-        }
-    });
-
-   // Validación de la fecha de expiración
-fechaExpiracion.addEventListener('input', () => {
-    let sanitized = fechaExpiracion.value.replace(/[^0-9\/]/g, ''); // Eliminar todo excepto números y "/"
-    fechaExpiracion.value = sanitized;
-
-    const formato = /^(0[1-9]|1[0-2])\/\d{2}$/; // Formato MM/AA
-
-    if (!formato.test(fechaExpiracion.value)) {
-        errorFechaTarjeta.textContent = 'Formato inválido. Usa MM/AA.';
-        fechaExpiracion.classList.add('is-invalid');
-        return;
-    }
-
-    // Extraer mes y año de la fecha de expiración
-    const mes = parseInt(fechaExpiracion.value.substring(0, 2)); // Los primeros dos dígitos son el mes
-    const anio = parseInt(fechaExpiracion.value.substring(3, 5)); // Los dos últimos dígitos son el año (AA)
-    const anioCompleto = 2000 + anio; // Convertir AA a formato 20XX
-
-    // Obtener la fecha actual
-    const fechaActual = new Date();
-    const mesActual = fechaActual.getMonth() + 1; // Los meses comienzan en 0, por eso sumamos 1
-    const anioActual = fechaActual.getFullYear();
-
-    // Validar que la fecha no esté expirada
-    if (anioCompleto < anioActual || (anioCompleto === anioActual && mes < mesActual)) {
-        errorFechaTarjeta.textContent = 'La fecha está expirada.';
-        fechaExpiracion.classList.add('is-invalid');
-    } else {
-        errorFechaTarjeta.textContent = '';
-        fechaExpiracion.classList.remove('is-invalid');
-    }
-});
-
-    
-    
-
-    // Validación del CVV
-    cvv.addEventListener('input', () => {
-        const sanitized = cvv.value.replace(/\D/g, ''); // Eliminar caracteres no numéricos
-        cvv.value = sanitized;
-
-        const formato = /^\d{3}$/; // Solo 3 dígitos
-        if (!formato.test(cvv.value.trim())) {
-            errorCvv.textContent = 'El CVV debe tener 3 dígitos.';
-            cvv.classList.add('is-invalid');
-        } else {
-            errorCvv.textContent = '';
-            cvv.classList.remove('is-invalid');
-        }
-    });
-});
-
 //Favoritos
 document.addEventListener('DOMContentLoaded', function () {
     const btnFavorito = document.getElementById('btn-favorito');
@@ -387,11 +380,12 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             if (data.isFavorito) {
-                iconoFavorito.classList.add('text-danger');
+                iconoFavorito.classList.remove('fa-regular');
+                iconoFavorito.classList.add('fa-solid','text-danger');
                 esFavorito = true; // Actualiza la variable si el local está en la tabla de favoritos
             }
         })
-        .catch(error => console.error('Errore', error));
+        .catch(error => console.error('Error', error));
 
         
         btnFavorito.addEventListener('click', function () {
@@ -400,11 +394,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (esFavorito) {
                 cambiarFavorito(idLocal, idCliente, 'eliminar');
-                iconoFavorito.classList.remove('text-danger');
+                iconoFavorito.classList.remove('fa-solid', 'text-danger');
+                iconoFavorito.classList.add('fa-regular');
                 esFavorito = false; // Actualiza la variable
             } else {
                 cambiarFavorito(idLocal, idCliente, 'agregar');
-                iconoFavorito.classList.add('text-danger');
+                iconoFavorito.classList.remove('fa-regular');
+                iconoFavorito.classList.add('fa-solid', 'text-danger');
                 esFavorito = true; // Actualiza la variable
             }
 

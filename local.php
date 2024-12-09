@@ -34,72 +34,76 @@ include "configuracion/infoLocal.php";
         
         <div class="panelCentral-gen">
             <div class="panelSuperior" >
-                    <div class="panelSuperior-izq">
-                        <div class="panelSuperior-derecha-info">
+                <div class="panelSuperior-izq">
+                    <div class="panelSuperior-derecha-info">
                         <div id="carouselExample" class="carousel carousel-dark slide">
                             <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                <img src="<?php echo $imagen1; ?>"class="d-block w-100" alt="...">
-                              </div>
-                              <div class="carousel-item">
-                                <img src="<?php echo $imagen2; ?>" class="d-block w-100" alt="...">
-                              </div>
+                                <div class="carousel-item active">
+                                    <img src="<?php echo $imagen1; ?>"class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="<?php echo $imagen2; ?>" class="d-block w-100" alt="...">
+                                </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Previous</span>
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
                             </button>
                             <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
-                              </button>
-                            
+                            </button>
                         </div>
-                        </div>
+                    </div>
     
-                    </div>
-                    <div class="panelSuperior-derecha">
-                        <div class="panelSuperior-derecha-info">
-                            <h1 class="salonNombre"><strong><?php echo htmlspecialchars($local['nombre']); ?></strong></h1>
-                            <div class="local-info">
-                                <img class="icon" src="imagenes/ubicacionIcon.png" alt="Ubicación Icon">
-                                <a href="#mapa" class="direccion"><?php echo htmlspecialchars($local['ubicación']); ?></a>
-                            </div>
-                            <div class="local-info">
-                                <img class="icon" src="imagenes/personasIcon.png" alt="Personas Icon">
-                                <p class="capacidad">Hasta <?php echo htmlspecialchars($local['capacidad_maxima']); ?> personas</p>
-                            </div>
-                            <div class="local-info">
-                                <img class="icon" src="imagenes/mensajeIcon.png" alt="Mensaje Icon">  
-                                <?php include 'include/estrellas.php';
-                                $estrellas = new Estrellas($promedioCalificacion);
-                                $estrellas->imprimirEstrellas(); ?>
-                                <a href="#op" class="opiniones">(<?php echo $num_opiniones; ?> opiniones)</a>
-                            </div>
-
-                            <div class="local-info">
-                                <img class="icon" src="imagenes/precioIcon.png" alt="Precio Icon">
-                                <p class="precioAprox">Desde $<?php echo number_format($local['precio_base'], 2); ?></p>
-                            </div>
-                            <div class="botonesReservar-compartir-like">
-                                <?php
-                                if (!isset($_SESSION['id_cliente']) || empty($_SESSION['id_cliente'])) {
-                                    // Guardar la URL actual para redirigir después del login
-                                    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
-                                    echo '<button class="btn-reservar" onclick="redirigirALogin()">Reservar</button>';
-                                } else {
-                                    echo '<button class="btn-reservar" data-bs-toggle="modal" data-bs-target="#reservarModal">Reservar</button>';
-                                }
-                                ?>
-                            <?php if (isset($_SESSION['id_cliente']) && !empty($_SESSION['id_cliente'])): ?>
-                                <button class="btn-like" id="btn-favorito" data-id-local="<?php echo $local['id_local']; ?>" data-id-cliente="<?php echo $_SESSION['id_cliente']; ?>">
-                                    <i class="fa-solid fa-heart <?php echo $isFavorito ? 'text-danger' : ''; ?>" id="icono-favorito"></i>
-                                </button>
-                            <?php endif; ?>
-                            </div>
+                </div>
+                <div class="panelSuperior-derecha">
+                    <div class="panelSuperior-derecha-info">
+                        <h1 class="salonNombre"><strong><?php echo htmlspecialchars($local['nombre']); ?></strong></h1>
+                        <div class="local-info">
+                            <img class="icon" src="imagenes/ubicacionIcon.png" alt="Ubicación Icon">
+                            <a href="#mapa" class="direccion"><?php echo htmlspecialchars($local['ubicación']); ?></a>
                         </div>
+
+                        <div class="local-info">
+                            <img class="icon" src="imagenes/personasIcon.png" alt="Personas Icon">
+                            <p class="capacidad">Hasta <?php echo htmlspecialchars($local['capacidad_maxima']); ?> personas</p>
+                        </div>
+
+                        <div class="local-info">
+                            <img class="icon" src="imagenes/mensajeIcon.png" alt="Mensaje Icon">  
+                            <?php include 'include/estrellas.php';
+                            $estrellas = new Estrellas($promedioCalificacion);
+                            $estrellas->imprimirEstrellas(); ?>
+                            <a href="#op" class="opiniones">(<?php echo $num_opiniones; ?> opiniones)</a>
+                        </div>
+
+                        <div class="local-info">
+                            <img class="icon" src="imagenes/precioIcon.png" alt="Precio Icon">
+                            <p class="precioAprox">Desde $<?php echo number_format($local['precio_base'], 2); ?></p>
+                        </div>
+
+                        <div class="botonesReservar-compartir-like">
+                            <?php
+                            if (!isset($_SESSION['id_cliente']) || empty($_SESSION['id_cliente'])) {
+                                // Guardar la URL actual para redirigir después del login
+                                $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+                                echo '<button class="btn-reservar" onclick="redirigirALogin()">Reservar</button>';
+                            } else {
+                                echo '<button class="btn-reservar" data-bs-toggle="modal" data-bs-target="#reservarModal">Reservar</button>';
+                            }
+                            ?>
+                        <?php if (isset($_SESSION['id_cliente']) && !empty($_SESSION['id_cliente'])): ?>
+                            <button class="btn-like" id="btn-favorito" data-id-local="<?php echo $local['id_local']; ?>" data-id-cliente="<?php echo $_SESSION['id_cliente']; ?>">
+                                <i class="<?php echo $isFavorito ? 'fa-solid fa-heart text-danger' : 'fa-regular fa-heart'; ?>" id="icono-favorito"></i>
+                            </button>
+                        <?php endif; ?>
+                        </div>
+
                     </div>
+                </div>
             </div>
+
             <div class="panel-infoLocal">
                 <h2><strong>¡Reserva tu fecha!</strong></h2>
                 <div class="informacion">
@@ -117,17 +121,18 @@ include "configuracion/infoLocal.php";
                 </div>
 
             </div>
+
             <div class="panel-ubicacionLocal">
                 <h3 id="mapa"><strong>Ubicación:</strong></h3>
                 <div  class="contenedor-mapa">
-                <div id="map" style="height: 400px; width: 100%; z-index:0">
-                <?php
-                    $id_local = $local['id_local'];
-                ?>
-                </div>
-                
+                    <div id="map" style="height: 400px; width: 100%; z-index:0">
+                    <?php
+                        $id_local = $local['id_local'];
+                    ?>
+                    </div>
                 </div>
             </div>
+
             <div class="panel-horariosPrecios">
                 <h3><strong>Horarios y precios:</strong></h3>
                 <div class="dias">
@@ -163,115 +168,125 @@ include "configuracion/infoLocal.php";
             </div>
 
             <div class="panel-disponibilidad">
-            <h3><strong>Disponibilidad:</strong></h3>
-            <div class="calendario">
-                <label for="fechaLocal">Fecha:</label>
-                <div style="display:flex; flex-direction:row; align-items:center; column-gap:25px">
+                <h3><strong>Disponibilidad:</strong></h3>
+                <div class="calendario">
+                    <label for="fechaLocal">Fecha:</label>
+                    <div style="display:flex; flex-direction:row; align-items:center; column-gap:25px">
 
-                    <input type="date" id="fechaLocal" class="form-control" style="width:30%"  data-id-local="<?php echo $local['id_local']; ?>" min="<?php echo date('Y-m-d'); ?>"/>
+                        <input type="date" id="fechaLocal" class="form-control" style="width:30%"  data-id-local="<?php echo $local['id_local']; ?>" min="<?php echo date('Y-m-d'); ?>"/>
 
-                    <button type="button" id="guardarDisponibilidad" class="btn btn-primary" disabled>Buscar</button>
-                    <label id="estadoDisponibilidad" style="font-weight: bold; color: green;"></label>
-                </div>
-            </div>
-        </div>
-        <div class="panel-opiniones">
-    <h3 id="op"><strong>Opiniones:</strong></h3>
-    <div class="panel-opiniones-container">
-        <div class="estrellas">
-            <div>
-                <?php
-                    $estrellas2 = new Estrellas($promedioCalificacion);
-                    $estrellas2->imprimirEstrellas();
-                ?>
-            </div>
-            <hr>
-            <div class="info-opinion">
-                <p>Calidad de servicio</p>
-                <div class="comboEstrellas">
-                    <?php
-                    $estrellas3 = new Estrellas($promedioCalidadServicio);
-                    $estrellas3->imprimirEstrellas();
-                    ?>
-                </div>
-            </div>
-            <div class="info-opinion">
-                <p>Respuestas</p>
-                <div class="comboEstrellas" style="font-size:10px">
-                    <?php
-                    $estrellas2 = new Estrellas($promedioRespuesta);
-                    $estrellas2->imprimirEstrellas();
-                    ?>
-                </div>
-            </div>
-            <div class="info-opinion">
-                <p>Profesionalidad</p>
-                <div class="comboEstrellas">
-                    <?php
-                    $estrellas2 = new Estrellas($promedioProfesionalidad);
-                    $estrellas2->imprimirEstrellas();
-                    ?>
-                </div>
-            </div>
-            <div class="info-opinion">
-                <p>Calidad / Precio</p>
-                <div class="comboEstrellas">
-                    <?php
-                    $estrellas2 = new Estrellas($promedioCalidadPrecio);
-                    $estrellas2->imprimirEstrellas();
-                    ?>
-                </div>
-            </div>
-            <div class="btn-opinion">
-                <?php if (isset($_SESSION['id_cliente']) && !empty($_SESSION['id_cliente'])): ?>
-                    <button class="btn-agregarComentario" data-bs-toggle="modal" data-bs-target="#opinionModal">Escribe una opinión</button>
-                <?php endif; ?>
-            </div>
-        </div>
-        
-        <!-- Carrusel de comentarios -->
-        <div id="carouselComments" class="carousel slide carousel-comments" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <?php
-                foreach ($opiniones as $index => $opinion) {
-                    // Determina si es el primer comentario para agregar la clase 'active'
-                    $activeClass = ($index === 0) ? 'active' : '';
-                    echo '
-                    <div class="carousel-item ' . $activeClass . '">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="headerComments">
-                                    <img src="imagenes/personaIcon.png" alt="">
-                                    <h4>Anónimo</h4>
-                                </div> <br>';
-                                $estrellas2 = new Estrellas($opinion['calidad_servicio']);
-                                $estrellas2->imprimirEstrellas();
-                            echo '
-                            <div class="center-Comments">
-                                <!-- Aquí ya no se incluyen las estrellas -->
-                            </div>
-                            <p class="card-text">' . htmlspecialchars($opinion['comentario']) . '</p>
-                            <p class="card-date">Enviado el ' . htmlspecialchars($opinion['fecha']) . '</p>
-                        </div>
+                        <button type="button" id="guardarDisponibilidad" class="btn btn-primary" disabled>Buscar</button>
+                        <label id="estadoDisponibilidad" style="font-weight: bold; color: green;"></label>
                     </div>
-                </div>';
-                }
-                ?>
-            </div>
-            <!-- Controles del carrusel -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselComments" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselComments" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-
                 </div>
             </div>
+            
+            <div class="panel-opiniones">
+                <h3 id="op"><strong>Opiniones:</strong></h3>
+                <div class="panel-opiniones-container">
+                    <div class="estrellas">
+                        <div>
+                            <?php
+                                $estrellas2 = new Estrellas($promedioCalificacion);
+                                $estrellas2->imprimirEstrellas();
+                            ?>
+                        </div>
+                        <hr>
+                        <div class="info-opinion">
+                            <p>Calidad de servicio</p>
+                            <div class="comboEstrellas">
+                                <?php
+                                $estrellas3 = new Estrellas($promedioCalidadServicio);
+                                $estrellas3->imprimirEstrellas();
+                                ?>
+                            </div>
+                        </div>
+                        <div class="info-opinion">
+                            <p>Respuestas</p>
+                            <div class="comboEstrellas" style="font-size:10px">
+                                <?php
+                                $estrellas2 = new Estrellas($promedioRespuesta);
+                                $estrellas2->imprimirEstrellas();
+                                ?>
+                            </div>
+                        </div>
+                        <div class="info-opinion">
+                            <p>Profesionalidad</p>
+                            <div class="comboEstrellas">
+                                <?php
+                                $estrellas2 = new Estrellas($promedioProfesionalidad);
+                                $estrellas2->imprimirEstrellas();
+                                ?>
+                            </div>
+                        </div>
+                        <div class="info-opinion">
+                            <p>Calidad / Precio</p>
+                            <div class="comboEstrellas">
+                                <?php
+                                $estrellas2 = new Estrellas($promedioCalidadPrecio);
+                                $estrellas2->imprimirEstrellas();
+                                ?>
+                            </div>
+                        </div>
+                        
+                    </div>
+            
+                    <!-- Carrusel de comentarios -->
+                    <div id="carouselComments" class="carousel slide carousel-comments" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <?php
+                            foreach ($opiniones as $index => $opinion) {
+                                // Determina si es el primer comentario para agregar la clase 'active'
+                                $activeClass = ($index === 0) ? 'active' : '';
+                                echo '
+                                <div class="carousel-item ' . $activeClass . '">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="headerComments">
+                                                <img src="imagenes/personaIcon.png" alt="">
+                                                <h4>Anónimo</h4>
+                                            </div> <br>';
+                                            $estrellas2 = new Estrellas($opinion['calidad_servicio']);
+                                            $estrellas2->imprimirEstrellas();
+                                        echo '
+                                        <div class="center-Comments">
+                                            <!-- Aquí ya no se incluyen las estrellas -->
+                                        </div>
+                                        <p class="card-text">' . htmlspecialchars($opinion['comentario']) . '</p>
+                                        <p class="card-date">Enviado el ' . htmlspecialchars($opinion['fecha']) . '</p>
+                                    </div>
+                                </div>
+                            </div>';
+                            }
+                            ?>
+                        </div>
+                        <!-- Controles del carrusel -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselComments" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselComments" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+            
+                </div>
+                            <br>
+                <div style="display:flex; ">
+                <div class="btn-opinion">
+                    <?php if (isset($_SESSION['id_cliente']) && !empty($_SESSION['id_cliente'])): ?>
+                        <button class="btn-agregarComentario" data-bs-toggle="modal" data-bs-target="#opinionModal">Escribe una opinión</button>
+                    <?php endif; ?>
+                </div>
+                <div style="width:80%" class="espacio-opinion"></div>
+            </div>
+            </div>
+
+            
+
+            <!--  </div> -->
             <div class="contacto">
                 <h3><strong>Contacto:</strong></h3>
                 <div class="infoContacto">
