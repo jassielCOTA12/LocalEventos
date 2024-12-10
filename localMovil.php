@@ -124,7 +124,7 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="padding-bottom: 10px;">
-                            <strong>★ <?php echo $num_opiniones .'opiniones (' . $local['promedio_calificacion'] . ")";?>
+                            <strong>★ <?php echo $num_opiniones .' opiniones (' . $local['promedio_calificacion'] . ")";?>
                             </strong></p>
                           </button>
                         </h2>
@@ -177,28 +177,36 @@
                           </div>
                         </div>
                         <div style="width: 100%; display:flex; justify-content:center">
-                            <div class="card-movil">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="headerComments">
-                                            <img src="imagenes/personaIcon.png" alt="">
-                                            <h4>Anónime</h4>
-                                        </div>
-                                        <div class="center-Comments">
-                                            <?php 
-                                            $estrellas2 = new Estrellas($promedioCalidadServicio);
-                                            $estrellas2->imprimirEstrellas();
+                                <div class="card-movil">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="headerComments">
+                                                <img src="imagenes/personaIcon.png" alt="">
+                                                <h4>Anónimo</h4>
+                                            </div>
+                                            <div class="center-Comments" id="comentariosContainer">
+                                                <?php 
+                                                // Obtener la última opinión del arreglo
+                                                if (!empty($opiniones)) {
+                                                    $ultimaOpinion = end($opiniones); // end() obtiene el último elemento del array
+                                                    $estrellas2 = new Estrellas($ultimaOpinion['calidad_servicio']);
+                                                    $estrellas2->imprimirEstrellas();
+                                                    echo '
+                                                    <p class="card-text" id="comentarioText">' . htmlspecialchars($ultimaOpinion['comentario']) . '</p>
+                                                    <p class="card-date" id="comentarioFecha">Enviado el ' . htmlspecialchars($ultimaOpinion['fecha']) . '</p>';
+                                                } else {
+                                                    echo '<p class="card-text">No hay opiniones disponibles.</p>';
+                                                }
                                                 ?>
+                                            </div>
                                         </div>
-                                        <?php  echo '
-                                        <p class="card-text">' . htmlspecialchars($opinion['comentario']) . '</p>
-                                        <p class="card-date">Enviado el ' . htmlspecialchars($opinion['fecha']) . '</p>';
-                                        ?>
                                     </div>
                                 </div>
                             </div>
-                             
-                        </div>
+
+
+
+
                       </div>
                 </div>
                 <hr>
@@ -352,7 +360,28 @@
             </div>
         </div>
     </div>
-    
+    <script>
+    // Array de comentarios que se actualizarán cada 5 segundos
+    var comentarios = <?php echo json_encode($opiniones); ?>;  // Usamos PHP para pasar los comentarios de servidor a JavaScript
+    var index = 0;
+
+    // Función para actualizar los comentarios
+    function actualizarComentario() {
+        if (comentarios.length > 0) {
+            var comentarioActual = comentarios[index];
+            document.getElementById('comentarioText').textContent = comentarioActual.comentario;
+            document.getElementById('comentarioFecha').textContent = 'Enviado el ' + comentarioActual.fecha;
+            // Aquí puedes agregar la lógica para mostrar las estrellas si es necesario
+            index = (index + 1) % comentarios.length; // Avanzamos al siguiente comentario y volvemos al inicio si llegamos al final
+        }
+    }
+
+    // Llamar a la función cada 5 segundos
+    setInterval(actualizarComentario, 4500);
+
+    // Llamamos a la función inmediatamente para mostrar el primer comentario
+    actualizarComentario();
+    </script>
     <script src="script/scriptLocal.js"></script>
     <script>
     

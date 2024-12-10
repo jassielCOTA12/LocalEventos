@@ -1,3 +1,25 @@
+
+// Array de comentarios que se actualizarán cada 5 segundos
+var comentarios = <?php echo json_encode($opiniones); ?>;  // Usamos PHP para pasar los comentarios de servidor a JavaScript
+var index = 0;
+
+// Función para actualizar los comentarios
+function actualizarComentario() {
+    if (comentarios.length > 0) {
+        var comentarioActual = comentarios[index];
+        document.getElementById('comentarioText').textContent = comentarioActual.comentario;
+        document.getElementById('comentarioFecha').textContent = 'Enviado el ' + comentarioActual.fecha;
+        // Aquí puedes agregar la lógica para mostrar las estrellas si es necesario
+        index = (index + 1) % comentarios.length; // Avanzamos al siguiente comentario y volvemos al inicio si llegamos al final
+    }
+}
+
+// Llamar a la función cada 5 segundos
+setInterval(actualizarComentario, 5000);
+
+// Llamamos a la función inmediatamente para mostrar el primer comentario
+actualizarComentario();
+
 document.addEventListener('DOMContentLoaded', function () {
     const btnContinuar = document.getElementById('continuarReserva');
     const inputNombre = document.getElementById('inputNombre');
