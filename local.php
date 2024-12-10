@@ -237,10 +237,10 @@ include "configuracion/infoLocal.php";
                     <div id="carruselComentarios" class="carousel slide">
                     <div class="carousel-inner">
                     <?php
-                    $lastIndex = count($opiniones) - 1;
-                            foreach ($opiniones as $index => $opinion) {
+                    $opinionesRevertidas = array_reverse($opiniones);
+                            foreach ($opinionesRevertidas  as $index => $opinion) {
                                 // Determina si es el primer comentario para agregar la clase 'active'
-                                $activeClass = ($index === $lastIndex) ? 'active' : '';
+                                $activeClass = ($index === 0) ? 'active' : '';
                                 echo '
                                 <div class="carousel-item ' . $activeClass . '">
                                     <div class="card">
@@ -263,14 +263,25 @@ include "configuracion/infoLocal.php";
                             }
                             ?>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carruselComentarios" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carruselComentarios" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    <?php if (count($opiniones) > 1): ?>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carruselComentarios" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" style="filter:invert(1)" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carruselComentarios" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" style="filter:invert(1)" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    <?php else: ?>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carruselComentarios" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carruselComentarios" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    <?php endif; ?>
                 </div>
 
                   
