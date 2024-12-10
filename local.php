@@ -190,6 +190,7 @@ include "configuracion/infoLocal.php";
                                 $estrellas2 = new Estrellas($promedioCalificacion);
                                 $estrellas2->imprimirEstrellas();
                             ?>
+                            <strong>(<?php echo $promedioCalificacion; ?>)</strong>
                         </div>
                         <hr>
                         <div class="info-opinion">
@@ -232,9 +233,9 @@ include "configuracion/infoLocal.php";
                     </div>
             
                     <!-- Carrusel de comentarios -->
-                    <div id="carouselComments" class="carousel slide carousel-comments" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <?php
+                    <div id="carruselComentarios" class="carousel slide">
+                    <div class="carousel-inner">
+                    <?php
                             foreach ($opiniones as $index => $opinion) {
                                 // Determina si es el primer comentario para agregar la clase 'active'
                                 $activeClass = ($index === 0) ? 'active' : '';
@@ -243,7 +244,7 @@ include "configuracion/infoLocal.php";
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="headerComments">
-                                                <img src="imagenes/personaIcon.png" alt="">
+                                                <img src="imagenes/personaIcon.png" alt="" style="width: 30px; height:30px">
                                                 <h4>Anónimo</h4>
                                             </div> <br>';
                                             $estrellas2 = new Estrellas($opinion['calidad_servicio']);
@@ -259,19 +260,18 @@ include "configuracion/infoLocal.php";
                             </div>';
                             }
                             ?>
-                        </div>
-                        <!-- Controles del carrusel -->
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselComments" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselComments" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
                     </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carruselComentarios" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carruselComentarios" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
 
-            
+                  
                 </div>
                             <br>
                 <div style="display:flex; ">
@@ -283,9 +283,6 @@ include "configuracion/infoLocal.php";
                 <div style="width:80%" class="espacio-opinion"></div>
             </div>
             </div>
-
-            
-
             <!--  </div> -->
             <div class="contacto">
                 <h3><strong>Contacto:</strong></h3>
@@ -433,7 +430,7 @@ include "configuracion/infoLocal.php";
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-aceptar" id="confirmarReserva" data-bs-dismiss="modal" disabled>Pagar</button>
+                    <button type="button" class="btn-aceptar" id="confirmarReserva" data-bs-dismiss="modal"  onclick="location.reload();" disabled>Pagar</button>
                     <p class="text-center text-muted mt-2">Al seleccionar el botón, acepta los términos de la reservación.</p>
                 </div>
             </div>

@@ -111,9 +111,12 @@
                         <div id="collapseOne" class="accordion-collapse collapse colapso-movil" data-bs-parent="#accordionExample">
                           <div class="accordion-body">
                                 <div class="divbtnFecha-movil" style="">
-                                <label for="fecha">Fecha:</label>
-                                <input type="date" id="fecha" class="form-control">
-                                <label for="fecha">Disponible</label>
+                                    <div style="display:flex; flex-direction:row; align-items:center; column-gap:25px">
+                                        <label for="fechaLocalMovil">Fecha:</label>
+                                        <input type="date" id="fechaLocalMovil" class="form-control" style="width:50%"  data-id-local-movil="<?php echo $local['id_local']; ?>" min="<?php echo date('Y-m-d'); ?>"/>
+                                        <button type="button" id="guardarDisponibilidadMovil" class="btn btn-primary">Buscar</button>                       
+                                    </div>
+                                    <label id="estadoDisponibilidadMovil" style="font-weight: bold; color: green;"></label>
                                 </div>
                           </div>
                         </div>
@@ -383,6 +386,7 @@
     actualizarComentario();
     </script>
     <script src="script/scriptLocal.js"></script>
+    <script src="script/scriptDisponibilidadLocal.js"></script>
     <script>
     
     
