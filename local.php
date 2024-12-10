@@ -446,7 +446,7 @@ include "configuracion/infoLocal.php";
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-aceptar" id="confirmarReserva" data-bs-dismiss="modal"  onclick="location.reload();" disabled>Pagar</button>
+                    <button type="button" class="btn-aceptar" id="confirmarReserva" data-bs-dismiss="modal" disabled>Pagar</button>
                     <p class="text-center text-muted mt-2">Al seleccionar el botón, acepta los términos de la reservación.</p>
                 </div>
             </div>
