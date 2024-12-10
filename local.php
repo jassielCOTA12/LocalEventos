@@ -75,7 +75,8 @@ include "configuracion/infoLocal.php";
                             <?php include 'include/estrellas.php';
                             $estrellas = new Estrellas($promedioCalificacion);
                             $estrellas->imprimirEstrellas(); ?>
-                            <a href="#op" class="opiniones">(<?php echo $num_opiniones; ?> opiniones)</a>
+                            <a href="#op" class="opiniones">(<?php echo $num_opiniones . ' ' . ($num_opiniones === 1 ? 'opinión' : 'opiniones'); ?>)
+                            </a>
                         </div>
 
                         <div class="local-info">
@@ -182,7 +183,7 @@ include "configuracion/infoLocal.php";
             </div>
             
             <div class="panel-opiniones">
-                <h3 id="op"><strong>Opiniones:</strong></h3>
+                <h3 id="op"><strong>Opiniones:</strong><small style="font-size:14px"> (<?php echo $num_opiniones . ' ' . ($num_opiniones === 1 ? 'opinión' : 'opiniones'); ?>)</small></h3>
                 <div class="panel-opiniones-container">
                     <div class="estrellas">
                         <div>
@@ -236,9 +237,10 @@ include "configuracion/infoLocal.php";
                     <div id="carruselComentarios" class="carousel slide">
                     <div class="carousel-inner">
                     <?php
+                    $lastIndex = count($opiniones) - 1;
                             foreach ($opiniones as $index => $opinion) {
                                 // Determina si es el primer comentario para agregar la clase 'active'
-                                $activeClass = ($index === 0) ? 'active' : '';
+                                $activeClass = ($index === $lastIndex) ? 'active' : '';
                                 echo '
                                 <div class="carousel-item ' . $activeClass . '">
                                     <div class="card">
@@ -254,7 +256,7 @@ include "configuracion/infoLocal.php";
                                             <!-- Aquí ya no se incluyen las estrellas -->
                                         </div>
                                         <p class="card-text">' . htmlspecialchars($opinion['comentario']) . '</p>
-                                        <p class="card-date">Enviado el ' . htmlspecialchars($opinion['fecha']) . '</p>
+                                        <p class="card-date">Enviado el ' . date("d-m-Y", strtotime($opinion['fecha'])) . '</p>
                                     </div>
                                 </div>
                             </div>';
@@ -293,7 +295,10 @@ include "configuracion/infoLocal.php";
                     </div>
                     <div class="formato-info">
                         <img src="imagenes/telefonoICon.png" alt="telefonoICon">
-                        <?php echo "<p>Telefono: {$propietario['telefono']}"; ?></p>
+                        <?php $telefono = $propietario['telefono']; 
+                        $telefonoFormateado = preg_replace('/(\d{3})(\d{3})(\d{4})/', '$1 $2 $3', $telefono);
+                        echo "<p>Teléfono: {$telefonoFormateado}</p>";
+                        ?>
                     </div>
                 </div>
             </div>
@@ -303,7 +308,7 @@ include "configuracion/infoLocal.php";
     </div>
         
     <div class="btnSubir">
-        <a href="#" title="Subir"><img class="subir-gen" src="imagenes/subir.png"></a>
+        <a href="#" title="Subir"><img class="subir-gen" src="imagenes/subir2.png"></a>
     </div>      
     
     <!--Modal reservar en version normal-->

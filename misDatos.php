@@ -35,7 +35,7 @@
                         </div>
                         <div class="telefonoSeccion">
                             <h3>Teléfono</h3>
-                            <input type="text" id="telefonoTxt-Mdatos" class="inputGeneral-Mdatos" value="<?= isset($_SESSION['telefono']) ? htmlspecialchars($_SESSION['telefono']) : ''; ?>" disabled>
+                            <input type="text" id="telefonoTxt-Mdatos" class="inputGeneral-Mdatos" value="<?= isset($_SESSION['telefono']) ? preg_replace('/(\d{3})(\d{3})(\d{4})/', '$1 $2 $3', htmlspecialchars($_SESSION['telefono'])) : ''; ?>" disabled>
                         </div>
                     </div>
                 </form>

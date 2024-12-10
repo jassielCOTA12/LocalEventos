@@ -57,7 +57,7 @@
                                 <img src='{$imagenLocal}' alt='imagen de local no cargada'>
                                 <h3>{$local['nombre']}</h3>
                                 <p>Hasta {$local['capacidad_maxima']} personas</p>
-                                <p>Desde \${$local['precio_base']} </p>
+                                <p>Desde \$" . number_format($local['precio_base'], 0, '.', ',') . "</p>
                                 <p><span><i class='fa-starIcon-card fa-solid fa-star'></i></span> {$local['promedio_calificacion']}</p>
                             </article>
                         </a>";
@@ -68,7 +68,7 @@
         </div>
 
         <div class="btnSubir">
-            <a href="#" title="Subir"><img class="subir-gen" src="imagenes/subir.png"></a>
+            <a href="#" title="Subir"><img class="subir-gen" src="imagenes/subir2.png"></a>
         </div> 
     </div>
 

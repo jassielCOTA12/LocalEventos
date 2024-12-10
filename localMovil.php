@@ -39,7 +39,8 @@
                     <?php
                                 $estrellas = new Estrellas($promedioCalificacion);
                                 $estrellas->imprimirEstrellas(); ?>
-                    <a href="#op" class="opiniones">(<?php echo $num_opiniones; ?> opiniones)</a>
+                   <a href="#op" class="opiniones"> (<?php echo $num_opiniones . ' ' . ($num_opiniones === 1 ? 'opinión' : 'opiniones'); ?>)</a>
+
                 </div>
                 <div class="detalles-movil">
                     <h3>Lo que ofrece este lugar</h3>
@@ -127,8 +128,8 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="padding-bottom: 10px;">
-                            <strong>★ <?php echo $num_opiniones .' opiniones (' . $local['promedio_calificacion'] . ")";?>
-                            </strong></p>
+                          <strong>★ <?php echo $num_opiniones . ' ' . ($num_opiniones === 1 ? 'opinión' : 'opiniones') . ' (' . $local['promedio_calificacion'] . ")"; ?>
+                          </strong>
                           </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -222,7 +223,10 @@
                     </div>
                     <div class="local-info">
                         <img src="imagenes/telefonoICon.png" alt="telefonoICon" class="icon">
-                        <?php echo "<p>Telefono: {$propietario['telefono']}"; ?></p>
+                        <?php $telefono = $propietario['telefono']; 
+                        $telefonoFormateado = preg_replace('/(\d{3})(\d{3})(\d{4})/', '$1 $2 $3', $telefono);
+                        echo "<p>Teléfono: {$telefonoFormateado}</p>";
+                        ?>
                     </div>
                 </div>
                 <br><br><br>
